@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Starlight Lane — Credit Card Processing, Guided.</title>
+<meta name="description" content="Starlight Lane. Modern credit card processing, holdback recovery, and AI-powered payment intelligence. Every transaction has a lane. We light the way." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============ RECONSTRUCTED BASE STYLES (originally styles.css) ============ */
+:root {
+  --ink: #0a0d14;
+  --ink-2: #11151f;
+  --ink-3: #1a1f2e;
+  --bone: #f5f2ea;
+  --bone-dim: #a8a69e;
+  --mute: #6b6b6b;
+  --lime: #d8ff5c;
+  --mint: #9fffcf;
+  --amber: #ffb648;
+  --coral: #ff7a5c;
+  --line: rgba(255,255,255,0.08);
+  --line-2: rgba(255,255,255,0.14);
+  --display: 'Fraunces', Georgia, serif;
+  --mono: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ink);
+  color: var(--bone);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; background: none; border: none; color: inherit; cursor: pointer; }
+ul { list-style: none; }
+img, svg { display: block; max-width: 100%; }
+h1, h2, h3, h4, h5 { font-weight: 500; }
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+}
+
+/* Starry background */
+.stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,0.7), transparent 50%),
+    radial-gradient(1px 1px at 28% 68%, rgba(255,255,255,0.5), transparent 50%),
+    radial-gradient(2px 2px at 44% 12%, rgba(216,255,92,0.45), transparent 50%),
+    radial-gradient(1px 1px at 58% 80%, rgba(159,255,207,0.5), transparent 50%),
+    radial-gradient(1px 1px at 72% 34%, rgba(255,255,255,0.6), transparent 50%),
+    radial-gradient(1.5px 1.5px at 86% 58%, rgba(255,182,72,0.35), transparent 50%),
+    radial-gradient(1px 1px at 94% 18%, rgba(255,255,255,0.4), transparent 50%),
+    radial-gradient(1px 1px at 8% 88%, rgba(255,255,255,0.45), transparent 50%);
+  opacity: 0.55;
+  animation: starfade 8s ease-in-out infinite alternate;
+}
+@keyframes starfade { from { opacity: 0.4; } to { opacity: 0.65; } }
+
+/* Navigation */
+nav.top {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 0;
+  background: rgba(10,13,20,0.55);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease, padding 0.3s ease;
+}
+nav.top.scrolled {
+  background: rgba(10,13,20,0.85);
+  border-bottom-color: var(--line);
+  padding: 14px 0;
+}
+nav.top .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--bone);
+}
+.logo svg { width: 22px; height: 22px; }
+.nav-links {
+  display: flex;
+  gap: 36px;
+  font-size: 14px;
+  flex: 1;
+  justify-content: center;
+}
+.nav-links a {
+  color: var(--bone-dim);
+  transition: color 0.2s ease;
+  position: relative;
+}
+.nav-links a:hover { color: var(--bone); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 1;
+}
+.btn-primary {
+  background: var(--lime);
+  color: var(--ink);
+}
+.btn-primary:hover {
+  background: var(--mint);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px -8px rgba(216,255,92,0.5);
+}
+.btn-ghost {
+  color: var(--bone);
+  border-color: var(--line-2);
+  background: transparent;
+}
+.btn-ghost:hover {
+  border-color: var(--bone);
+  background: rgba(255,255,255,0.04);
+  transform: translateY(-1px);
+}
+
+/* Mobile nav */
+.mobile-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+.mobile-toggle span,
+.mobile-toggle span::before,
+.mobile-toggle span::after {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--bone);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+.mobile-toggle span { top: 50%; margin-top: -0.75px; }
+.mobile-toggle span::before { content: ""; top: -7px; }
+.mobile-toggle span::after { content: ""; top: 7px; }
+.mobile-toggle.open span { background: transparent; }
+.mobile-toggle.open span::before { transform: translateX(-50%) rotate(45deg); top: 0; }
+.mobile-toggle.open span::after { transform: translateX(-50%) rotate(-45deg); top: 0; }
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 74px; left: 0; right: 0;
+  background: rgba(10,13,20,0.96);
+  backdrop-filter: blur(20px);
+  z-index: 99;
+  flex-direction: column;
+  padding: 28px 32px 32px;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.mobile-menu a {
+  font-size: 20px;
+  color: var(--bone-dim);
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.mobile-menu a.btn { font-family: inherit; font-size: 14px; margin-top: 8px; }
+.mobile-menu.open { display: flex; }
+
+/* Typography */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--mute);
+  margin-bottom: 24px;
+  display: block;
+}
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(52px, 8.5vw, 104px);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  margin-bottom: 32px;
+  color: var(--bone);
+}
+.display .line {
+  display: block;
+}
+.heading {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(40px, 5.5vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin-bottom: 20px;
+  color: var(--bone);
+}
+.italic {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--lime);
+}
+
+/* Section layout */
+section {
+  padding: 120px 0;
+  position: relative;
+  z-index: 1;
+}
+.section-head {
+  max-width: 680px;
+  margin-bottom: 80px;
+}
+.section-head.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.section-head p {
+  color: var(--bone-dim);
+  font-size: 17px;
+  line-height: 1.6;
+  margin-top: 14px;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+
+/* CTA block */
+.cta-block {
+  background: linear-gradient(135deg, var(--ink-2) 0%, var(--ink-3) 100%);
+  border: 1px solid var(--line-2);
+  border-radius: 32px;
+  padding: 88px 72px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-block::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(216,255,92,0.14), transparent 60%);
+  pointer-events: none;
+}
+.cta-content {
+  max-width: 720px;
+  position: relative;
+  z-index: 2;
+}
+.cta-content h2 {
+  font-family: var(--display);
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+  color: var(--bone);
+}
+.cta-content p {
+  color: var(--bone-dim);
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 36px;
+  max-width: 580px;
+}
+.cta-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Footer */
+footer {
+  padding: 80px 0 36px;
+  border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 1;
+  background: rgba(10,13,20,0.6);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--line);
+}
+.footer-brand .logo { margin-bottom: 18px; font-size: 20px; }
+.footer-brand p {
+  color: var(--bone-dim);
+  font-size: 14px;
+  max-width: 340px;
+  line-height: 1.6;
+}
+.footer-col h5 {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--mute);
+  margin-bottom: 22px;
+  font-weight: 500;
+}
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-col a {
+  color: var(--bone-dim);
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom {
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--mute);
+}
+
+/* Mobile breakpoints */
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .mobile-toggle { display: flex; align-items: center; justify-content: center; }
+  nav.top > .container > .row > .btn { display: none; }
+  .cta-block { padding: 60px 40px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 680px) {
+  .container { padding: 0 20px; }
+  section { padding: 80px 0; }
+  .section-head { margin-bottom: 56px; }
+  .cta-block { padding: 48px 28px; border-radius: 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+/* ============ END RECONSTRUCTED BASE STYLES ============ */
+</style>
+<style>
+header.hero { position: relative; padding: 180px 0 120px; overflow: hidden; }
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 25%, rgba(159, 255, 207, 0.12), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(255, 182, 72, 0.09), transparent 60%);
+}
+.lane {
+  position: absolute; top: 10%; right: -10%;
+  width: 60%; height: 140%;
+  transform: rotate(-18deg);
+  background: linear-gradient(90deg, transparent 0%, rgba(216,255,92,0.04) 30%, rgba(159,255,207,0.08) 50%, rgba(216,255,92,0.04) 70%, transparent 100%);
+  filter: blur(40px); z-index: 0; pointer-events: none;
+}
+.hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 80px; align-items: center; position: relative; z-index: 2; }
+.hero p.lede { font-size: 19px; line-height: 1.55; color: var(--bone-dim); max-width: 520px; margin-bottom: 36px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+.hero-stats { display: flex; gap: 40px; padding-top: 32px; border-top: 1px solid var(--line); }
+.hero-stats .stat { display: flex; flex-direction: column; gap: 4px; }
+.hero-stats .num { font-family: var(--display); font-size: 32px; font-weight: 500; letter-spacing: -0.02em; color: var(--bone); line-height: 1; }
+.hero-stats .label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--mute); }
+
+.card-stage { position: relative; height: 540px; perspective: 1600px; transform-style: preserve-3d; }
+.credit-card {
+  position: absolute; width: 340px; height: 215px;
+  border-radius: 20px; padding: 24px;
+  transform-style: preserve-3d;
+  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06) inset;
+  display: flex; flex-direction: column; justify-content: space-between;
+  font-family: var(--mono); transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1);
+}
+.card-1 {
+  top: 40px; left: 30px;
+  background: linear-gradient(135deg, #0f1320 0%, #1a2033 100%), radial-gradient(circle at 80% 20%, rgba(216,255,92,0.3), transparent 50%);
+  color: var(--bone);
+  transform: rotate(-10deg) translateZ(-20px);
+  animation: float1 8s ease-in-out infinite;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.card-1::before { content:""; position: absolute; inset: 0; border-radius: 20px; background: radial-gradient(circle at 80% 20%, rgba(216,255,92,0.22), transparent 55%); pointer-events: none; }
+.card-2 { top: 140px; left: 140px; background: linear-gradient(135deg, var(--lime) 0%, var(--mint) 100%); color: var(--ink); transform: rotate(6deg) translateZ(40px); animation: float2 9s ease-in-out infinite; }
+.card-3 { top: 300px; left: 70px; background: linear-gradient(135deg, var(--amber) 0%, var(--coral) 100%); color: var(--ink); transform: rotate(-4deg) translateZ(10px); animation: float3 10s ease-in-out infinite; }
+@keyframes float1 { 0%,100%{transform:rotate(-10deg) translate3d(0,0,-20px);} 50%{transform:rotate(-8deg) translate3d(-6px,-12px,-20px);} }
+@keyframes float2 { 0%,100%{transform:rotate(6deg) translate3d(0,0,40px);} 50%{transform:rotate(8deg) translate3d(8px,-14px,40px);} }
+@keyframes float3 { 0%,100%{transform:rotate(-4deg) translate3d(0,0,10px);} 50%{transform:rotate(-2deg) translate3d(-4px,-8px,10px);} }
+.credit-card .card-top, .credit-card .card-bottom { display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 2; }
+.credit-card .brand { font-family: var(--display); font-weight: 500; font-size: 14px; }
+.credit-card .chip { width: 36px; height: 28px; border-radius: 6px; background: linear-gradient(135deg, #e9d27b, #a08234); position: relative; }
+.credit-card .chip::after { content:""; position: absolute; inset: 4px; border-radius: 3px; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,0,0,0.2) 3px 4px), repeating-linear-gradient(90deg, transparent 0 3px, rgba(0,0,0,0.2) 3px 4px); }
+.credit-card .num { font-size: 13px; letter-spacing: 0.08em; opacity: 0.85; }
+.credit-card .name { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.7; }
+
+.ticker-wrap { padding: 28px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; position: relative; z-index: 2; background: rgba(15,19,32,0.4); }
+.ticker { display: flex; gap: 64px; animation: scroll 40s linear infinite; white-space: nowrap; font-family: var(--mono); font-size: 14px; color: var(--bone-dim); letter-spacing: 0.08em; width: max-content; }
+.ticker span { display: inline-flex; align-items: center; gap: 12px; }
+.ticker .mark { color: var(--lime); font-size: 8px; }
+@keyframes scroll { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.service-card { position: relative; padding: 40px 32px 36px; border-radius: 24px; background: var(--ink-2); border: 1px solid var(--line); overflow: hidden; transition: transform 0.4s ease, border-color 0.4s ease; min-height: 400px; display: flex; flex-direction: column; }
+.service-card::before { content:""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--lime), transparent); opacity: 0; transition: opacity 0.4s ease; }
+.service-card::after { content:""; position: absolute; inset: 0; background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(216,255,92,0.10), transparent 50%); opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
+.service-card:hover { transform: translateY(-6px); border-color: var(--line-2); }
+.service-card:hover::before, .service-card:hover::after { opacity: 1; }
+.service-num { font-family: var(--mono); font-size: 11px; color: var(--mute); letter-spacing: 0.24em; margin-bottom: 32px; }
+.service-icon { width: 56px; height: 56px; margin-bottom: 28px; display: flex; align-items: center; justify-content: center; border-radius: 14px; background: rgba(216,255,92,0.08); border: 1px solid rgba(216,255,92,0.18); }
+.service-icon svg { width: 26px; height: 26px; color: var(--lime); }
+.service-card h3 { font-family: var(--display); font-weight: 500; font-size: 28px; letter-spacing: -0.02em; margin-bottom: 14px; line-height: 1.1; }
+.service-card p { color: var(--bone-dim); font-size: 15px; margin-bottom: 24px; flex: 1; }
+.service-card .features { display: flex; flex-direction: column; gap: 8px; padding-top: 24px; border-top: 1px solid var(--line); }
+.service-card .features div { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--bone-dim); font-family: var(--mono); }
+.service-card .features div::before { content: "→"; color: var(--lime); font-weight: 600; }
+
+.calc-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
+.calc-panel { background: linear-gradient(180deg, var(--ink-2) 0%, var(--ink) 100%); border: 1px solid var(--line-2); border-radius: 28px; padding: 40px; position: relative; overflow: hidden; }
+.calc-panel::before { content:""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--lime), transparent); }
+.calc-panel h3 { font-family: var(--mono); font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--mute); margin-bottom: 32px; display: flex; align-items: center; gap: 10px; }
+.calc-panel h3::before { content:""; width: 6px; height: 6px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 10px var(--lime); }
+.input-group { margin-bottom: 28px; }
+.input-group label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; font-size: 14px; color: var(--bone-dim); }
+.input-group label .value { font-family: var(--mono); color: var(--lime); font-weight: 500; }
+input[type="range"] { width: 100%; height: 4px; background: var(--ink-3); border-radius: 2px; appearance: none; -webkit-appearance: none; outline: none; }
+input[type="range"]::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--lime); cursor: pointer; box-shadow: 0 0 0 4px rgba(216,255,92,0.15), 0 0 20px rgba(216,255,92,0.5); transition: box-shadow 0.2s ease; }
+input[type="range"]::-webkit-slider-thumb:hover { box-shadow: 0 0 0 6px rgba(216,255,92,0.22), 0 0 25px rgba(216,255,92,0.7); }
+input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--lime); cursor: pointer; border: none; box-shadow: 0 0 0 4px rgba(216,255,92,0.15), 0 0 20px rgba(216,255,92,0.5); }
+.industry-select { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+.industry-select button { padding: 12px 10px; border-radius: 10px; background: var(--ink-3); border: 1px solid var(--line); color: var(--bone-dim); font-size: 13px; transition: all 0.2s ease; }
+.industry-select button:hover { border-color: var(--line-2); color: var(--bone); }
+.industry-select button.active { background: rgba(216,255,92,0.12); border-color: var(--lime); color: var(--lime); }
+.calc-result { background: var(--ink-2); border: 1px solid var(--line); border-radius: 28px; padding: 40px; position: relative; overflow: hidden; }
+.calc-result::before { content:""; position: absolute; top: -50%; right: -30%; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(216,255,92,0.10), transparent 60%); pointer-events: none; }
+.calc-result-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--mute); margin-bottom: 18px; }
+.calc-result-value { font-family: var(--display); font-size: clamp(56px, 8vw, 88px); font-weight: 500; line-height: 1; letter-spacing: -0.03em; margin-bottom: 6px; background: linear-gradient(135deg, var(--bone) 0%, var(--lime) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; position: relative; transition: transform 0.25s ease; }
+.calc-result-value .cents { font-size: 0.4em; color: var(--mute); background: none; -webkit-text-fill-color: var(--mute); }
+.calc-result-sub { color: var(--bone-dim); font-size: 15px; margin-bottom: 32px; }
+.calc-breakdown { display: flex; flex-direction: column; gap: 16px; padding-top: 28px; border-top: 1px solid var(--line); position: relative; z-index: 1; }
+.calc-row { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+.calc-row .label { color: var(--mute); font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.calc-row .val { color: var(--bone); font-family: var(--mono); font-weight: 500; }
+.calc-row.highlight .val { color: var(--lime); }
+
+.timeline { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.timeline::before { content:""; position: absolute; top: 30px; left: 8%; right: 8%; height: 1px; background: linear-gradient(90deg, transparent, var(--line-2) 10%, var(--line-2) 90%, transparent); }
+.timeline-step { position: relative; padding-top: 80px; }
+.timeline-step .dot { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; border-radius: 50%; background: var(--ink); border: 2px solid var(--lime); z-index: 2; }
+.timeline-step .dot::before { content:""; position: absolute; inset: -6px; border-radius: 50%; background: rgba(216,255,92,0.15); animation: ping 3s ease-in-out infinite; }
+.timeline-step:nth-child(2) .dot::before { animation-delay: 0.4s; }
+.timeline-step:nth-child(3) .dot::before { animation-delay: 0.8s; }
+.timeline-step:nth-child(4) .dot::before { animation-delay: 1.2s; }
+@keyframes ping { 0%,100%{transform:scale(1);opacity:0.6;} 50%{transform:scale(1.6);opacity:0;} }
+.timeline-step .num { font-family: var(--mono); color: var(--mute); font-size: 12px; letter-spacing: 0.24em; margin-bottom: 12px; text-align: center; }
+.timeline-step h4 { font-family: var(--display); font-weight: 500; font-size: 24px; letter-spacing: -0.02em; margin-bottom: 10px; text-align: center; }
+.timeline-step p { color: var(--bone-dim); font-size: 14px; text-align: center; line-height: 1.55; }
+
+.ai-section { background: radial-gradient(ellipse at 0% 50%, rgba(159,255,207,0.08), transparent 50%), radial-gradient(ellipse at 100% 50%, rgba(255,182,72,0.06), transparent 50%); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.ai-visual { position: relative; aspect-ratio: 1; max-width: 500px; }
+.ai-orb { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(216,255,92,0.4), transparent 60%), radial-gradient(circle at 70% 70%, rgba(159,255,207,0.35), transparent 60%), radial-gradient(circle at 50% 50%, rgba(255,182,72,0.25), transparent 70%); filter: blur(40px); animation: orb 14s ease-in-out infinite; }
+@keyframes orb { 0%,100%{transform:scale(1) rotate(0deg);} 50%{transform:scale(1.1) rotate(180deg);} }
+.ai-rings { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.ai-rings::before, .ai-rings::after { content:""; position: absolute; border-radius: 50%; border: 1px solid var(--line-2); }
+.ai-rings::before { width: 80%; height: 80%; animation: spin 20s linear infinite; border-top-color: var(--lime); }
+.ai-rings::after { width: 60%; height: 60%; animation: spin 14s linear infinite reverse; border-right-color: var(--mint); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.ai-core { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, var(--ink-2), var(--ink)); border: 1px solid var(--line-2); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-style: italic; font-size: 18px; color: var(--lime); text-align: center; }
+.ai-list { display: flex; flex-direction: column; gap: 24px; margin-top: 32px; }
+.ai-item { display: flex; gap: 20px; padding: 20px; border-radius: 16px; border: 1px solid var(--line); transition: border-color 0.3s ease, transform 0.3s ease; }
+.ai-item:hover { border-color: var(--line-2); transform: translateX(6px); }
+.ai-item .idx { font-family: var(--mono); font-size: 14px; color: var(--lime); min-width: 32px; }
+.ai-item h4 { font-family: var(--display); font-size: 20px; font-weight: 500; margin-bottom: 4px; letter-spacing: -0.01em; }
+.ai-item p { color: var(--bone-dim); font-size: 14px; }
+
+.faq-list { max-width: 900px; margin: 0 auto; border-top: 1px solid var(--line); }
+details.faq { border-bottom: 1px solid var(--line); padding: 28px 0; cursor: pointer; transition: padding 0.3s ease; }
+details.faq summary { list-style: none; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; font-family: var(--display); font-weight: 500; font-size: 22px; letter-spacing: -0.01em; line-height: 1.3; transition: color 0.2s ease; }
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq[open] summary { color: var(--lime); }
+details.faq summary .plus { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line-2); display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease; font-family: var(--mono); font-size: 18px; color: var(--bone-dim); }
+details.faq[open] summary .plus { transform: rotate(45deg); border-color: var(--lime); background: rgba(216,255,92,0.1); color: var(--lime); }
+details.faq .answer { padding-top: 16px; color: var(--bone-dim); font-size: 16px; line-height: 1.65; max-width: 720px; }
+
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 60px; }
+  .card-stage { height: 460px; max-width: 420px; margin: 0 auto; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .calc-wrap { grid-template-columns: 1fr; gap: 32px; }
+  .ai-grid { grid-template-columns: 1fr; gap: 60px; }
+  .timeline { grid-template-columns: 1fr 1fr; gap: 48px 32px; }
+  .timeline::before { display: none; }
+}
+@media (max-width: 680px) {
+  header.hero { padding: 130px 0 80px; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
+  .services-grid { grid-template-columns: 1fr; }
+  .timeline { grid-template-columns: 1fr; }
+  .calc-panel, .calc-result { padding: 28px; border-radius: 20px; }
+  .card-stage { height: 440px; }
+  .credit-card { width: 280px; height: 175px; padding: 20px; }
+  .card-1 { left: 10px; } .card-2 { left: 70px; } .card-3 { left: 30px; top: 240px; }
+}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<nav class="top">
+  <div class="container row">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="star-glow" d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad)"/><defs><linearGradient id="starGrad" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
+      Starlight Lane
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="calculator.html">Calculator</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="ai.html">AI</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <a href="contact.html" class="btn btn-primary">Get a Rate →</a>
+    <button class="mobile-toggle" aria-label="Menu"><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="calculator.html">Calculator</a>
+  <a href="process.html">Process</a>
+  <a href="ai.html">AI</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html" class="btn btn-primary">Get a Rate →</a>
+</div>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="lane"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow reveal">Credit card processing · holdback recovery · AI intelligence</div>
+        <h1 class="display reveal reveal-delay-1"><span class="line">Every payment</span><span class="line">has a <span class="italic">lane.</span></span><span class="line">We light it.</span></h1>
+        <p class="lede reveal reveal-delay-2">Starlight Lane gives modern businesses a smarter way to process credit cards, recover held reserves, and put AI to work on every transaction — so money moves with less friction, less waste, and fewer surprises.</p>
+        <div class="hero-actions reveal reveal-delay-3">
+          <a href="calculator.html" class="btn btn-primary">Calculate my rate →</a>
+          <a href="services.html" class="btn btn-ghost">See how it works</a>
+        </div>
+        <div class="hero-stats reveal reveal-delay-3">
+          <div class="stat"><div class="num">0.15<span style="color:var(--mute);">%</span></div><div class="label">Starting rate</div></div>
+          <div class="stat"><div class="num">48<span style="color:var(--mute);">hr</span></div><div class="label">Avg. funding</div></div>
+          <div class="stat"><div class="num">24<span style="color:var(--mute);">/7</span></div><div class="label">AI monitoring</div></div>
+        </div>
+      </div>
+      <div class="card-stage reveal reveal-delay-2">
+        <div class="credit-card card-1"><div class="card-top"><span class="brand">Starlight Lane</span><div class="chip"></div></div><div class="card-bottom"><div><div class="num">•••• •••• •••• 0291</div><div class="name" style="margin-top:8px;">MERCHANT · A. CARTER</div></div></div></div>
+        <div class="credit-card card-2"><div class="card-top"><span class="brand" style="color:var(--ink);">Starlight Lane</span><div class="chip"></div></div><div class="card-bottom"><div><div class="num" style="color:var(--ink); opacity:0.8;">•••• •••• •••• 7748</div><div class="name" style="margin-top:8px; color:var(--ink); opacity:0.7;">MERCHANT · J. WRIGHT</div></div></div></div>
+        <div class="credit-card card-3"><div class="card-top"><span class="brand" style="color:var(--ink);">Starlight Lane</span><div class="chip"></div></div><div class="card-bottom"><div><div class="num" style="color:var(--ink); opacity:0.8;">•••• •••• •••• 4412</div><div class="name" style="margin-top:8px; color:var(--ink); opacity:0.7;">MERCHANT · L. OKAFOR</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker-wrap"><div class="ticker">
+  <span><span class="mark">●</span> VISA</span><span><span class="mark">●</span> MASTERCARD</span><span><span class="mark">●</span> AMERICAN EXPRESS</span><span><span class="mark">●</span> DISCOVER</span><span><span class="mark">●</span> APPLE PAY</span><span><span class="mark">●</span> GOOGLE PAY</span><span><span class="mark">●</span> ACH &amp; E-CHECK</span><span><span class="mark">●</span> CRYPTO ON-RAMP</span><span><span class="mark">●</span> PCI-DSS LEVEL 1</span>
+  <span><span class="mark">●</span> VISA</span><span><span class="mark">●</span> MASTERCARD</span><span><span class="mark">●</span> AMERICAN EXPRESS</span><span><span class="mark">●</span> DISCOVER</span><span><span class="mark">●</span> APPLE PAY</span><span><span class="mark">●</span> GOOGLE PAY</span><span><span class="mark">●</span> ACH &amp; E-CHECK</span><span><span class="mark">●</span> CRYPTO ON-RAMP</span><span><span class="mark">●</span> PCI-DSS LEVEL 1</span>
+</div></div>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">What we do</div>
+      <h2 class="heading">Three lanes. <span class="italic">One destination.</span></h2>
+      <p>We run a tight shop. Instead of bolting on a hundred features you'll never use, we focus on the three things that actually move the needle for operators: better rates, recovered capital, and intelligent automation.</p>
+    </div>
+    <div class="services-grid">
+      <a href="services.html#processing" class="service-card reveal" data-card style="color:inherit;">
+        <div class="service-num">01 / PROCESSING</div>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/></svg></div>
+        <h3>Credit Card Processing</h3>
+        <p>Interchange-plus pricing without the mystery fees. Same-day setup for most merchants, next-day funding, and hardware that doesn't look like it was designed in 2009.</p>
+        <div class="features"><div>Interchange-plus from 0.15%</div><div>Next-day funding available</div><div>EMV · NFC · virtual terminal</div></div>
+      </a>
+      <a href="services.html#holdbacks" class="service-card reveal reveal-delay-1" data-card style="color:inherit;">
+        <div class="service-num">02 / HOLDBACKS</div>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 9l7-7 7 7M5 15l7 7 7-7"/></svg></div>
+        <h3>Holdback Recovery</h3>
+        <p>Your processor is sitting on money that belongs to you. We audit reserve accounts, negotiate release schedules, and recover funds from past relationships — even ones that ended badly.</p>
+        <div class="features"><div>Reserve account audits</div><div>Active release negotiation</div><div>No recovery, no fee</div></div>
+      </a>
+      <a href="services.html#ai" class="service-card reveal reveal-delay-2" data-card style="color:inherit;">
+        <div class="service-num">03 / AI LAYER</div>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+        <h3>AI Integration</h3>
+        <p>Plug intelligence into every transaction. Catch fraud before it clears, surface refund patterns, predict chargebacks, and automate reconciliation so your books close themselves.</p>
+        <div class="features"><div>Real-time fraud scoring</div><div>Chargeback prediction</div><div>Auto-reconciliation</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Run the numbers</div>
+      <h2 class="heading">What you'd <span class="italic">save.</span></h2>
+      <p>Drag the sliders. We'll show you how much you're leaving on the table every month with your current processor. These numbers update live, so play with them.</p>
+    </div>
+    <div class="calc-wrap">
+      <div class="calc-panel reveal">
+        <h3>Your Numbers</h3>
+        <div class="input-group"><label>Monthly processing volume <span class="value" id="volLabel">$50,000</span></label><input type="range" id="volume" min="5000" max="500000" step="5000" value="50000" /></div>
+        <div class="input-group"><label>Average ticket size <span class="value" id="ticketLabel">$75</span></label><input type="range" id="ticket" min="10" max="500" step="5" value="75" /></div>
+        <div class="input-group"><label>Current effective rate <span class="value" id="rateLabel">2.90%</span></label><input type="range" id="rate" min="1.8" max="4.5" step="0.05" value="2.90" /></div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label style="margin-bottom:14px;">Industry</label>
+          <div class="industry-select">
+            <button data-industry="retail" class="active">Retail</button>
+            <button data-industry="restaurant">Restaurant</button>
+            <button data-industry="ecom">E-commerce</button>
+            <button data-industry="service">Services</button>
+            <button data-industry="saas">SaaS</button>
+            <button data-industry="other">Other</button>
+          </div>
+        </div>
+      </div>
+      <div class="calc-result reveal reveal-delay-1">
+        <div class="calc-result-label">Estimated monthly savings</div>
+        <div class="calc-result-value">$<span id="savings">862</span><span class="cents" id="savingsCents">.50</span></div>
+        <div class="calc-result-sub">That's <span id="yearly" style="color:var(--lime);font-weight:600;">$10,350</span> a year going back into your business instead of into a processor's pocket.</div>
+        <div class="calc-breakdown">
+          <div class="calc-row"><span class="label">Current monthly cost</span><span class="val" id="currentCost">$1,450.00</span></div>
+          <div class="calc-row"><span class="label">With Starlight Lane</span><span class="val" id="newCost">$587.50</span></div>
+          <div class="calc-row"><span class="label">Transactions / mo</span><span class="val" id="txns">666</span></div>
+          <div class="calc-row highlight"><span class="label">Effective rate</span><span class="val" id="newRate">1.17%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">How it works</div>
+      <h2 class="heading">Four stops <span class="italic">on the lane.</span></h2>
+      <p>No forty-page applications. No sales rep who ghosts you after signing. Here's exactly what happens from the moment you reach out.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-step reveal"><div class="dot"></div><div class="num">01 · DISCOVERY</div><h4>We look at your numbers</h4><p>Share your last three processing statements. We do a free audit and tell you exactly where you're overpaying.</p></div>
+      <div class="timeline-step reveal reveal-delay-1"><div class="dot"></div><div class="num">02 · PROPOSAL</div><h4>You get a real number</h4><p>A one-page proposal with your new rate, fees in plain English, and a side-by-side against what you pay now.</p></div>
+      <div class="timeline-step reveal reveal-delay-2"><div class="dot"></div><div class="num">03 · ONBOARD</div><h4>We handle the switch</h4><p>Most merchants are approved in 24 hours. We ship hardware and configure your gateway — you keep taking payments.</p></div>
+      <div class="timeline-step reveal reveal-delay-3"><div class="dot"></div><div class="num">04 · OPTIMIZE</div><h4>The lane stays open</h4><p>Our AI monitors every transaction. You get monthly reports and a real human to call when something feels off.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ai-section">
+  <div class="container">
+    <div class="ai-grid">
+      <div class="ai-visual reveal">
+        <div class="ai-orb"></div>
+        <div class="ai-rings"></div>
+        <div class="ai-core"><span>intelligence<br>at the edge</span></div>
+      </div>
+      <div>
+        <div class="eyebrow reveal">The AI layer</div>
+        <h2 class="heading reveal reveal-delay-1">Every swipe is a <span class="italic">signal.</span></h2>
+        <p class="reveal reveal-delay-2" style="color:var(--bone-dim); font-size:18px;">Most processors treat your transaction data like exhaust. We treat it like fuel. Our AI layer watches every charge, finds patterns humans miss, and hands you answers before you know you needed them.</p>
+        <div class="ai-list">
+          <div class="ai-item reveal"><div class="idx">01</div><div><h4>Pre-authorization fraud scoring</h4><p>Score every transaction in under 80ms. Block the obvious bad actors without touching your good customers.</p></div></div>
+          <div class="ai-item reveal reveal-delay-1"><div class="idx">02</div><div><h4>Chargeback forecasting</h4><p>Know which transactions are likely to dispute before the cardholder picks up the phone. Intervene early.</p></div></div>
+          <div class="ai-item reveal reveal-delay-2"><div class="idx">03</div><div><h4>Auto-reconciliation</h4><p>Your deposits, your ledger, your tax filings — matched and tagged automatically. Close your books in an afternoon.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal center">
+      <div class="eyebrow">Questions, answered</div>
+      <h2 class="heading">The fine print, <span class="italic">unfined.</span></h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq"><summary>How is your pricing different from the processor I have now? <span class="plus">+</span></summary><div class="answer">Most processors use tiered or bundled pricing, which sounds simple but hides where your money actually goes. We use interchange-plus: you pay the real card network cost (interchange) plus a small, transparent markup. You see every line. No "qualified" vs "non-qualified" games. No surprise junk fees.</div></details>
+      <details class="faq"><summary>What exactly is a holdback and why would one exist? <span class="plus">+</span></summary><div class="answer">A holdback (also called a reserve) is money your processor keeps from your deposits as insurance against chargebacks. They're often justified — but they're also often forgotten about, overstated, or held long after they should've been released. We audit those accounts, push for release, and recover what's yours. We only get paid when you do.</div></details>
+      <details class="faq"><summary>What does "AI integration" actually do for my business? <span class="plus">+</span></summary><div class="answer">Three practical things. It flags fraudulent transactions before they settle. It watches for patterns that predict disputes — so you can issue refunds before a cardholder calls their bank. And it matches deposits to invoices automatically, so your bookkeeper doesn't spend half their month reconciling.</div></details>
+      <details class="faq"><summary>Do I need to replace my current hardware? <span class="plus">+</span></summary><div class="answer">Usually, no. We work with most major terminals and gateways already on the market. If you do need new hardware, we ship it free and walk you through setup. Most switchovers take less than a business day with zero interruption.</div></details>
+    </div>
+    <div style="text-align:center; margin-top:40px;"><a href="faq.html" class="btn btn-ghost">Read all FAQs →</a></div>
+  </div>
+</section>
+
+<section style="padding-top:40px;">
+  <div class="container">
+    <div class="cta-block reveal">
+      <div class="cta-content">
+        <div class="eyebrow">Start the conversation</div>
+        <h2>Send us your statement. <span class="italic">We'll send back a number.</span></h2>
+        <p>Three minutes of your time. A real audit of your last three months of processing. No sales pitch, no pressure, no obligation. Just a clearer view of what you're paying and what you shouldn't be.</p>
+        <div class="cta-actions">
+          <a href="mailto:info@starlightlane.org" class="btn btn-primary">info@starlightlane.org →</a>
+          <!-- REPLACE href with your full Calendly URL -->
+          <a href="https://calendly.com/YOUR-CALENDLY-LINK" target="_blank" rel="noopener" class="btn btn-ghost">Book a call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad2)"/><defs><linearGradient id="starGrad2" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
+          Starlight Lane
+        </div>
+        <p>Modern payment processing with intelligence built in. We help businesses move money with less friction and more clarity.</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#processing">Processing</a></li><li><a href="services.html#holdbacks">Holdbacks</a></li><li><a href="ai.html">AI Integration</a></li><li><a href="calculator.html">Rate Calculator</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="process.html">Process</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:info@starlightlane.org">info@starlightlane.org</a></li><li><a href="https://calendly.com/YOUR-CALENDLY-LINK" target="_blank" rel="noopener">Book a call</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 STARLIGHT LANE · ALL RIGHTS RESERVED</div>
+      <div>PCI-DSS LEVEL 1 · SOC 2 TYPE II</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ RECONSTRUCTED BASE SCRIPT (originally script.js) ============ */
+// Mobile menu toggle
+(function () {
+  const toggle = document.querySelector('.mobile-toggle');
+  const menu = document.querySelector('.mobile-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        menu.classList.remove('open');
+      });
+    });
+  }
+})();
+
+// Reveal on scroll
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  els.forEach(el => io.observe(el));
+})();
+
+// Nav scrolled state
+(function () {
+  const nav = document.querySelector('nav.top');
+  if (!nav) return;
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+/* ============ END RECONSTRUCTED BASE SCRIPT ============ */
+</script>
+<script>
+document.querySelectorAll('[data-card]').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width) * 100 + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
+  });
+});
+
+const volume = document.getElementById('volume');
+const ticket = document.getElementById('ticket');
+const rate = document.getElementById('rate');
+const volLabel = document.getElementById('volLabel');
+const ticketLabel = document.getElementById('ticketLabel');
+const rateLabel = document.getElementById('rateLabel');
+const savings = document.getElementById('savings');
+const savingsCents = document.getElementById('savingsCents');
+const yearly = document.getElementById('yearly');
+const currentCost = document.getElementById('currentCost');
+const newCost = document.getElementById('newCost');
+const txns = document.getElementById('txns');
+const newRate = document.getElementById('newRate');
+const industryRates = { retail: 1.17, restaurant: 1.35, ecom: 1.62, service: 1.22, saas: 1.09, other: 1.45 };
+let currentIndustry = 'retail';
+const fmt = n => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const fmtInt = n => Math.round(n).toLocaleString('en-US');
+function updateCalc() {
+  const vol = +volume.value, tkt = +ticket.value, curRt = +rate.value;
+  const newRt = industryRates[currentIndustry];
+  volLabel.textContent = '$' + fmtInt(vol);
+  ticketLabel.textContent = '$' + tkt;
+  rateLabel.textContent = curRt.toFixed(2) + '%';
+  const current = vol * (curRt / 100), improved = vol * (newRt / 100);
+  const saved = Math.max(0, current - improved);
+  const [whole, cents] = saved.toFixed(2).split('.');
+  savings.textContent = (+whole).toLocaleString('en-US');
+  savingsCents.textContent = '.' + cents;
+  yearly.textContent = '$' + fmtInt(saved * 12);
+  currentCost.textContent = '$' + fmt(current);
+  newCost.textContent = '$' + fmt(improved);
+  txns.textContent = fmtInt(vol / tkt);
+  newRate.textContent = newRt.toFixed(2) + '%';
+}
+[volume, ticket, rate].forEach(el => el.addEventListener('input', updateCalc));
+document.querySelectorAll('.industry-select button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.industry-select button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentIndustry = btn.dataset.industry;
+    updateCalc();
+  });
+});
+updateCalc();
+
+const stage = document.querySelector('.card-stage');
+if (stage && window.matchMedia('(hover:hover)').matches) {
+  stage.addEventListener('mousemove', (e) => {
+    const r = stage.getBoundingClientRect();
+    const cx = (e.clientX - r.left) / r.width - 0.5;
+    const cy = (e.clientY - r.top) / r.height - 0.5;
+    stage.querySelectorAll('.credit-card').forEach((c, i) => {
+      const depth = (i + 1) * 4;
+      c.style.transform += ` translate3d(${cx * depth}px, ${cy * depth}px, 0)`;
+    });
+  });
+  stage.addEventListener('mouseleave', () => {
+    stage.querySelectorAll('.credit-card').forEach(c => { c.style.transform = ''; });
+  });
+}
+</script>
+</body>
+</html>
