@@ -71,28 +71,24 @@ h1, h2, h3, h4, h5 { font-weight: 500; }
 }
 @keyframes starfade { from { opacity: 0.4; } to { opacity: 0.65; } }
 
-nav.top {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 18px 0;
-  background: rgba(10,13,20,0.55);
-  backdrop-filter: blur(16px) saturate(1.2);
-  -webkit-backdrop-filter: blur(16px) saturate(1.2);
-  border-bottom: 1px solid transparent;
-  transition: background 0.3s ease, border-color 0.3s ease, padding 0.3s ease;
-}
-nav.top.scrolled {
-  background: rgba(10,13,20,0.85);
-  border-bottom-color: var(--line);
-  padding: 14px 0;
-}
-nav.top .row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-}
+nav.top{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,13,20,0.55);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid transparent;transition:background 0.3s ease,border-color 0.3s ease}
+nav.top.scrolled{background:rgba(10,13,20,0.85);border-bottom-color:var(--line)}
+nav.top .row-primary{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:16px 0 10px;transition:padding 0.3s ease}
+nav.top .row-secondary{display:flex;align-items:center;justify-content:center;gap:32px;padding:10px 0 12px;border-top:1px solid var(--line);transition:padding 0.3s ease}
+nav.top.scrolled .row-primary{padding:13px 0 8px}
+nav.top.scrolled .row-secondary{padding:8px 0 10px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:-0.01em;color:var(--bone)}
+.logo svg{width:22px;height:22px}
+.nav-primary{display:flex;gap:36px;font-size:14px;flex:1;justify-content:center;list-style:none}
+.nav-primary a{color:var(--bone-dim);transition:color 0.2s ease;position:relative}
+.nav-primary a:hover{color:var(--bone)}
+.nav-primary a.active{color:var(--lime)}
+.nav-primary a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--lime);opacity:0.4}
+.nav-secondary{display:flex;gap:32px;list-style:none}
+.nav-secondary a{color:var(--mute);font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;transition:color 0.2s ease;position:relative}
+.nav-secondary a:hover{color:var(--bone-dim)}
+.nav-secondary a.active{color:var(--lime)}
+.nav-secondary a.active::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--lime);opacity:0.4}
 .logo {
   display: flex;
   align-items: center;
@@ -104,28 +100,7 @@ nav.top .row {
   color: var(--bone);
 }
 .logo svg { width: 22px; height: 22px; }
-.nav-links {
-  display: flex;
-  gap: 36px;
-  font-size: 14px;
-  flex: 1;
-  justify-content: center;
-}
-.nav-links a {
-  color: var(--bone-dim);
-  transition: color 0.2s ease;
-  position: relative;
-}
-.nav-links a:hover { color: var(--bone); }
-.nav-links a.active { color: var(--lime); }
-.nav-links a.active::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: -6px;
-  height: 1px;
-  background: var(--lime);
-  opacity: 0.4;
-}
+
 
 .btn {
   display: inline-flex;
@@ -345,9 +320,10 @@ footer {
 }
 
 @media (max-width: 1024px) {
-  .nav-links { display: none; }
+  .nav-primary { display: none; }
+  nav.top .row-secondary { display: none; }
   .mobile-toggle { display: flex; align-items: center; justify-content: center; }
-  nav.top > .container > .row > .btn { display: none; }
+  
   .cta-block { padding: 60px 40px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
   .footer-brand { grid-column: 1 / -1; }
@@ -806,30 +782,39 @@ input[type="range"]::-moz-range-thumb {
 <div class="stars"></div>
 
 <nav class="top">
-  <div class="container row">
-    <a href="index.html" class="logo">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad)"/><defs><linearGradient id="starGrad" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
-      Starlight Lane
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
+  <div class="container">
+    <div class="row-primary">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad)"/><defs><linearGradient id="starGrad" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
+        Starlight Lane
+      </a>
+      <ul class="nav-primary">
       <li><a href="services.html">Services</a></li>
+      <li><a href="industries.html">Industries</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="ai.html">AI</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary">Get a Rate →</a>
+      <button class="mobile-toggle" aria-label="Menu"><span></span></button>
+    </div>
+    <div class="row-secondary">
+      <ul class="nav-secondary">
       <li><a href="calculator.html" class="active">Calculator</a></li>
       <li><a href="process.html">Process</a></li>
-      <li><a href="ai.html">AI</a></li>
       <li><a href="faq.html">FAQ</a></li>
-    </ul>
-    <a href="contact.html" class="btn btn-primary">Get a Rate →</a>
-    <button class="mobile-toggle" aria-label="Menu"><span></span></button>
+      </ul>
+    </div>
   </div>
 </nav>
 
 <div class="mobile-menu">
   <a href="index.html">Home</a>
   <a href="services.html">Services</a>
+  <a href="industries.html">Industries</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="ai.html">AI</a>
   <a href="calculator.html">Calculator</a>
   <a href="process.html">Process</a>
-  <a href="ai.html">AI</a>
   <a href="faq.html">FAQ</a>
   <a href="contact.html" class="btn btn-primary">Get a Rate →</a>
 </div>
