@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Industries — Starlight Lane</title>
-<meta name="description" content="Payment processing built for your industry. Retail, restaurant, e-commerce, professional services, SaaS, and healthcare — each with tailored features and industry-specific rates." />
+<title>Pricing — Starlight Lane</title>
+<meta name="description" content="Honest, transparent pricing. Interchange-plus starting at 0.15%. No statement fees, no batch fees, no monthly minimums, no early termination fees. Ever." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -87,77 +87,133 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);position:relative;z-
 @media (max-width:1024px){.nav-primary{display:none}nav.top .row-secondary{display:none}.mobile-toggle{display:flex;align-items:center;justify-content:center}.cta-block{padding:60px 40px}.footer-grid{grid-template-columns:1fr 1fr;gap:40px}.footer-brand{grid-column:1/-1}}
 @media (max-width:680px){.container{padding:0 20px}section{padding:70px 0}.cta-block{padding:48px 28px;border-radius:24px}.footer-grid{grid-template-columns:1fr;gap:32px}.footer-bottom{flex-direction:column;gap:12px;text-align:center}}
 
-/* INDUSTRIES PAGE */
-.ind-hero{padding:180px 0 80px;position:relative;overflow:hidden;text-align:center}
-.ind-hero .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(216,255,92,0.08),transparent 60%)}
-.ind-hero>.container{position:relative;z-index:2;max-width:920px}
-.ind-hero .eyebrow{color:var(--lime)}
-.ind-hero .display{font-size:clamp(48px,7.5vw,92px)}
-.ind-hero .lede{font-size:19px;color:var(--bone-dim);max-width:640px;margin:0 auto;line-height:1.55}
+/* PRICING PAGE */
+.pr-hero{padding:180px 0 80px;position:relative;overflow:hidden;text-align:center}
+.pr-hero .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(216,255,92,0.08),transparent 60%)}
+.pr-hero>.container{position:relative;z-index:2;max-width:880px}
+.pr-hero .eyebrow{color:var(--lime)}
+.pr-hero .display{font-size:clamp(48px,7.5vw,92px)}
+.pr-hero .lede{font-size:19px;color:var(--bone-dim);max-width:620px;margin:0 auto;line-height:1.55}
 
-.ind-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:0}
-.ind-card{padding:44px 40px;background:var(--ink-2);border:1px solid var(--line);border-radius:24px;position:relative;overflow:hidden;transition:border-color 0.3s ease,transform 0.3s ease;--mx:50%;--my:50%;display:flex;flex-direction:column;min-height:520px}
-.ind-card:hover{border-color:rgba(216,255,92,0.3);transform:translateY(-6px)}
-.ind-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent);opacity:0;transition:opacity 0.4s ease}
-.ind-card:hover::before{opacity:1}
-.ind-card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(216,255,92,0.10),transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none}
-.ind-card:hover::after{opacity:1}
-.ind-card>*{position:relative;z-index:1}
-.ind-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:28px}
-.ind-icon{width:56px;height:56px;border-radius:14px;background:rgba(216,255,92,0.08);border:1px solid rgba(216,255,92,0.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.3s ease,border-color 0.3s ease,transform 0.3s ease}
-.ind-card:hover .ind-icon{background:rgba(216,255,92,0.14);border-color:rgba(216,255,92,0.4);transform:scale(1.05)}
-.ind-icon svg{width:26px;height:26px;color:var(--lime)}
-.ind-rate-tag{padding:8px 14px;border-radius:100px;background:rgba(159,255,207,0.08);border:1px solid rgba(159,255,207,0.25);font-family:var(--mono);font-size:11px;letter-spacing:0.14em;color:var(--mint);white-space:nowrap;line-height:1.2;text-align:right}
-.ind-rate-tag strong{font-weight:500;font-size:13px;letter-spacing:0.08em}
-.ind-rate-tag .rt-label{font-size:9.5px;letter-spacing:0.22em;color:var(--bone-dim);text-transform:uppercase;display:block;margin-bottom:3px}
-.ind-card h3{font-family:var(--display);font-size:30px;font-weight:500;letter-spacing:-0.025em;color:var(--bone);margin-bottom:10px;line-height:1.1}
-.ind-card .ind-sub{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);margin-bottom:20px}
-.ind-card>p{color:var(--bone-dim);font-size:15px;line-height:1.6;margin-bottom:28px}
-.ind-pains{background:var(--ink);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:24px;transition:border-color 0.3s ease}
-.ind-card:hover .ind-pains{border-color:var(--line-2)}
-.ind-pains .pain-label{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--coral);margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.ind-pains .pain-label::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--coral)}
-.ind-pains ul{display:flex;flex-direction:column;gap:8px}
-.ind-pains li{font-size:13.5px;color:var(--bone-dim);line-height:1.5;display:flex;gap:10px;align-items:flex-start}
-.ind-pains li::before{content:"−";color:var(--coral);font-weight:600;flex-shrink:0;margin-top:-1px}
-.ind-features{margin-top:auto;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
-.ind-features .feat-label{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--lime);margin-bottom:4px;display:flex;align-items:center;gap:8px}
-.ind-features .feat-label::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime)}
-.ind-features ul{display:flex;flex-direction:column;gap:9px}
-.ind-features li{font-size:13.5px;color:var(--bone);line-height:1.5;display:flex;gap:10px;align-items:flex-start}
-.ind-features li::before{content:"→";color:var(--lime);font-weight:600;flex-shrink:0}
-.ind-features li strong{color:var(--bone);font-weight:500}
-.ind-features li .feat-sub{color:var(--bone-dim)}
+/* Model visualization */
+.model-section{padding-top:40px;padding-bottom:60px}
+.model-card{max-width:920px;margin:0 auto;background:linear-gradient(180deg,var(--ink-2) 0%,var(--ink) 100%);border:1px solid var(--line-2);border-radius:32px;padding:56px 56px 48px;position:relative;overflow:hidden;--mx:50%;--my:50%;transition:border-color 0.4s ease}
+.model-card:hover{border-color:rgba(216,255,92,0.3)}
+.model-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent);opacity:0.5;transition:opacity 0.4s ease}
+.model-card:hover::before{opacity:1}
+.model-card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(216,255,92,0.08),transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none}
+.model-card:hover::after{opacity:1}
+.model-card>*{position:relative;z-index:1}
+.model-label{font-family:var(--mono);font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--mute);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.model-label::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
+.model-card h3{font-family:var(--display);font-size:clamp(26px,3vw,36px);font-weight:400;line-height:1.1;letter-spacing:-0.025em;margin-bottom:32px;color:var(--bone)}
+.model-bar{display:grid;grid-template-columns:65fr 15fr 15fr;gap:3px;height:80px;border-radius:12px;overflow:hidden;margin-bottom:14px}
+.mb-seg{padding:16px 18px;display:flex;flex-direction:column;justify-content:center;gap:4px;font-family:var(--mono);font-size:11.5px;position:relative;overflow:hidden;transition:filter 0.3s ease}
+.mb-seg:hover{filter:brightness(1.15)}
+.mb-seg .mb-pct{font-family:var(--display);font-size:22px;font-weight:500;letter-spacing:-0.01em;color:var(--bone)}
+.mb-seg .mb-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bone-dim)}
+.mb-seg.interchange{background:rgba(159,255,207,0.12);border:1px solid rgba(159,255,207,0.25)}
+.mb-seg.assessment{background:rgba(255,182,72,0.12);border:1px solid rgba(255,182,72,0.3)}
+.mb-seg.markup{background:rgba(216,255,92,0.14);border:1px solid rgba(216,255,92,0.35)}
+.mb-seg.markup .mb-pct{color:var(--lime)}
+.model-legend{display:grid;grid-template-columns:65fr 15fr 15fr;gap:3px;font-family:var(--mono);font-size:11px;color:var(--bone-dim);margin-bottom:40px}
+.model-legend span{padding:0 18px;line-height:1.5}
+.model-total{display:flex;align-items:center;justify-content:space-between;padding-top:28px;border-top:1px solid var(--line);flex-wrap:wrap;gap:16px}
+.model-total .total-label{font-family:var(--mono);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute)}
+.model-total .total-val{font-family:var(--display);font-size:clamp(32px,4vw,48px);font-weight:500;letter-spacing:-0.025em;background:linear-gradient(135deg,var(--bone),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.model-total .total-meta{font-family:var(--mono);font-size:12px;color:var(--bone-dim);letter-spacing:0.04em}
 
-/* Stats strip */
-.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--ink-2);border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-top:80px;position:relative}
-.stats-strip::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent)}
-.stat-item{padding:40px 32px;border-right:1px solid var(--line);text-align:center;transition:background 0.3s ease}
-.stat-item:hover{background:rgba(216,255,92,0.03)}
-.stat-item:last-child{border-right:none}
-.stat-num{font-family:var(--display);font-size:clamp(36px,4vw,52px);font-weight:500;letter-spacing:-0.025em;line-height:1;margin-bottom:10px;background:linear-gradient(135deg,var(--bone),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent}
-.stat-label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.2em;color:var(--mute)}
+/* Rate by industry */
+.rate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.rate-card{padding:32px 28px;background:var(--ink-2);border:1px solid var(--line);border-radius:18px;position:relative;overflow:hidden;transition:border-color 0.3s ease,transform 0.3s ease;--mx:50%;--my:50%}
+.rate-card:hover{border-color:rgba(216,255,92,0.3);transform:translateY(-4px)}
+.rate-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent);opacity:0;transition:opacity 0.4s ease}
+.rate-card:hover::before{opacity:1}
+.rate-card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(216,255,92,0.10),transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none}
+.rate-card:hover::after{opacity:1}
+.rate-card>*{position:relative;z-index:1}
+.rate-card .tag{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
+.rate-card h4{font-family:var(--display);font-size:22px;font-weight:500;letter-spacing:-0.015em;color:var(--bone);margin-bottom:24px;line-height:1.1}
+.rate-card .rate-val{font-family:var(--display);font-size:40px;font-weight:500;letter-spacing:-0.025em;line-height:1;background:linear-gradient(135deg,var(--bone),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px}
+.rate-card .rate-sub{font-family:var(--mono);font-size:11px;color:var(--bone-dim);letter-spacing:0.1em;margin-bottom:20px}
+.rate-card p{font-size:13.5px;color:var(--bone-dim);line-height:1.55}
 
-/* Don't see yours section */
-.other-wrap{max-width:820px;margin:0 auto;text-align:center;padding:64px 48px;background:var(--ink-2);border:1px solid var(--line);border-radius:28px;position:relative;overflow:hidden;--mx:50%;--my:50%;transition:border-color 0.4s ease}
-.other-wrap:hover{border-color:rgba(216,255,92,0.3)}
-.other-wrap::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(216,255,92,0.08),transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none}
-.other-wrap:hover::after{opacity:1}
-.other-wrap>*{position:relative;z-index:1}
-.other-wrap .eyebrow{color:var(--lime)}
-.other-wrap h2{font-family:var(--display);font-size:clamp(32px,4vw,48px);font-weight:400;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;color:var(--bone)}
-.other-wrap p{color:var(--bone-dim);font-size:16px;line-height:1.6;margin-bottom:32px}
-.other-types{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:32px}
-.other-types span{padding:8px 14px;border-radius:100px;background:var(--ink);border:1px solid var(--line);font-family:var(--mono);font-size:11.5px;letter-spacing:0.1em;color:var(--bone-dim);transition:border-color 0.2s ease,color 0.2s ease}
-.other-types span:hover{border-color:var(--lime);color:var(--lime)}
+/* Hardware section */
+.hw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.hw-card{padding:32px 26px;background:var(--ink-2);border:1px solid var(--line);border-radius:20px;position:relative;overflow:hidden;transition:border-color 0.3s ease,transform 0.3s ease;--mx:50%;--my:50%;display:flex;flex-direction:column}
+.hw-card:hover{border-color:rgba(216,255,92,0.3);transform:translateY(-4px)}
+.hw-card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(216,255,92,0.10),transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none}
+.hw-card:hover::after{opacity:1}
+.hw-card>*{position:relative;z-index:1}
+.hw-icon{width:56px;height:56px;border-radius:14px;background:rgba(216,255,92,0.08);border:1px solid rgba(216,255,92,0.22);display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s ease,border-color 0.3s ease}
+.hw-card:hover .hw-icon{background:rgba(216,255,92,0.14);border-color:rgba(216,255,92,0.4)}
+.hw-icon svg{width:26px;height:26px;color:var(--lime)}
+.hw-card h4{font-family:var(--display);font-size:20px;font-weight:500;letter-spacing:-0.015em;color:var(--bone);margin-bottom:8px;line-height:1.2}
+.hw-card .hw-desc{font-size:13.5px;color:var(--bone-dim);line-height:1.55;margin-bottom:20px;flex:1}
+.hw-card .hw-price{font-family:var(--display);font-size:26px;font-weight:500;letter-spacing:-0.02em;color:var(--lime);line-height:1;margin-bottom:4px}
+.hw-card .hw-price.free{color:var(--mint)}
+.hw-card .hw-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mute)}
+
+/* Included vs not */
+.compare-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+.compare-col{padding:44px 36px;background:var(--ink-2);border:1px solid var(--line);border-radius:24px;position:relative;overflow:hidden;transition:border-color 0.3s ease;--mx:50%;--my:50%}
+.compare-col.yes{border-color:rgba(159,255,207,0.25);background:linear-gradient(180deg,var(--ink-2),rgba(159,255,207,0.02))}
+.compare-col.no{border-color:rgba(255,122,92,0.18);background:linear-gradient(180deg,var(--ink-2),rgba(255,122,92,0.02))}
+.compare-col::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(216,255,92,0.06),transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none}
+.compare-col:hover::after{opacity:1}
+.compare-col>*{position:relative;z-index:1}
+.compare-col h3{font-family:var(--display);font-size:28px;font-weight:500;letter-spacing:-0.02em;margin-bottom:6px;line-height:1.1}
+.compare-col.yes h3{color:var(--mint)}
+.compare-col.no h3{color:var(--coral)}
+.compare-col .col-sub{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);margin-bottom:32px}
+.compare-col ul{display:flex;flex-direction:column;gap:14px}
+.compare-col li{padding:16px 18px;background:var(--ink);border:1px solid var(--line);border-radius:12px;font-size:14px;color:var(--bone);line-height:1.5;display:flex;align-items:flex-start;gap:12px;transition:border-color 0.2s ease}
+.compare-col li:hover{border-color:var(--line-2)}
+.compare-col li .mark{flex-shrink:0;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;font-weight:600;margin-top:1px}
+.compare-col.yes li .mark{background:rgba(159,255,207,0.12);border:1px solid rgba(159,255,207,0.35);color:var(--mint)}
+.compare-col.no li .mark{background:rgba(255,122,92,0.08);border:1px solid rgba(255,122,92,0.3);color:var(--coral)}
+.compare-col li strong{color:var(--bone);font-weight:500;display:block;margin-bottom:3px;font-size:14.5px}
+.compare-col li span.li-sub{color:var(--bone-dim);font-size:13px}
+
+/* Tiered vs us */
+.tiered-wrap{max-width:1000px;margin:0 auto}
+.tiered-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.tiered-card{padding:40px 36px;border-radius:24px;position:relative;overflow:hidden;transition:border-color 0.3s ease,transform 0.3s ease;--mx:50%;--my:50%}
+.tiered-card.them{background:var(--ink-2);border:1px solid var(--line)}
+.tiered-card.us{background:linear-gradient(180deg,var(--ink-2),rgba(216,255,92,0.02));border:1px solid rgba(216,255,92,0.3)}
+.tiered-card:hover{transform:translateY(-4px)}
+.tiered-card.them:hover{border-color:var(--line-2)}
+.tiered-card.us:hover{border-color:rgba(216,255,92,0.5)}
+.tiered-card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(216,255,92,0.08),transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none}
+.tiered-card:hover::after{opacity:1}
+.tiered-card>*{position:relative;z-index:1}
+.tiered-card .tc-label{font-family:var(--mono);font-size:11px;letter-spacing:0.24em;text-transform:uppercase;margin-bottom:12px}
+.tiered-card.them .tc-label{color:var(--bone-dim)}
+.tiered-card.us .tc-label{color:var(--lime)}
+.tiered-card h4{font-family:var(--display);font-size:26px;font-weight:500;letter-spacing:-0.02em;color:var(--bone);margin-bottom:28px;line-height:1.15}
+.tiered-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.tiered-row:last-child{border-bottom:none}
+.tiered-row .tr-label{color:var(--bone-dim);font-family:var(--mono);font-size:11.5px;letter-spacing:0.04em;text-transform:uppercase}
+.tiered-row .tr-val{color:var(--bone);font-weight:500;font-family:var(--mono)}
+.tiered-card.us .tr-val{color:var(--mint)}
+
+/* Pricing FAQ */
+.pfaq-wrap{max-width:880px;margin:0 auto}
+details.pfaq{border-bottom:1px solid var(--line);padding:24px 0;cursor:pointer}
+details.pfaq summary{list-style:none;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;font-family:var(--display);font-weight:500;font-size:20px;letter-spacing:-0.01em;line-height:1.3;color:var(--bone);transition:color 0.2s ease}
+details.pfaq summary::-webkit-details-marker{display:none}
+details.pfaq[open] summary{color:var(--lime)}
+details.pfaq summary .plus{flex-shrink:0;width:30px;height:30px;border-radius:50%;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;transition:transform 0.3s ease,border-color 0.3s ease,background 0.3s ease;font-family:var(--mono);font-size:16px;color:var(--bone-dim)}
+details.pfaq[open] summary .plus{transform:rotate(45deg);border-color:var(--lime);background:rgba(216,255,92,0.1);color:var(--lime)}
+details.pfaq .answer{padding-top:14px;color:var(--bone-dim);font-size:15px;line-height:1.65;max-width:720px}
 
 .section-head{margin-bottom:48px;max-width:680px}
 .section-head.center{margin-left:auto;margin-right:auto;text-align:center}
 .section-head p{color:var(--bone-dim);font-size:17px;line-height:1.6;margin-top:14px}
 .section-head .eyebrow{color:var(--lime)}
 
-@media (max-width:1024px){.ind-grid{grid-template-columns:1fr;gap:16px}.ind-card{padding:36px 32px;min-height:auto}.stats-strip{grid-template-columns:1fr 1fr}.stat-item{border-right:none;border-bottom:1px solid var(--line)}.stat-item:nth-child(odd){border-right:1px solid var(--line)}.stat-item:nth-last-child(-n+2){border-bottom:none}.ind-hero{padding:140px 0 60px}}
-@media (max-width:680px){.ind-hero{padding:120px 0 50px}.ind-card{padding:28px 24px}.ind-header{flex-direction:column;gap:16px}.ind-rate-tag{align-self:flex-start;text-align:left}.stats-strip{grid-template-columns:1fr}.stat-item{border-right:none!important}.stat-item:not(:last-child){border-bottom:1px solid var(--line)}.other-wrap{padding:40px 28px}}
+@media (max-width:1024px){.rate-grid{grid-template-columns:1fr 1fr}.hw-grid{grid-template-columns:1fr 1fr}.compare-wrap,.tiered-grid{grid-template-columns:1fr}.model-card{padding:44px 32px}.pr-hero{padding:140px 0 60px}}
+@media (max-width:680px){.pr-hero{padding:120px 0 50px}.model-card{padding:32px 22px;border-radius:24px}.model-bar{height:64px;grid-template-columns:65fr 15fr 20fr}.model-legend{grid-template-columns:65fr 15fr 20fr}.mb-seg{padding:10px 12px}.mb-seg .mb-pct{font-size:16px}.mb-seg .mb-label{font-size:9px;letter-spacing:0.1em}.rate-grid,.hw-grid{grid-template-columns:1fr}.compare-col,.tiered-card{padding:28px 22px}}
 </style>
 </head>
 <body>
@@ -173,8 +229,8 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);position:relative;z-
       </a>
       <ul class="nav-primary">
       <li><a href="services.html">Services</a></li>
-      <li><a href="industries.html" class="active">Industries</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="industries.html">Industries</a></li>
+      <li><a href="pricing.html" class="active">Pricing</a></li>
       <li><a href="ai.html">AI</a></li>
       </ul>
       <a href="contact.html" class="btn btn-primary">Get a Rate →</a>
@@ -202,208 +258,45 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);position:relative;z-
   <a href="contact.html" class="btn btn-primary">Get a Rate →</a>
 </div>
 
-<header class="ind-hero">
+<header class="pr-hero">
   <div class="hero-bg"></div>
   <div class="container">
-    <div class="eyebrow reveal">Who we serve</div>
-    <h1 class="display reveal reveal-delay-1">Built for <span class="italic">your business.</span></h1>
-    <p class="lede reveal reveal-delay-2">Generic processors charge everyone the same and expect them to be grateful. We tailor the setup — rate, funding schedule, hardware, software — to what your industry actually needs. Pick yours below, or scroll through to see how we think about each.</p>
+    <div class="eyebrow reveal">Pricing</div>
+    <h1 class="display reveal reveal-delay-1">No games. <span class="italic">No guessing.</span></h1>
+    <p class="lede reveal reveal-delay-2">Interchange-plus pricing starting at 0.15%. One model. Every merchant. Every card. No "qualified" vs "non-qualified" tricks. No mystery fees that appear in month three. Here's exactly how it breaks down.</p>
   </div>
 </header>
 
-<section style="padding-top:40px;">
+<section class="model-section">
   <div class="container">
-    <div class="ind-grid">
-
-      <div class="ind-card reveal" data-card>
-        <div class="ind-header">
-          <div class="ind-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
-          <div class="ind-rate-tag"><span class="rt-label">Typical rate</span><strong>1.60 – 1.90%</strong></div>
+    <div class="model-card reveal" data-card>
+      <div class="model-label">The anatomy of a swipe</div>
+      <h3>Every dollar you pay, <span class="italic">accounted for.</span></h3>
+      <div class="model-bar">
+        <div class="mb-seg interchange">
+          <div class="mb-pct">~1.65%</div>
+          <div class="mb-label">Interchange</div>
         </div>
-        <h3>Retail</h3>
-        <div class="ind-sub">Brick-and-mortar · card-present</div>
-        <p>Boutiques, specialty stores, convenience, hardware, gift shops. Anywhere customers walk in, tap or swipe, and walk out with what they bought.</p>
-        <div class="ind-pains">
-          <div class="pain-label">What usually hurts</div>
-          <ul>
-            <li>Overpriced "free" terminal offers with 4-year equipment leases</li>
-            <li>PCI non-compliance fees on processors that don't help with compliance</li>
-            <li>Confusing tiered pricing where most transactions are "non-qualified"</li>
-          </ul>
+        <div class="mb-seg assessment">
+          <div class="mb-pct">~0.14%</div>
+          <div class="mb-label">Assessment</div>
         </div>
-        <div class="ind-features">
-          <div class="feat-label">What we do differently</div>
-          <ul>
-            <li><span><strong>Owned hardware, not leased</strong> <span class="feat-sub">— $199 terminals you keep forever</span></span></li>
-            <li><span><strong>Interchange-plus pricing</strong> <span class="feat-sub">— no qualified/non-qualified games</span></span></li>
-            <li><span><strong>Integrated inventory</strong> <span class="feat-sub">— via handheld POS or your existing system</span></span></li>
-            <li><span><strong>Tap-to-pay included</strong> <span class="feat-sub">— Apple Pay, Google Pay, contactless cards</span></span></li>
-          </ul>
+        <div class="mb-seg markup">
+          <div class="mb-pct">0.15%</div>
+          <div class="mb-label">Our cut</div>
         </div>
       </div>
-
-      <div class="ind-card reveal reveal-delay-1" data-card>
-        <div class="ind-header">
-          <div class="ind-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
-          <div class="ind-rate-tag"><span class="rt-label">Typical rate</span><strong>1.80 – 2.10%</strong></div>
-        </div>
-        <h3>Restaurants</h3>
-        <div class="ind-sub">Full-service · QSR · bars · cafés</div>
-        <p>Food moves fast, margins are thin, and every minute your terminal hangs is a table not turned. You need a processor that gets hospitality — and has the funding schedule to match.</p>
-        <div class="ind-pains">
-          <div class="pain-label">What usually hurts</div>
-          <ul>
-            <li>Tip adjustments that break the auth and cost you chargebacks</li>
-            <li>T+2 funding when payroll and suppliers want money today</li>
-            <li>Terminal downtime during a Saturday night dinner rush</li>
-          </ul>
-        </div>
-        <div class="ind-features">
-          <div class="feat-label">What we do differently</div>
-          <ul>
-            <li><span><strong>Same-day funding available</strong> <span class="feat-sub">— no extra fee for qualifying merchants</span></span></li>
-            <li><span><strong>Clean tip adjustment flow</strong> <span class="feat-sub">— no auth surprises, no chargeback risk</span></span></li>
-            <li><span><strong>POS integrations</strong> <span class="feat-sub">— Toast, Square, Clover, Lightspeed, TouchBistro</span></span></li>
-            <li><span><strong>4G-backup terminals</strong> <span class="feat-sub">— keeps running when your WiFi doesn't</span></span></li>
-          </ul>
-        </div>
+      <div class="model-legend">
+        <span>Goes to the card network (Visa, MC, Amex). Non-negotiable. Every processor pays the same rate.</span>
+        <span>Goes to the networks for operating the payment rails. Fixed.</span>
+        <span>Goes to us. Starts at 0.15%. This is the part that actually varies between processors.</span>
       </div>
-
-      <div class="ind-card reveal" data-card>
-        <div class="ind-header">
-          <div class="ind-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
-          <div class="ind-rate-tag"><span class="rt-label">Typical rate</span><strong>1.90 – 2.40%</strong></div>
+      <div class="model-total">
+        <div>
+          <div class="total-label">Typical effective rate</div>
+          <div class="total-val">~1.94%</div>
         </div>
-        <h3>E-commerce</h3>
-        <div class="ind-sub">Shopify · WooCommerce · custom</div>
-        <p>Card-not-present means higher interchange, higher fraud risk, and higher chargeback exposure. We bring the AI layer that turns that math back in your favor.</p>
-        <div class="ind-pains">
-          <div class="pain-label">What usually hurts</div>
-          <ul>
-            <li>Chargebacks that land 60 days after a sale and cost 3× the transaction</li>
-            <li>International fees that eat 1.5%+ on cross-border sales</li>
-            <li>Fraud filters that are either too loose or block your best customers</li>
-          </ul>
-        </div>
-        <div class="ind-features">
-          <div class="feat-label">What we do differently</div>
-          <ul>
-            <li><span><strong>AI fraud scoring</strong> <span class="feat-sub">— 80ms latency, tunable thresholds</span></span></li>
-            <li><span><strong>Chargeback prediction</strong> <span class="feat-sub">— 24-hour advance warning to intervene</span></span></li>
-            <li><span><strong>Every major platform</strong> <span class="feat-sub">— Shopify, WooCommerce, Magento, BigCommerce, custom</span></span></li>
-            <li><span><strong>Honest cross-border pricing</strong> <span class="feat-sub">— real interchange, no padding</span></span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="ind-card reveal reveal-delay-1" data-card>
-        <div class="ind-header">
-          <div class="ind-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></div>
-          <div class="ind-rate-tag"><span class="rt-label">Typical rate</span><strong>1.70 – 2.00%</strong></div>
-        </div>
-        <h3>Professional services</h3>
-        <div class="ind-sub">Legal · consulting · agencies · medical</div>
-        <p>Bigger tickets, lower volume, and most transactions are invoice-based. The processor questions that matter are different: can you send a clean invoice, and do recurring retainers work without a dozen workarounds?</p>
-        <div class="ind-pains">
-          <div class="pain-label">What usually hurts</div>
-          <ul>
-            <li>"Large ticket" surcharges on single transactions over $10k</li>
-            <li>Ugly, hard-to-pay invoice links that customers ignore</li>
-            <li>Manual reconciliation between invoices, deposits, and accounting software</li>
-          </ul>
-        </div>
-        <div class="ind-features">
-          <div class="feat-label">What we do differently</div>
-          <ul>
-            <li><span><strong>No large-ticket penalties</strong> <span class="feat-sub">— one rate, every amount</span></span></li>
-            <li><span><strong>Branded invoice links</strong> <span class="feat-sub">— your logo, custom confirmation, one-click pay</span></span></li>
-            <li><span><strong>Recurring retainers built in</strong> <span class="feat-sub">— monthly or annual, with auto-receipts</span></span></li>
-            <li><span><strong>QuickBooks / Xero auto-sync</strong> <span class="feat-sub">— every deposit matched to every invoice</span></span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="ind-card reveal" data-card>
-        <div class="ind-header">
-          <div class="ind-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M7 9h10M7 13h6"/></svg></div>
-          <div class="ind-rate-tag"><span class="rt-label">Typical rate</span><strong>1.50 – 1.90%</strong></div>
-        </div>
-        <h3>SaaS & subscription</h3>
-        <div class="ind-sub">Recurring billing · digital products</div>
-        <p>The best SaaS businesses lose 5-10% of their ARR to "involuntary churn" — expired cards, failed charges, blocked attempts. Most of that's recoverable with the right setup.</p>
-        <div class="ind-pains">
-          <div class="pain-label">What usually hurts</div>
-          <ul>
-            <li>Failed renewals when customers get a new card (no account updater)</li>
-            <li>Hard declines on first attempt that would succeed with smart retry logic</li>
-            <li>Stripe fees eating 2.9% + 30¢ on transactions that should be under 2%</li>
-          </ul>
-        </div>
-        <div class="ind-features">
-          <div class="feat-label">What we do differently</div>
-          <ul>
-            <li><span><strong>Account updater included</strong> <span class="feat-sub">— expired cards auto-refresh with the networks</span></span></li>
-            <li><span><strong>Smart retry logic</strong> <span class="feat-sub">— ML-tuned retry times that recover 30%+ of declines</span></span></li>
-            <li><span><strong>Rate drops for subscription volume</strong> <span class="feat-sub">— interchange is lower on recurring, you should benefit</span></span></li>
-            <li><span><strong>Dunning emails built in</strong> <span class="feat-sub">— customer-friendly, your branding</span></span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="ind-card reveal reveal-delay-1" data-card>
-        <div class="ind-header">
-          <div class="ind-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-          <div class="ind-rate-tag"><span class="rt-label">Typical rate</span><strong>1.70 – 2.20%</strong></div>
-        </div>
-        <h3>Healthcare & medical</h3>
-        <div class="ind-sub">Practices · dental · specialty · vets</div>
-        <p>Patient payments are a mess of co-pays, deductibles, installment plans, and HSA/FSA cards — handled by processors who don't understand any of it. We do.</p>
-        <div class="ind-pains">
-          <div class="pain-label">What usually hurts</div>
-          <ul>
-            <li>HSA/FSA cards rejecting on processors that aren't coded correctly</li>
-            <li>No installment plan support — so uncollected balances stack up</li>
-            <li>Generic receipts that don't meet HSA/FSA documentation requirements</li>
-          </ul>
-        </div>
-        <div class="ind-features">
-          <div class="feat-label">What we do differently</div>
-          <ul>
-            <li><span><strong>Full HSA/FSA card support</strong> <span class="feat-sub">— correct MCC coding, IIAS compliance</span></span></li>
-            <li><span><strong>Installment plans built in</strong> <span class="feat-sub">— 3, 6, 12 months with automatic retry</span></span></li>
-            <li><span><strong>Medical-compliant receipts</strong> <span class="feat-sub">— IIAS line-item detail where needed</span></span></li>
-            <li><span><strong>PMS integrations</strong> <span class="feat-sub">— Dentrix, Open Dental, Eaglesoft, AthenaHealth, more</span></span></li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="section-head center reveal">
-      <div class="eyebrow">Across all industries</div>
-      <h2 class="heading">The <span class="italic">constants.</span></h2>
-      <p>Whatever industry you're in, certain things don't change. Every merchant gets these — built into the rate, no add-ons, no upsells.</p>
-    </div>
-    <div class="stats-strip reveal">
-      <div class="stat-item">
-        <div class="stat-num">0.15%</div>
-        <div class="stat-label">Starting markup</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">&lt;4h</div>
-        <div class="stat-label">Support response</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">T+1</div>
-        <div class="stat-label">Default funding</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">$0</div>
-        <div class="stat-label">Early termination fee</div>
+        <div class="total-meta">for a standard retail merchant · lower for some card types, higher for others</div>
       </div>
     </div>
   </div>
@@ -411,23 +304,204 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);position:relative;z-
 
 <section>
   <div class="container">
-    <div class="other-wrap reveal" data-card>
-      <div class="eyebrow">Don't see yours?</div>
-      <h2>We probably <span class="italic">work with you too.</span></h2>
-      <p>The categories above cover most of what we see, but they're not exhaustive. If your business type isn't listed, send a statement and we'll tell you straight up whether we're a good fit — we'd rather say no than onboard a merchant we can't serve well.</p>
-      <div class="other-types">
-        <span>Beauty & salons</span>
-        <span>Automotive</span>
-        <span>Fitness studios</span>
-        <span>Home services</span>
-        <span>Nonprofits</span>
-        <span>Education</span>
-        <span>Real estate</span>
-        <span>Construction</span>
-        <span>Wholesale</span>
-        <span>Event venues</span>
+    <div class="section-head reveal">
+      <div class="eyebrow">Typical effective rates</div>
+      <h2 class="heading">What you'll actually <span class="italic">pay.</span></h2>
+      <p>Your exact rate depends on your card mix, average ticket, and volume. These are real ranges for real merchants. Runs on the conservative end of what we can do — your proposal will have the actual number.</p>
+    </div>
+    <div class="rate-grid">
+      <div class="rate-card reveal" data-card>
+        <div class="tag">Retail · card-present</div>
+        <h4>Swiped transactions</h4>
+        <div class="rate-val">1.60 – 1.90%</div>
+        <div class="rate-sub">Effective rate</div>
+        <p>Brick-and-mortar retail, tap-to-pay, chip-and-PIN. Lowest interchange tier because the card is physically present and fraud risk is low.</p>
       </div>
-      <a href="contact.html" class="btn btn-primary">Get a Rate →</a>
+      <div class="rate-card reveal reveal-delay-1" data-card>
+        <div class="tag">Restaurant</div>
+        <h4>Food & hospitality</h4>
+        <div class="rate-val">1.80 – 2.10%</div>
+        <div class="rate-sub">Effective rate</div>
+        <p>Full-service, quick-service, and bars. Tip adjustment supported. Same-day funding available for qualifying merchants.</p>
+      </div>
+      <div class="rate-card reveal reveal-delay-2" data-card>
+        <div class="tag">E-commerce</div>
+        <h4>Card-not-present</h4>
+        <div class="rate-val">1.90 – 2.40%</div>
+        <div class="rate-sub">Effective rate</div>
+        <p>Online, phone, mail order. Higher interchange because fraud risk is higher — our AI fraud scoring brings effective loss rates way down.</p>
+      </div>
+      <div class="rate-card reveal" data-card>
+        <div class="tag">Professional services</div>
+        <h4>Invoicing & B2B</h4>
+        <div class="rate-val">1.70 – 2.00%</div>
+        <div class="rate-sub">Effective rate</div>
+        <p>Legal, consulting, agencies, medical practices. Larger tickets, lower volumes. Virtual terminal and invoice links included.</p>
+      </div>
+      <div class="rate-card reveal reveal-delay-1" data-card>
+        <div class="tag">SaaS / subscription</div>
+        <h4>Recurring billing</h4>
+        <div class="rate-val">1.50 – 1.90%</div>
+        <div class="rate-sub">Effective rate</div>
+        <p>Monthly or annual subscriptions. Account updater included to handle card expirations automatically. Retry logic for failed payments built in.</p>
+      </div>
+      <div class="rate-card reveal reveal-delay-2" data-card>
+        <div class="tag">Everything else</div>
+        <h4>Not listed?</h4>
+        <div class="rate-val">1.70 – 2.30%</div>
+        <div class="rate-sub">Effective rate</div>
+        <p>We work across most business types. Send a statement and we'll tell you exactly where you land — no vague "as low as" numbers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Hardware</div>
+      <h2 class="heading">Buy it once. <span class="italic">Own it forever.</span></h2>
+      <p>We don't lease. Leasing is how "low-rate" processors claw back the savings they promised. All hardware is sold outright, shipped overnight on qualifying orders, and stays yours if you leave.</p>
+    </div>
+    <div class="hw-grid">
+      <div class="hw-card reveal" data-card>
+        <div class="hw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div>
+        <h4>Mobile reader</h4>
+        <p class="hw-desc">Bluetooth card reader pairs with your phone or tablet. Perfect for farmers markets, mobile service, field sales.</p>
+        <div class="hw-price">$49</div>
+        <div class="hw-meta">one-time</div>
+      </div>
+      <div class="hw-card reveal reveal-delay-1" data-card>
+        <div class="hw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="8" y="8" width="8" height="4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="12" y1="16" x2="12" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg></div>
+        <h4>Countertop terminal</h4>
+        <p class="hw-desc">Standalone credit card terminal. WiFi + ethernet + optional 4G. Chip, tap, swipe. No POS required.</p>
+        <div class="hw-price">$199</div>
+        <div class="hw-meta">one-time</div>
+      </div>
+      <div class="hw-card reveal reveal-delay-2" data-card>
+        <div class="hw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M3 11h18"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></div>
+        <h4>Handheld POS</h4>
+        <p class="hw-desc">Full Android POS with receipt printer, camera, barcode scanner, item management. Best for retail and restaurants.</p>
+        <div class="hw-price">$299 – $599</div>
+        <div class="hw-meta">one-time</div>
+      </div>
+      <div class="hw-card reveal reveal-delay-3" data-card>
+        <div class="hw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h4>Virtual terminal + gateway</h4>
+        <p class="hw-desc">Browser-based. Type in card numbers, send invoice links, run recurring billing. Integrates with every major platform.</p>
+        <div class="hw-price free">Free</div>
+        <div class="hw-meta">included</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">What's included vs what isn't</div>
+      <h2 class="heading">The honest <span class="italic">inventory.</span></h2>
+      <p>Most processor websites tell you what's included and hope you don't notice the long list of what isn't. Here's both — side by side.</p>
+    </div>
+    <div class="compare-wrap">
+      <div class="compare-col yes reveal" data-card>
+        <h3>What you pay for</h3>
+        <div class="col-sub">Included in your rate</div>
+        <ul>
+          <li><span class="mark">✓</span><span><strong>Processing (interchange + 0.15%)</strong><span class="li-sub">The only variable cost. Everything else on this list is free.</span></span></li>
+          <li><span class="mark">✓</span><span><strong>24/7 support from humans</strong><span class="li-sub">Named account manager. Answers in under 4 hours.</span></span></li>
+          <li><span class="mark">✓</span><span><strong>AI fraud scoring</strong><span class="li-sub">Every transaction scored in under 80ms.</span></span></li>
+          <li><span class="mark">✓</span><span><strong>Chargeback prediction</strong><span class="li-sub">24-hour advance warning on likely disputes.</span></span></li>
+          <li><span class="mark">✓</span><span><strong>Auto-reconciliation</strong><span class="li-sub">Deposits matched to invoices automatically.</span></span></li>
+          <li><span class="mark">✓</span><span><strong>Next-day funding</strong><span class="li-sub">Same-day available for qualifying merchants, no extra fee.</span></span></li>
+          <li><span class="mark">✓</span><span><strong>PCI compliance support</strong><span class="li-sub">We handle the scope so you stay compliant without stress.</span></span></li>
+          <li><span class="mark">✓</span><span><strong>Free statement audits</strong><span class="li-sub">Every 6 months. Even after you're a customer.</span></span></li>
+        </ul>
+      </div>
+      <div class="compare-col no reveal reveal-delay-1" data-card>
+        <h3>What you won't pay</h3>
+        <div class="col-sub">Zero of these. Ever.</div>
+        <ul>
+          <li><span class="mark">✗</span><span><strong>No statement fees</strong><span class="li-sub">Most processors charge $10-25/mo just to send you a bill.</span></span></li>
+          <li><span class="mark">✗</span><span><strong>No batch fees</strong><span class="li-sub">$0.25 every time you close out? Not here.</span></span></li>
+          <li><span class="mark">✗</span><span><strong>No monthly minimums</strong><span class="li-sub">If you don't process, you don't pay.</span></span></li>
+          <li><span class="mark">✗</span><span><strong>No PCI non-compliance fee</strong><span class="li-sub">Industry average: $39/mo for being non-compliant. We help you stay compliant.</span></span></li>
+          <li><span class="mark">✗</span><span><strong>No gateway fees</strong><span class="li-sub">Our gateway is included. Most charge $15-50/mo.</span></span></li>
+          <li><span class="mark">✗</span><span><strong>No annual fees</strong><span class="li-sub">Some processors slip in $99-199 annual "maintenance" charges.</span></span></li>
+          <li><span class="mark">✗</span><span><strong>No early termination fees</strong><span class="li-sub">Typical ETF: $295-495. We're month-to-month.</span></span></li>
+          <li><span class="mark">✗</span><span><strong>No price hikes</strong><span class="li-sub">Your rate doesn't change unless interchange changes. Period.</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="tiered-wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Why our model matters</div>
+        <h2 class="heading">Interchange-plus vs. <span class="italic">tiered.</span></h2>
+        <p>Most processors still use "tiered" pricing — qualified, mid-qualified, non-qualified. The word "qualified" is where the money hides. Here's what the same transaction costs under each model.</p>
+      </div>
+      <div class="tiered-grid">
+        <div class="tiered-card them reveal" data-card>
+          <div class="tc-label">A typical tiered processor</div>
+          <h4>$100 keyed-in transaction</h4>
+          <div class="tiered-row"><span class="tr-label">Advertised rate</span><span class="tr-val">1.69%</span></div>
+          <div class="tiered-row"><span class="tr-label">Mid-qualified surcharge</span><span class="tr-val">+0.85%</span></div>
+          <div class="tiered-row"><span class="tr-label">Non-qualified surcharge</span><span class="tr-val">+1.45%</span></div>
+          <div class="tiered-row"><span class="tr-label">Card type downgrades</span><span class="tr-val">Common</span></div>
+          <div class="tiered-row"><span class="tr-label">Real effective rate</span><span class="tr-val">~3.14%</span></div>
+          <div class="tiered-row"><span class="tr-label">You pay</span><span class="tr-val">$3.14</span></div>
+        </div>
+        <div class="tiered-card us reveal reveal-delay-1" data-card>
+          <div class="tc-label">Starlight Lane</div>
+          <h4>Same $100 transaction</h4>
+          <div class="tiered-row"><span class="tr-label">Interchange (actual)</span><span class="tr-val">1.80%</span></div>
+          <div class="tiered-row"><span class="tr-label">Assessment</span><span class="tr-val">0.14%</span></div>
+          <div class="tiered-row"><span class="tr-label">Our markup</span><span class="tr-val">0.15%</span></div>
+          <div class="tiered-row"><span class="tr-label">Downgrade risk</span><span class="tr-val">None</span></div>
+          <div class="tiered-row"><span class="tr-label">Real effective rate</span><span class="tr-val">2.09%</span></div>
+          <div class="tiered-row"><span class="tr-label">You pay</span><span class="tr-val">$2.09</span></div>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:32px;font-family:var(--mono);font-size:12px;letter-spacing:0.1em;color:var(--mute);">ON A $100 SWIPE — $1.05 DIFFERENCE · ON $50,000/MO — $525 DIFFERENCE · OVER A YEAR — $6,300</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="pfaq-wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Pricing questions</div>
+        <h2 class="heading">Things merchants <span class="italic">ask.</span></h2>
+      </div>
+      <details class="pfaq reveal">
+        <summary>Is 0.15% really the markup? What's the catch? <span class="plus">+</span></summary>
+        <div class="answer"><p>0.15% is the floor — it's what we charge the highest-volume, card-present merchants. For lower-volume or card-not-present businesses, markup may run 0.25-0.45%. The "catch" is we're genuinely transparent: your proposal shows the exact markup for your business, and it never changes unless interchange rates change (which they do twice a year for all processors).</p></div>
+      </details>
+      <details class="pfaq reveal">
+        <summary>Do you charge for refunds and chargebacks? <span class="plus">+</span></summary>
+        <div class="answer"><p>Chargebacks have a $15 pass-through fee per dispute — this is what the card network charges us, and we pass it through at cost. Refunds have no fee beyond the original interchange being reversed (most of which is returned by the networks). We don't profit on refunds or disputes.</p></div>
+      </details>
+      <details class="pfaq reveal">
+        <summary>What about American Express? <span class="plus">+</span></summary>
+        <div class="answer"><p>We support Amex through OptBlue, which means Amex transactions are priced the same way as Visa/MC — interchange-plus. No separate merchant account, no separate deposit, no higher "Amex tier" like tiered processors have.</p></div>
+      </details>
+      <details class="pfaq reveal">
+        <summary>Do you offer volume discounts? <span class="plus">+</span></summary>
+        <div class="answer"><p>Yes — markup scales down with volume. A merchant processing $50k/mo pays a different markup than one processing $2M/mo. The 0.15% floor is for our largest merchants. Your proposal will have your specific number based on your volume.</p></div>
+      </details>
+      <details class="pfaq reveal">
+        <summary>Are there any setup fees? <span class="plus">+</span></summary>
+        <div class="answer"><p>No setup fee. No application fee. No onboarding fee. You pay for hardware (if you need any) and that's it. First transaction is usually processed within 72 hours of signing — and that's included too.</p></div>
+      </details>
+      <details class="pfaq reveal">
+        <summary>What happens when interchange rates change? <span class="plus">+</span></summary>
+        <div class="answer"><p>Visa and Mastercard adjust interchange twice a year (usually April and October). When rates go up, your cost goes up — when they go down, your cost goes down. Our markup stays exactly the same. Tiered processors often use interchange changes as an excuse to increase their markup; we don't.</p></div>
+      </details>
     </div>
   </div>
 </section>
@@ -436,12 +510,12 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);position:relative;z-
   <div class="container">
     <div class="cta-block reveal">
       <div class="cta-content">
-        <div class="eyebrow">Whatever you run</div>
-        <h2>Send us your <span class="italic">statement.</span></h2>
-        <p>The industry tiers above are ranges. Your actual rate depends on your card mix, average ticket, and volume. The fastest way to a real number is three months of statements — we'll return a one-page proposal with exact numbers within three business days.</p>
+        <div class="eyebrow">Your number, specifically</div>
+        <h2>What would <span class="italic">you</span> pay?</h2>
+        <p>Every business is different. Your card mix, average ticket, and volume all shape your exact rate. The fastest way to know is to send your last three processing statements — we'll reply within three business days with your specific proposal.</p>
         <div class="cta-actions">
           <a href="mailto:info@starlightlane.org" class="btn btn-primary">info@starlightlane.org →</a>
-          <a href="https://calendly.com/YOUR-CALENDLY-LINK" target="_blank" rel="noopener" class="btn btn-ghost">Book a call</a>
+          <a href="calculator.html" class="btn btn-ghost">Try the calculator</a>
         </div>
       </div>
     </div>
