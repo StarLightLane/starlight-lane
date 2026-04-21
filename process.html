@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Process — Starlight Lane</title>
+<meta name="description" content="From first email to first transaction. Our four-step process: Discovery, Proposal, Onboard, Optimize. No forty-page applications, no ghosting sales reps." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root { --ink:#0a0d14; --ink-2:#11151f; --ink-3:#1a1f2e; --bone:#f5f2ea; --bone-dim:#a8a69e; --mute:#6b6b6b; --lime:#d8ff5c; --mint:#9fffcf; --amber:#ffb648; --coral:#ff7a5c; --line:rgba(255,255,255,0.08); --line-2:rgba(255,255,255,0.14); --display:'Fraunces',Georgia,serif; --mono:'Geist Mono',ui-monospace,'SF Mono',monospace; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--bone);font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:inherit;text-decoration:none}
+button{font:inherit;background:none;border:none;color:inherit;cursor:pointer}
+ul{list-style:none}
+img,svg{display:block;max-width:100%}
+h1,h2,h3,h4,h5{font-weight:500}
+.container{max-width:1280px;margin:0 auto;padding:0 32px;position:relative}
+.stars{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 12% 22%,rgba(255,255,255,0.7),transparent 50%),radial-gradient(1px 1px at 28% 68%,rgba(255,255,255,0.5),transparent 50%),radial-gradient(2px 2px at 44% 12%,rgba(216,255,92,0.45),transparent 50%),radial-gradient(1px 1px at 58% 80%,rgba(159,255,207,0.5),transparent 50%),radial-gradient(1px 1px at 72% 34%,rgba(255,255,255,0.6),transparent 50%),radial-gradient(1.5px 1.5px at 86% 58%,rgba(255,182,72,0.35),transparent 50%),radial-gradient(1px 1px at 94% 18%,rgba(255,255,255,0.4),transparent 50%),radial-gradient(1px 1px at 8% 88%,rgba(255,255,255,0.45),transparent 50%);opacity:0.55;animation:starfade 8s ease-in-out infinite alternate}
+@keyframes starfade{from{opacity:0.4}to{opacity:0.65}}
+nav.top{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rgba(10,13,20,0.55);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid transparent;transition:background 0.3s ease,border-color 0.3s ease,padding 0.3s ease}
+nav.top.scrolled{background:rgba(10,13,20,0.85);border-bottom-color:var(--line);padding:14px 0}
+nav.top .row{display:flex;align-items:center;justify-content:space-between;gap:32px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:-0.01em;color:var(--bone)}
+.logo svg{width:22px;height:22px}
+.nav-links{display:flex;gap:36px;font-size:14px;flex:1;justify-content:center}
+.nav-links a{color:var(--bone-dim);transition:color 0.2s ease;position:relative}
+.nav-links a:hover{color:var(--bone)}
+.nav-links a.active{color:var(--lime)}
+.nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--lime);opacity:0.4}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:100px;font-size:14px;font-weight:500;letter-spacing:-0.005em;transition:all 0.25s ease;white-space:nowrap;cursor:pointer;border:1px solid transparent;line-height:1}
+.btn-primary{background:var(--lime);color:var(--ink)}
+.btn-primary:hover{background:var(--mint);transform:translateY(-1px);box-shadow:0 8px 24px -8px rgba(216,255,92,0.5)}
+.btn-ghost{color:var(--bone);border-color:var(--line-2);background:transparent}
+.btn-ghost:hover{border-color:var(--bone);background:rgba(255,255,255,0.04);transform:translateY(-1px)}
+.mobile-toggle{display:none;width:40px;height:40px;position:relative;border-radius:8px;border:1px solid var(--line)}
+.mobile-toggle span,.mobile-toggle span::before,.mobile-toggle span::after{display:block;width:18px;height:1.5px;background:var(--bone);position:absolute;left:50%;transform:translateX(-50%);transition:all 0.3s ease}
+.mobile-toggle span{top:50%;margin-top:-0.75px}
+.mobile-toggle span::before{content:"";top:-7px}
+.mobile-toggle span::after{content:"";top:7px}
+.mobile-toggle.open span{background:transparent}
+.mobile-toggle.open span::before{transform:translateX(-50%) rotate(45deg);top:0}
+.mobile-toggle.open span::after{transform:translateX(-50%) rotate(-45deg);top:0}
+.mobile-menu{display:none;position:fixed;top:74px;left:0;right:0;background:rgba(10,13,20,0.96);backdrop-filter:blur(20px);z-index:99;flex-direction:column;padding:28px 32px 32px;gap:20px;border-bottom:1px solid var(--line)}
+.mobile-menu a{font-size:20px;color:var(--bone-dim);font-family:var(--display);font-weight:400;letter-spacing:-0.01em}
+.mobile-menu a.btn{font-family:inherit;font-size:14px;margin-top:8px}
+.mobile-menu.open{display:flex}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.24em;color:var(--mute);margin-bottom:24px;display:block}
+.display{font-family:var(--display);font-weight:400;font-size:clamp(52px,8.5vw,104px);line-height:0.96;letter-spacing:-0.04em;margin-bottom:32px;color:var(--bone)}
+.display .line{display:block}
+.heading{font-family:var(--display);font-weight:400;font-size:clamp(40px,5.5vw,68px);line-height:1.02;letter-spacing:-0.035em;margin-bottom:20px;color:var(--bone)}
+.italic{font-style:italic;font-weight:400;color:var(--lime)}
+section{padding:120px 0;position:relative;z-index:1}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.9s cubic-bezier(0.2,0.8,0.2,1),transform 0.9s cubic-bezier(0.2,0.8,0.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.08s}
+.reveal-delay-2{transition-delay:0.16s}
+.reveal-delay-3{transition-delay:0.24s}
+.cta-block{background:linear-gradient(135deg,var(--ink-2) 0%,var(--ink-3) 100%);border:1px solid var(--line-2);border-radius:32px;padding:88px 72px;position:relative;overflow:hidden}
+.cta-block::before{content:"";position:absolute;top:-40%;right:-20%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(216,255,92,0.14),transparent 60%);pointer-events:none}
+.cta-content{max-width:720px;position:relative;z-index:2}
+.cta-content h2{font-family:var(--display);font-size:clamp(36px,5vw,60px);font-weight:400;line-height:1.04;letter-spacing:-0.03em;margin-bottom:20px;color:var(--bone)}
+.cta-content p{color:var(--bone-dim);font-size:17px;line-height:1.6;margin-bottom:36px;max-width:580px}
+.cta-actions{display:flex;gap:14px;flex-wrap:wrap}
+footer{padding:80px 0 36px;border-top:1px solid var(--line);position:relative;z-index:1;background:rgba(10,13,20,0.6)}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:60px;padding-bottom:60px;border-bottom:1px solid var(--line)}
+.footer-brand .logo{margin-bottom:18px;font-size:20px}
+.footer-brand p{color:var(--bone-dim);font-size:14px;max-width:340px;line-height:1.6}
+.footer-col h5{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.2em;color:var(--mute);margin-bottom:22px;font-weight:500}
+.footer-col ul{display:flex;flex-direction:column;gap:12px}
+.footer-col a{color:var(--bone-dim);font-size:14px;transition:color 0.2s ease}
+.footer-col a:hover{color:var(--lime)}
+.footer-bottom{padding-top:28px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:0.18em;color:var(--mute)}
+@media (max-width:1024px){.nav-links{display:none}.mobile-toggle{display:flex;align-items:center;justify-content:center}nav.top>.container>.row>.btn{display:none}.cta-block{padding:60px 40px}.footer-grid{grid-template-columns:1fr 1fr;gap:40px}.footer-brand{grid-column:1/-1}}
+@media (max-width:680px){.container{padding:0 20px}section{padding:80px 0}.cta-block{padding:48px 28px;border-radius:24px}.footer-grid{grid-template-columns:1fr;gap:32px}.footer-bottom{flex-direction:column;gap:12px;text-align:center}}
+
+/* PROCESS PAGE */
+.process-hero{padding:180px 0 80px;position:relative;overflow:hidden}
+.process-hero .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 50% at 15% 30%,rgba(216,255,92,0.09),transparent 60%),radial-gradient(ellipse 50% 40% at 85% 70%,rgba(159,255,207,0.07),transparent 60%)}
+.process-hero>.container{position:relative;z-index:2;max-width:960px}
+.process-hero .eyebrow{color:var(--lime)}
+.process-hero .lede{font-size:19px;color:var(--bone-dim);max-width:620px;line-height:1.55;margin-bottom:48px}
+
+.timeline-overview{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--ink-2);border:1px solid var(--line);border-radius:24px;overflow:hidden;position:relative;z-index:2}
+.timeline-overview::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent)}
+.to-step{padding:36px 28px;position:relative;border-right:1px solid var(--line);overflow:hidden;--mx:50%;--my:50%;transition:background 0.3s ease}
+.to-step:hover{background:rgba(216,255,92,0.02)}
+.to-step:last-child{border-right:none}
+.to-step::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(216,255,92,0.10),transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none}
+.to-step:hover::after{opacity:1}
+.to-step>*{position:relative;z-index:1}
+.to-step .step-num{font-family:var(--mono);font-size:11px;color:var(--lime);letter-spacing:0.22em;margin-bottom:14px}
+.to-step .step-time{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:20px}
+.to-step h4{font-family:var(--display);font-size:22px;font-weight:500;letter-spacing:-0.015em;margin-bottom:8px;color:var(--bone);transition:color 0.3s ease}
+.to-step:hover h4{color:var(--lime)}
+.to-step p{font-size:13.5px;color:var(--bone-dim);line-height:1.55}
+
+.process-step{padding:140px 0;position:relative;border-top:1px solid var(--line);overflow:hidden}
+.process-step .bignum{font-family:var(--mono);font-size:clamp(180px,24vw,320px);font-weight:500;color:var(--bone);opacity:0.025;position:absolute;top:60px;right:-20px;line-height:0.9;z-index:0;pointer-events:none;user-select:none}
+.process-step.right .bignum{right:auto;left:-20px}
+.step-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start;position:relative;z-index:1}
+.process-step .intro{position:sticky;top:120px}
+.process-step.right .intro{order:2}
+.process-step .eyebrow{color:var(--lime)}
+.process-step .intro h2{font-family:var(--display);font-size:clamp(40px,4.8vw,60px);font-weight:400;line-height:1.02;letter-spacing:-0.03em;margin-bottom:28px;color:var(--bone)}
+.process-step .intro .lede{font-size:17px;color:var(--bone-dim);line-height:1.65;margin-bottom:28px}
+.process-step .time-marker{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:100px;background:rgba(216,255,92,0.08);border:1px solid rgba(216,255,92,0.22);font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--lime);margin-bottom:24px}
+.process-step .time-marker::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime)}
+
+.detail-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.detail-col h5{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
+.detail-col ul{display:flex;flex-direction:column;gap:14px}
+.detail-col li{padding:14px 18px;background:var(--ink-2);border:1px solid var(--line);border-radius:12px;font-size:14px;color:var(--bone-dim);line-height:1.5;transition:border-color 0.2s ease}
+.detail-col li:hover{border-color:var(--line-2)}
+.detail-col li strong{color:var(--bone);font-weight:500;display:block;margin-bottom:4px;font-size:14.5px}
+
+.artifact{margin-top:28px;padding:32px;background:linear-gradient(180deg,var(--ink-2) 0%,var(--ink) 100%);border:1px solid var(--line-2);border-radius:20px;position:relative;overflow:hidden;transition:border-color 0.4s ease,transform 0.4s ease;--mx:50%;--my:50%}
+.artifact:hover{border-color:rgba(216,255,92,0.3);transform:translateY(-4px)}
+.artifact::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent);opacity:0.5;transition:opacity 0.4s ease;z-index:2}
+.artifact:hover::before{opacity:1}
+.artifact::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(216,255,92,0.08),transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none;z-index:0}
+.artifact:hover::after{opacity:1}
+.artifact>*{position:relative;z-index:1}
+.artifact-label{font-family:var(--mono);font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--mute);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.artifact-label::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime)}
+.artifact h6{font-family:var(--display);font-size:18px;font-weight:500;color:var(--bone);margin-bottom:14px;letter-spacing:-0.01em}
+.artifact p{font-size:13.5px;color:var(--bone-dim);line-height:1.6}
+.artifact-line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line);font-family:var(--mono);font-size:12px}
+.artifact-line:last-child{border-bottom:none}
+.artifact-line .al-label{color:var(--bone-dim);letter-spacing:0.04em}
+.artifact-line .al-val{color:var(--bone);font-weight:500}
+.artifact-line.ok .al-val{color:var(--mint)}
+
+@media (max-width:1024px){.timeline-overview{grid-template-columns:1fr 1fr}.to-step{border-right:none;border-bottom:1px solid var(--line)}.to-step:nth-child(2n){border-right:none}.to-step:nth-child(odd){border-right:1px solid var(--line)}.to-step:nth-last-child(-n+2){border-bottom:none}.step-grid{grid-template-columns:1fr;gap:48px}.process-step .intro{position:static}.process-step.right .intro{order:0}.process-step{padding:100px 0}.process-hero{padding:140px 0 60px}}
+@media (max-width:680px){.process-hero{padding:120px 0 50px}.process-step{padding:80px 0}.timeline-overview{grid-template-columns:1fr}.to-step{border-right:none!important;border-bottom:1px solid var(--line)}.to-step:last-child{border-bottom:none}.process-step .bignum{font-size:120px;top:30px}.detail-cols{grid-template-columns:1fr;gap:16px}.artifact{padding:22px}}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<nav class="top">
+  <div class="container row">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad)"/><defs><linearGradient id="starGrad" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
+      Starlight Lane
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="calculator.html">Calculator</a></li>
+      <li><a href="process.html" class="active">Process</a></li>
+      <li><a href="ai.html">AI</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <a href="contact.html" class="btn btn-primary">Get a Rate →</a>
+    <button class="mobile-toggle" aria-label="Menu"><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="calculator.html">Calculator</a>
+  <a href="process.html">Process</a>
+  <a href="ai.html">AI</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html" class="btn btn-primary">Get a Rate →</a>
+</div>
+
+<header class="process-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="eyebrow reveal">The process</div>
+    <h1 class="display reveal reveal-delay-1">From first email to <span class="italic">first transaction.</span></h1>
+    <p class="lede reveal reveal-delay-2">No forty-page applications. No sales rep who ghosts you after signing. No surprise fees in month three. Here's exactly what happens from the moment you reach out — step by step, day by day, with nothing hidden.</p>
+  </div>
+  <div class="container">
+    <div class="timeline-overview reveal reveal-delay-3">
+      <div class="to-step" data-card>
+        <div class="step-num">01</div>
+        <div class="step-time">Days 1 – 2</div>
+        <h4>Discovery</h4>
+        <p>You send statements. We audit. Free.</p>
+      </div>
+      <div class="to-step" data-card>
+        <div class="step-num">02</div>
+        <div class="step-time">Day 3</div>
+        <h4>Proposal</h4>
+        <p>One page. Real numbers. No pressure.</p>
+      </div>
+      <div class="to-step" data-card>
+        <div class="step-num">03</div>
+        <div class="step-time">Days 4 – 6</div>
+        <h4>Onboard</h4>
+        <p>We handle the switch. You keep working.</p>
+      </div>
+      <div class="to-step" data-card>
+        <div class="step-num">04</div>
+        <div class="step-time">Ongoing</div>
+        <h4>Optimize</h4>
+        <p>AI monitoring. Monthly reports. A real human.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="process-step" id="discovery">
+  <div class="bignum">01</div>
+  <div class="container">
+    <div class="step-grid">
+      <div class="intro reveal">
+        <div class="time-marker">Days 1 – 2 · 48 hours</div>
+        <div class="eyebrow">Step 01</div>
+        <h2>We look at <span class="italic">your numbers.</span></h2>
+        <p class="lede">Everything starts with your last three processing statements. That's it. No application form, no credit pull, no commitment. We audit the statements line by line and tell you exactly where you're overpaying — even if you decide not to move forward.</p>
+      </div>
+      <div class="detail reveal reveal-delay-1">
+        <div class="detail-cols">
+          <div class="detail-col">
+            <h5>What you send</h5>
+            <ul>
+              <li><strong>3 recent statements</strong>Last three months of processing statements. PDF is fine.</li>
+              <li><strong>Basic business info</strong>Industry, average ticket, monthly volume. Takes 2 minutes.</li>
+              <li><strong>That's all</strong>No SSN, no credit pull, no contract.</li>
+            </ul>
+          </div>
+          <div class="detail-col">
+            <h5>What we do</h5>
+            <ul>
+              <li><strong>Line-by-line audit</strong>We decode every fee, surcharge, and markup on your statement.</li>
+              <li><strong>Hidden cost scan</strong>Reserves, holdbacks, non-compliance fees, cross-border charges.</li>
+              <li><strong>Benchmark</strong>What merchants like you should actually be paying.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="artifact" data-card>
+          <div class="artifact-label">Deliverable — Audit report</div>
+          <div class="artifact-line ok"><span class="al-label">Current effective rate</span><span class="al-val">2.87%</span></div>
+          <div class="artifact-line"><span class="al-label">Industry benchmark</span><span class="al-val">1.65%</span></div>
+          <div class="artifact-line"><span class="al-label">Overpayment identified</span><span class="al-val">$14,320 / yr</span></div>
+          <div class="artifact-line"><span class="al-label">Reserve accounts found</span><span class="al-val">2</span></div>
+          <div class="artifact-line"><span class="al-label">Junk fees flagged</span><span class="al-val">6 line items</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process-step right" id="proposal">
+  <div class="bignum">02</div>
+  <div class="container">
+    <div class="step-grid">
+      <div class="intro reveal">
+        <div class="time-marker">Day 3 · 24 hours</div>
+        <div class="eyebrow">Step 02</div>
+        <h2>You get a <span class="italic">real number.</span></h2>
+        <p class="lede">One page. Your new rate, your new monthly cost, and a side-by-side against what you pay now. Everything spelled out in plain English. If you want to move forward, there's a DocuSign link at the bottom. If you don't, you keep the audit and walk.</p>
+      </div>
+      <div class="detail reveal reveal-delay-1">
+        <div class="detail-cols">
+          <div class="detail-col">
+            <h5>What's on the page</h5>
+            <ul>
+              <li><strong>Your new rate</strong>Interchange-plus pricing, broken down by card type.</li>
+              <li><strong>Monthly savings</strong>A specific dollar amount, not a range.</li>
+              <li><strong>All-in cost comparison</strong>Current processor vs. us, every line item.</li>
+              <li><strong>Hardware & setup</strong>Exactly what we're shipping, exactly what it costs.</li>
+            </ul>
+          </div>
+          <div class="detail-col">
+            <h5>What's not on it</h5>
+            <ul>
+              <li><strong>No asterisks</strong>No "as low as," no "starting at," no fine print tricks.</li>
+              <li><strong>No long contract</strong>Month-to-month. Leave anytime, no early termination fee.</li>
+              <li><strong>No pressure</strong>Take 24 hours or 24 days. Rate holds for 30 days either way.</li>
+              <li><strong>No trick fees</strong>What you see is what you pay. Forever.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="artifact" data-card>
+          <div class="artifact-label">Sample — Proposal summary</div>
+          <div class="artifact-line"><span class="al-label">Processing rate</span><span class="al-val">1.65%</span></div>
+          <div class="artifact-line"><span class="al-label">Monthly junk fees</span><span class="al-val">$0</span></div>
+          <div class="artifact-line"><span class="al-label">Hardware (one-time)</span><span class="al-val">$299</span></div>
+          <div class="artifact-line ok"><span class="al-label">Est. monthly savings</span><span class="al-val">$1,193</span></div>
+          <div class="artifact-line ok"><span class="al-label">Annual savings</span><span class="al-val">$14,316</span></div>
+          <div class="artifact-line"><span class="al-label">Contract length</span><span class="al-val">Month-to-month</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process-step" id="onboard">
+  <div class="bignum">03</div>
+  <div class="container">
+    <div class="step-grid">
+      <div class="intro reveal">
+        <div class="time-marker">Days 4 – 6 · 24–72 hours</div>
+        <div class="eyebrow">Step 03</div>
+        <h2>We handle <span class="italic">the switch.</span></h2>
+        <p class="lede">Most merchants are approved in 24 hours. We ship hardware the same day. We configure your gateway, update your POS, and walk your team through the new setup over a 30-minute call. You keep taking payments the entire time — zero downtime.</p>
+      </div>
+      <div class="detail reveal reveal-delay-1">
+        <div class="detail-cols">
+          <div class="detail-col">
+            <h5>We handle</h5>
+            <ul>
+              <li><strong>Underwriting</strong>Submitted, reviewed, and approved — usually same day.</li>
+              <li><strong>Hardware shipping</strong>Overnight delivery on qualifying orders. Pre-configured.</li>
+              <li><strong>Gateway integration</strong>Works with most major POS systems and e-commerce platforms.</li>
+              <li><strong>Transition plan</strong>Written checklist for your staff, zero-downtime cutover.</li>
+            </ul>
+          </div>
+          <div class="detail-col">
+            <h5>What changes for you</h5>
+            <ul>
+              <li><strong>Almost nothing</strong>Same customers, same checkout flow, same everything.</li>
+              <li><strong>New hardware (if any)</strong>Plugs in, connects, runs. Most setups take 10 minutes.</li>
+              <li><strong>New dashboard login</strong>Access to your transaction feed, reports, and AI layer.</li>
+              <li><strong>Your bank account</strong>Stays exactly the same. Deposits continue uninterrupted.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="artifact" data-card>
+          <div class="artifact-label">Typical onboarding timeline</div>
+          <div class="artifact-line"><span class="al-label">Agreement signed</span><span class="al-val">T+0</span></div>
+          <div class="artifact-line"><span class="al-label">Application submitted</span><span class="al-val">T+2 hrs</span></div>
+          <div class="artifact-line ok"><span class="al-label">Approval</span><span class="al-val">T+24 hrs</span></div>
+          <div class="artifact-line"><span class="al-label">Hardware shipped</span><span class="al-val">T+24 hrs</span></div>
+          <div class="artifact-line"><span class="al-label">Hardware delivered</span><span class="al-val">T+48 hrs</span></div>
+          <div class="artifact-line ok"><span class="al-label">First transaction processed</span><span class="al-val">T+72 hrs</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process-step right" id="optimize">
+  <div class="bignum">04</div>
+  <div class="container">
+    <div class="step-grid">
+      <div class="intro reveal">
+        <div class="time-marker">Ongoing · Forever</div>
+        <div class="eyebrow">Step 04</div>
+        <h2>The lane <span class="italic">stays open.</span></h2>
+        <p class="lede">The switch isn't the finish line — it's the start. Our AI monitors every transaction, flags anything unusual, and tunes your setup as your business grows. You get a monthly report showing what we saved, what we flagged, and what to watch. And when you need a human, you get one — not a ticket queue.</p>
+      </div>
+      <div class="detail reveal reveal-delay-1">
+        <div class="detail-cols">
+          <div class="detail-col">
+            <h5>Ongoing automation</h5>
+            <ul>
+              <li><strong>24/7 fraud scoring</strong>Every transaction scored in real time. Blocked, passed, or flagged.</li>
+              <li><strong>Chargeback alerts</strong>Predictive flags 24+ hours before a dispute hits.</li>
+              <li><strong>Rate optimization</strong>We re-analyze your mix quarterly and lower the rate when we can.</li>
+              <li><strong>Monthly intelligence</strong>A one-page report, not a 40-tab dashboard.</li>
+            </ul>
+          </div>
+          <div class="detail-col">
+            <h5>Ongoing humans</h5>
+            <ul>
+              <li><strong>Named account manager</strong>Same person every time. Answers in under 4 hours.</li>
+              <li><strong>Quarterly review</strong>30-minute check-in. Optional but recommended.</li>
+              <li><strong>Statement audits</strong>Free. Every 6 months. Even after you're a customer.</li>
+              <li><strong>Off-ramp protection</strong>Want to leave? We help you migrate out. No penalty.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="artifact" data-card>
+          <div class="artifact-label">Monthly report — Sample</div>
+          <div class="artifact-line ok"><span class="al-label">Total processed</span><span class="al-val">$52,840</span></div>
+          <div class="artifact-line ok"><span class="al-label">Effective rate (this month)</span><span class="al-val">1.62%</span></div>
+          <div class="artifact-line"><span class="al-label">Transactions scored by AI</span><span class="al-val">784</span></div>
+          <div class="artifact-line"><span class="al-label">Fraud blocked</span><span class="al-val">2 · $4,012 saved</span></div>
+          <div class="artifact-line"><span class="al-label">Chargebacks flagged early</span><span class="al-val">1</span></div>
+          <div class="artifact-line ok"><span class="al-label">vs. old processor cost</span><span class="al-val">−$1,287</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:40px;">
+  <div class="container">
+    <div class="cta-block reveal">
+      <div class="cta-content">
+        <div class="eyebrow">Ready when you are</div>
+        <h2>Day one is just an <span class="italic">email.</span></h2>
+        <p>Send us your most recent processing statement. We'll reply within one business day with a read on what you're overpaying and whether we can do better. No pitch, no pressure, no obligation.</p>
+        <div class="cta-actions">
+          <a href="mailto:info@starlightlane.org" class="btn btn-primary">info@starlightlane.org →</a>
+          <a href="https://calendly.com/YOUR-CALENDLY-LINK" target="_blank" rel="noopener" class="btn btn-ghost">Book a call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad2)"/><defs><linearGradient id="starGrad2" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
+          Starlight Lane
+        </div>
+        <p>Modern payment processing with intelligence built in. We help businesses move money with less friction and more clarity.</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#processing">Processing</a></li><li><a href="services.html#holdbacks">Holdbacks</a></li><li><a href="ai.html">AI Integration</a></li><li><a href="calculator.html">Rate Calculator</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="process.html">Process</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:info@starlightlane.org">info@starlightlane.org</a></li><li><a href="https://calendly.com/YOUR-CALENDLY-LINK" target="_blank" rel="noopener">Book a call</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 STARLIGHT LANE · ALL RIGHTS RESERVED</div>
+      <div>PCI-DSS LEVEL 1 · SOC 2 TYPE II</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){const t=document.querySelector('.mobile-toggle'),m=document.querySelector('.mobile-menu');if(t&&m){t.addEventListener('click',()=>{t.classList.toggle('open');m.classList.toggle('open')});m.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{t.classList.remove('open');m.classList.remove('open')}))}})();
+(function(){const e=document.querySelectorAll('.reveal');if(!('IntersectionObserver' in window)){e.forEach(x=>x.classList.add('visible'));return}const io=new IntersectionObserver(en=>{en.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:0.12,rootMargin:'0px 0px -60px 0px'});e.forEach(x=>io.observe(x))})();
+(function(){const n=document.querySelector('nav.top');if(!n)return;const s=()=>n.classList.toggle('scrolled',window.scrollY>20);window.addEventListener('scroll',s,{passive:true});s()})();
+(function(){document.querySelectorAll('[data-card]').forEach(card=>{card.addEventListener('mousemove',(e)=>{const r=card.getBoundingClientRect();card.style.setProperty('--mx',((e.clientX-r.left)/r.width)*100+'%');card.style.setProperty('--my',((e.clientY-r.top)/r.height)*100+'%')})})})();
+</script>
+</body>
+</html>
