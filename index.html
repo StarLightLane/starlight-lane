@@ -192,7 +192,7 @@ nav.top.scrolled .row-secondary{padding:8px 0 10px}
 /* Typography */
 .eyebrow {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.24em;
@@ -334,7 +334,7 @@ footer {
 }
 .footer-col h5 {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--mute);
@@ -357,7 +357,7 @@ footer {
   display: flex;
   justify-content: space-between;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   color: var(--mute);
 }
@@ -474,14 +474,14 @@ input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius
 .industry-select button.active { background: rgba(216,255,92,0.12); border-color: var(--lime); color: var(--lime); }
 .calc-result { background: var(--ink-2); border: 1px solid var(--line); border-radius: 28px; padding: 40px; position: relative; overflow: hidden; }
 .calc-result::before { content:""; position: absolute; top: -50%; right: -30%; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(216,255,92,0.10), transparent 60%); pointer-events: none; }
-.calc-result-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--mute); margin-bottom: 18px; }
+.calc-result-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--mute); margin-bottom: 18px; }
 .calc-result-value { font-family: var(--display); font-size: clamp(56px, 8vw, 88px); font-weight: 500; line-height: 1; letter-spacing: -0.03em; margin-bottom: 6px; background: linear-gradient(135deg, var(--bone) 0%, var(--lime) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; position: relative; transition: transform 0.25s ease; }
 .calc-result-value .cents { font-size: 0.4em; color: var(--mute); background: none; -webkit-text-fill-color: var(--mute); }
-.calc-result-sub { color: var(--bone-dim); font-size: 15px; margin-bottom: 32px; }
+.calc-result-sub { color: var(--bone-dim); font-size: 15.5px; margin-bottom: 32px; }
 .calc-breakdown { display: flex; flex-direction: column; gap: 16px; padding-top: 28px; border-top: 1px solid var(--line); position: relative; z-index: 1; }
-.calc-row { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
-.calc-row .label { color: var(--mute); font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
-.calc-row .val { color: var(--bone); font-family: var(--mono); font-weight: 500; }
+.calc-row { display: flex; justify-content: space-between; align-items: center; font-size: 14.5px; }
+.calc-row .label { color: var(--mute); font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; }
+.calc-row .val { color: var(--bone); font-family: var(--mono); font-size: 14px; font-weight: 500; }
 .calc-row.highlight .val { color: var(--lime); }
 
 .timeline { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
@@ -493,9 +493,9 @@ input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius
 .timeline-step:nth-child(3) .dot::before { animation-delay: 0.8s; }
 .timeline-step:nth-child(4) .dot::before { animation-delay: 1.2s; }
 @keyframes ping { 0%,100%{transform:scale(1);opacity:0.6;} 50%{transform:scale(1.6);opacity:0;} }
-.timeline-step .num { font-family: var(--mono); color: var(--mute); font-size: 12px; letter-spacing: 0.24em; margin-bottom: 12px; text-align: center; }
-.timeline-step h4 { font-family: var(--display); font-weight: 500; font-size: 24px; letter-spacing: -0.02em; margin-bottom: 10px; text-align: center; }
-.timeline-step p { color: var(--bone-dim); font-size: 14px; text-align: center; line-height: 1.55; }
+.timeline-step .num { font-family: var(--mono); color: var(--mute); font-size: 13px; letter-spacing: 0.24em; margin-bottom: 12px; text-align: center; }
+.timeline-step h4 { font-family: var(--display); font-weight: 500; font-size: 25px; letter-spacing: -0.02em; margin-bottom: 10px; text-align: center; }
+.timeline-step p { color: var(--bone-dim); font-size: 14.5px; text-align: center; line-height: 1.55; }
 
 .ai-section { background: radial-gradient(ellipse at 0% 50%, rgba(159,255,207,0.08), transparent 50%), radial-gradient(ellipse at 100% 50%, rgba(255,182,72,0.06), transparent 50%); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -751,7 +751,7 @@ details.faq .answer { padding-top: 16px; color: var(--bone-dim); font-size: 16px
         <div class="cta-actions">
           <a href="mailto:info@starlightlane.org" class="btn btn-primary">info@starlightlane.org →</a>
           <!-- REPLACE href with your full Calendly URL -->
-          <a href="https://calendly.com/YOUR-CALENDLY-LINK" target="_blank" rel="noopener" class="btn btn-ghost">Book a call</a>
+          <a href="https://calendly.com/mollyp-pmfus/test?month=2026-04" target="_blank" rel="noopener" class="btn btn-ghost">Book a call</a>
         </div>
       </div>
     </div>
@@ -770,7 +770,7 @@ details.faq .answer { padding-top: 16px; color: var(--bone-dim); font-size: 16px
       </div>
       <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#processing">Processing</a></li><li><a href="services.html#holdbacks">Holdbacks</a></li><li><a href="ai.html">AI Integration</a></li><li><a href="calculator.html">Rate Calculator</a></li></ul></div>
       <div class="footer-col"><h5>Company</h5><ul><li><a href="process.html">Process</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:info@starlightlane.org">info@starlightlane.org</a></li><li><a href="https://calendly.com/YOUR-CALENDLY-LINK" target="_blank" rel="noopener">Book a call</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:info@starlightlane.org">info@starlightlane.org</a></li><li><a href="https://calendly.com/mollyp-pmfus/test?month=2026-04" target="_blank" rel="noopener">Book a call</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <div>© 2026 STARLIGHT LANE · ALL RIGHTS RESERVED</div>
