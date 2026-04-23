@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Credit Card Processing — Starlight Lane</title>
+<meta name="description" content="Interchange-plus pricing starting at 0.15%. Transparent statements, next-day funding, no junk fees. Month-to-month contracts with no early termination fee." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>:root { --ink:#0a0d14; --ink-2:#11151f; --ink-3:#1a1f2e; --bone:#f5f2ea; --bone-dim:#a8a69e; --mute:#6b6b6b; --lime:#d8ff5c; --mint:#9fffcf; --amber:#ffb648; --coral:#ff7a5c; --line:rgba(255,255,255,0.08); --line-2:rgba(255,255,255,0.14); --display:'Fraunces',Georgia,serif; --mono:'Geist Mono',ui-monospace,'SF Mono',monospace; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--bone);font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:inherit;text-decoration:none}
+button{font:inherit;background:none;border:none;color:inherit;cursor:pointer}
+ul{list-style:none}
+img,svg{display:block;max-width:100%}
+h1,h2,h3,h4,h5{font-weight:500}
+.container{max-width:1280px;margin:0 auto;padding:0 32px;position:relative}
+.stars{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 12% 22%,rgba(255,255,255,0.7),transparent 50%),radial-gradient(1px 1px at 28% 68%,rgba(255,255,255,0.5),transparent 50%),radial-gradient(2px 2px at 44% 12%,rgba(216,255,92,0.45),transparent 50%),radial-gradient(1px 1px at 58% 80%,rgba(159,255,207,0.5),transparent 50%),radial-gradient(1px 1px at 72% 34%,rgba(255,255,255,0.6),transparent 50%),radial-gradient(1.5px 1.5px at 86% 58%,rgba(255,182,72,0.35),transparent 50%),radial-gradient(1px 1px at 94% 18%,rgba(255,255,255,0.4),transparent 50%),radial-gradient(1px 1px at 8% 88%,rgba(255,255,255,0.45),transparent 50%);opacity:0.55;animation:starfade 8s ease-in-out infinite alternate}
+@keyframes starfade{from{opacity:0.4}to{opacity:0.65}}
+nav.top{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,13,20,0.55);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid transparent;transition:background 0.3s ease,border-color 0.3s ease}
+nav.top.scrolled{background:rgba(10,13,20,0.85);border-bottom-color:var(--line)}
+nav.top .row-primary{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:18px 0;transition:padding 0.3s ease}
+nav.top.scrolled .row-primary{padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:-0.01em;color:var(--bone)}
+.logo svg{width:22px;height:22px}
+.nav-primary{display:flex;gap:36px;font-size:14px;flex:1;justify-content:center;list-style:none;align-items:center}
+.nav-primary > li{position:relative}
+.nav-primary a{color:var(--bone-dim);transition:color 0.2s ease;position:relative;display:inline-flex;align-items:center;gap:6px}
+.nav-primary a:hover{color:var(--bone)}
+.nav-primary a.active{color:var(--lime)}
+.nav-primary a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--lime);opacity:0.4}
+.nav-primary .dropdown-trigger{cursor:default}
+.nav-primary .dropdown-trigger .chev{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-top:-3px;transition:transform 0.25s ease}
+.nav-primary > li.has-dropdown:hover > .dropdown-trigger{color:var(--lime)}
+.nav-primary > li.has-dropdown:hover > .dropdown-trigger .chev{transform:rotate(-135deg);margin-top:3px}
+.dropdown-trigger.active{color:var(--lime)}
+.dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-8px);background:rgba(17,21,31,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--line-2);border-radius:20px;padding:32px 40px;min-width:560px;display:grid;grid-template-columns:1fr 1fr;gap:40px;opacity:0;visibility:hidden;transition:opacity 0.25s ease,transform 0.25s ease,visibility 0.25s;z-index:101;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.dropdown-panel::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+.nav-primary > li.has-dropdown:hover > .dropdown-panel{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.dropdown-col{display:flex;flex-direction:column}
+.dropdown-col h4{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--lime);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(216,255,92,0.2)}
+.dropdown-col ul{list-style:none;display:flex;flex-direction:column;gap:2px}
+.dropdown-col a{display:flex;padding:10px 12px;border-radius:8px;font-size:14.5px;color:var(--bone);transition:background 0.2s ease,color 0.2s ease;font-family:inherit;letter-spacing:normal;white-space:nowrap}
+.dropdown-col a:hover{background:rgba(216,255,92,0.08);color:var(--lime)}
+.dropdown-col a.active{background:rgba(216,255,92,0.12);color:var(--lime)}
+.dropdown-col a.active::after{display:none}
+.mobile-group-label{font-family:var(--mono);font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--lime);margin-top:12px;margin-bottom:-4px;padding:0 12px}
+.mobile-group-label:first-of-type{margin-top:0}
+@media (max-width:1100px){.dropdown-panel{display:none!important}.nav-primary{display:none}.mobile-toggle{display:flex!important;align-items:center;justify-content:center}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:100px;font-size:14px;font-weight:500;letter-spacing:-0.005em;transition:all 0.25s ease;white-space:nowrap;cursor:pointer;border:1px solid transparent;line-height:1}
+.btn-primary{background:var(--lime);color:var(--ink)}
+.btn-primary:hover{background:var(--mint);transform:translateY(-1px);box-shadow:0 8px 24px -8px rgba(216,255,92,0.5)}
+.btn-ghost{color:var(--bone);border-color:var(--line-2);background:transparent}
+.btn-ghost:hover{border-color:var(--bone);background:rgba(255,255,255,0.04);transform:translateY(-1px)}
+.mobile-toggle{display:none;width:40px;height:40px;position:relative;border-radius:8px;border:1px solid var(--line)}
+.mobile-toggle span,.mobile-toggle span::before,.mobile-toggle span::after{display:block;width:18px;height:1.5px;background:var(--bone);position:absolute;left:50%;transform:translateX(-50%);transition:all 0.3s ease}
+.mobile-toggle span{top:50%;margin-top:-0.75px}
+.mobile-toggle span::before{content:"";top:-7px}
+.mobile-toggle span::after{content:"";top:7px}
+.mobile-toggle.open span{background:transparent}
+.mobile-toggle.open span::before{transform:translateX(-50%) rotate(45deg);top:0}
+.mobile-toggle.open span::after{transform:translateX(-50%) rotate(-45deg);top:0}
+.mobile-menu{display:none;position:fixed;top:74px;left:0;right:0;background:rgba(10,13,20,0.96);backdrop-filter:blur(20px);z-index:99;flex-direction:column;padding:28px 32px 32px;gap:18px;border-bottom:1px solid var(--line)}
+.mobile-menu a{font-size:18px;color:var(--bone-dim);font-family:var(--display);font-weight:400;letter-spacing:-0.01em}
+.mobile-menu a.btn{font-family:inherit;font-size:14px;margin-top:8px}
+.mobile-menu.open{display:flex}
+.eyebrow{font-family:var(--mono);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.24em;color:var(--mute);margin-bottom:24px;display:block}
+.display{font-family:var(--display);font-weight:400;font-size:clamp(52px,8.5vw,104px);line-height:0.96;letter-spacing:-0.04em;margin-bottom:32px;color:var(--bone)}
+.heading{font-family:var(--display);font-weight:400;font-size:clamp(40px,5.5vw,68px);line-height:1.02;letter-spacing:-0.035em;margin-bottom:20px;color:var(--bone)}
+.italic{font-style:italic;font-weight:400;color:var(--lime)}
+section{padding:110px 0;position:relative;z-index:1}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.9s cubic-bezier(0.2,0.8,0.2,1),transform 0.9s cubic-bezier(0.2,0.8,0.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.08s}
+.reveal-delay-2{transition-delay:0.16s}
+.reveal-delay-3{transition-delay:0.24s}
+.cta-block{background:linear-gradient(135deg,var(--ink-2) 0%,var(--ink-3) 100%);border:1px solid var(--line-2);border-radius:32px;padding:88px 72px;position:relative;overflow:hidden}
+.cta-block::before{content:"";position:absolute;top:-40%;right:-20%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(216,255,92,0.14),transparent 60%);pointer-events:none}
+.cta-content{max-width:720px;position:relative;z-index:2}
+.cta-content h2{font-family:var(--display);font-size:clamp(36px,5vw,60px);font-weight:400;line-height:1.04;letter-spacing:-0.03em;margin-bottom:20px;color:var(--bone)}
+.cta-content p{color:var(--bone-dim);font-size:17px;line-height:1.6;margin-bottom:36px;max-width:580px}
+.cta-actions{display:flex;gap:14px;flex-wrap:wrap}
+footer{padding:80px 0 36px;border-top:1px solid var(--line);position:relative;z-index:1;background:rgba(10,13,20,0.6)}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:60px;padding-bottom:60px;border-bottom:1px solid var(--line)}
+.footer-brand .logo{margin-bottom:18px;font-size:20px}
+.footer-brand p{color:var(--bone-dim);font-size:14px;max-width:340px;line-height:1.6}
+.footer-col h5{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:0.2em;color:var(--mute);margin-bottom:22px;font-weight:500}
+.footer-col ul{display:flex;flex-direction:column;gap:12px}
+.footer-col a{color:var(--bone-dim);font-size:14px;transition:color 0.2s ease}
+.footer-col a:hover{color:var(--lime)}
+.footer-bottom{padding-top:28px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;letter-spacing:0.18em;color:var(--mute)}
+@media (max-width:1024px){.cta-block{padding:60px 40px}.footer-grid{grid-template-columns:1fr 1fr;gap:40px}.footer-brand{grid-column:1/-1}}
+@media (max-width:680px){.container{padding:0 20px}section{padding:70px 0}.cta-block{padding:48px 28px;border-radius:24px}.footer-grid{grid-template-columns:1fr;gap:32px}.footer-bottom{flex-direction:column;gap:12px;text-align:center}}
+.proc-hero{padding:180px 0 80px;position:relative;overflow:hidden}
+.proc-hero .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 50% at 20% 40%,rgba(216,255,92,0.09),transparent 60%),radial-gradient(ellipse 50% 40% at 85% 70%,rgba(159,255,207,0.06),transparent 60%)}
+.proc-hero>.container{position:relative;z-index:2;max-width:960px}
+.proc-hero .eyebrow{color:var(--lime)}
+.proc-hero .lede{font-size:19px;color:var(--bone-dim);max-width:640px;line-height:1.55;margin-bottom:36px}
+.proc-hero .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+
+/* Stats strip */
+.quick-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--ink-2);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:56px;position:relative}
+.quick-stats::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent)}
+.qs-item{padding:32px 24px;border-right:1px solid var(--line);text-align:center;transition:background 0.3s ease}
+.qs-item:hover{background:rgba(216,255,92,0.03)}
+.qs-item:last-child{border-right:none}
+.qs-num{font-family:var(--display);font-size:clamp(28px,3vw,40px);font-weight:500;letter-spacing:-0.025em;line-height:1;margin-bottom:8px;background:linear-gradient(135deg,var(--bone),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent}
+.qs-label{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:0.18em;color:var(--mute)}
+
+/* Section head pattern */
+.section-head{margin-bottom:56px;max-width:680px}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.section-head p{color:var(--bone-dim);font-size:17px;line-height:1.6;margin-top:14px}
+.section-head .eyebrow{color:var(--lime)}
+
+/* Two-column "split" layout used for alternating content sections */
+.split-sec{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.split-sec.flip{grid-template-columns:1fr 1fr}
+.split-sec.flip .intro{order:2}
+.intro{position:sticky;top:120px}
+.intro .eyebrow{color:var(--lime)}
+.intro h2{font-family:var(--display);font-size:clamp(34px,4.2vw,52px);font-weight:400;letter-spacing:-0.028em;line-height:1.06;margin-bottom:22px;color:var(--bone)}
+.intro .lede{color:var(--bone-dim);font-size:17px;line-height:1.65;margin-bottom:28px}
+.bullet-list{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.bullet-item{display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:var(--bone-dim);line-height:1.55}
+.bullet-item::before{content:"→";color:var(--lime);font-weight:600;flex-shrink:0;margin-top:1px}
+.bullet-item strong{color:var(--bone);font-weight:500}
+
+/* Visual panel — fee breakdown bar */
+.visual-panel{background:linear-gradient(180deg,var(--ink-2) 0%,var(--ink) 100%);border:1px solid var(--line-2);border-radius:24px;padding:36px;position:relative;overflow:hidden;transition:border-color 0.4s ease,transform 0.4s ease;--mx:50%;--my:50%}
+.visual-panel:hover{border-color:rgba(216,255,92,0.3);transform:translateY(-4px)}
+.visual-panel::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent);opacity:0.5;transition:opacity 0.4s ease;z-index:2}
+.visual-panel:hover::before{opacity:1}
+.visual-panel::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(216,255,92,0.10),transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none;z-index:0}
+.visual-panel:hover::after{opacity:1}
+.visual-panel>*{position:relative;z-index:1}
+.panel-label{font-family:var(--mono);font-size:12px;letter-spacing:0.24em;text-transform:uppercase;color:var(--mute);margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.panel-label::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
+
+/* Fee bar visual */
+.model-bar{display:grid;grid-template-columns:65fr 15fr 15fr;gap:3px;height:80px;border-radius:12px;overflow:hidden;margin-bottom:14px}
+.mb-seg{padding:16px 18px;display:flex;flex-direction:column;justify-content:center;gap:4px;font-family:var(--mono);font-size:11.5px;position:relative;overflow:hidden;transition:filter 0.3s ease}
+.mb-seg:hover{filter:brightness(1.15)}
+.mb-seg .mb-pct{font-family:var(--display);font-size:24px;font-weight:500;letter-spacing:-0.01em;color:var(--bone)}
+.mb-seg .mb-label{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bone-dim)}
+.mb-seg.interchange{background:rgba(159,255,207,0.12);border:1px solid rgba(159,255,207,0.25)}
+.mb-seg.assessment{background:rgba(255,182,72,0.12);border:1px solid rgba(255,182,72,0.3)}
+.mb-seg.markup{background:rgba(216,255,92,0.14);border:1px solid rgba(216,255,92,0.35)}
+.mb-seg.markup .mb-pct{color:var(--lime)}
+.model-legend{display:grid;grid-template-columns:65fr 15fr 15fr;gap:3px;font-family:var(--mono);font-size:12px;color:var(--bone-dim);margin-bottom:32px}
+.model-legend span{padding:0 18px;line-height:1.5}
+.model-total{display:flex;align-items:baseline;justify-content:space-between;padding-top:24px;border-top:1px solid var(--line)}
+.model-total-label{font-family:var(--mono);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute)}
+.model-total-val{font-family:var(--display);font-size:clamp(30px,3.5vw,40px);font-weight:500;letter-spacing:-0.025em;background:linear-gradient(135deg,var(--bone),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+
+/* What we don't charge */
+.nofees{padding-top:40px;border-top:1px solid var(--line);margin-top:20px}
+.nofees-label{font-family:var(--mono);font-size:12px;letter-spacing:0.24em;text-transform:uppercase;color:var(--coral);margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.nofees-label::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--coral)}
+.nofees-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nofee-row{padding:12px 14px;background:var(--ink);border:1px solid var(--line);border-radius:10px;font-size:13.5px;color:var(--bone-dim);display:flex;align-items:center;gap:10px;line-height:1.4;transition:border-color 0.2s ease}
+.nofee-row:hover{border-color:var(--line-2)}
+.nofee-row::before{content:"\00d7";color:var(--coral);font-weight:600;flex-shrink:0;font-size:16px}
+
+/* Hardware cards */
+.hw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.hw-card{padding:32px 26px;background:var(--ink-2);border:1px solid var(--line);border-radius:20px;position:relative;overflow:hidden;transition:border-color 0.3s ease,transform 0.3s ease;--mx:50%;--my:50%;display:flex;flex-direction:column}
+.hw-card:hover{border-color:rgba(216,255,92,0.3);transform:translateY(-4px)}
+.hw-card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(216,255,92,0.10),transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none}
+.hw-card:hover::after{opacity:1}
+.hw-card>*{position:relative;z-index:1}
+.hw-icon{width:56px;height:56px;border-radius:14px;background:rgba(216,255,92,0.08);border:1px solid rgba(216,255,92,0.22);display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s ease,border-color 0.3s ease}
+.hw-card:hover .hw-icon{background:rgba(216,255,92,0.14);border-color:rgba(216,255,92,0.4)}
+.hw-icon svg{width:26px;height:26px;color:var(--lime)}
+.hw-card h4{font-family:var(--display);font-size:20px;font-weight:500;letter-spacing:-0.015em;color:var(--bone);margin-bottom:8px;line-height:1.2}
+.hw-card .hw-desc{font-size:14px;color:var(--bone-dim);line-height:1.6;margin-bottom:20px;flex:1}
+.hw-card .hw-price{font-family:var(--display);font-size:28px;font-weight:500;letter-spacing:-0.02em;color:var(--lime);line-height:1;margin-bottom:4px}
+.hw-card .hw-price.free{color:var(--mint)}
+.hw-card .hw-meta{font-family:var(--mono);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mute)}
+
+@media (max-width:1024px){.quick-stats{grid-template-columns:1fr 1fr}.qs-item{border-right:none;border-bottom:1px solid var(--line)}.qs-item:nth-child(odd){border-right:1px solid var(--line)}.qs-item:nth-last-child(-n+2){border-bottom:none}.split-sec,.split-sec.flip{grid-template-columns:1fr;gap:48px}.split-sec.flip .intro{order:0}.intro{position:static}.hw-grid{grid-template-columns:1fr 1fr}.proc-hero{padding:140px 0 60px}.nofees-grid{grid-template-columns:1fr}}
+@media (max-width:680px){.proc-hero{padding:120px 0 50px}.quick-stats{grid-template-columns:1fr}.qs-item{border-right:none!important;border-bottom:1px solid var(--line)}.qs-item:last-child{border-bottom:none}.visual-panel{padding:24px}.hw-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<nav class="top">
+  <div class="container">
+    <div class="row-primary">
+      <a href="/" class="logo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad)"/><defs><linearGradient id="starGrad" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
+        Starlight Lane
+      </a>
+      <ul class="nav-primary">
+        <li><a href="/">Home</a></li>
+        <li class="has-dropdown">
+          <span class="dropdown-trigger active">Services <span class="chev"></span></span>
+          <div class="dropdown-panel">
+            <div class="dropdown-col">
+              <h4>Core Services</h4>
+              <ul>
+                <li><a href="/processing/">Credit Card Processing</a></li>
+                <li><a href="/splits/">Credit Card Splits</a></li>
+                <li><a href="/ai/">AI Automation</a></li>
+                <li><a href="/pricing/">Pricing</a></li>
+              </ul>
+            </div>
+            <div class="dropdown-col">
+              <h4>Tools & Resources</h4>
+              <ul>
+                <li><a href="/calculator/">Rate Calculator</a></li>
+                <li><a href="/process/">Our Process</a></li>
+                <li><a href="/faq/">FAQ</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li><a href="/iso/">ISO</a></li>
+      </ul>
+      <a href="/contact/" class="btn btn-primary">Get a Rate →</a>
+      <button class="mobile-toggle" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="/">Home</a>
+  <div class="mobile-group-label">Core Services</div>
+  <a href="/processing/">Credit Card Processing</a>
+  <a href="/splits/">Credit Card Splits</a>
+  <a href="/ai/">AI Automation</a>
+  <a href="/pricing/">Pricing</a>
+  <div class="mobile-group-label">Tools & Resources</div>
+  <a href="/calculator/">Rate Calculator</a>
+  <a href="/process/">Our Process</a>
+  <a href="/faq/">FAQ</a>
+  <a href="/contact/">Contact</a>
+  <div class="mobile-group-label">Partnership</div>
+  <a href="/iso/">ISO Relationships</a>
+  <a href="/contact/" class="btn btn-primary">Get a Rate →</a>
+</div>
+
+<header class="proc-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="eyebrow reveal">Credit Card Processing</div>
+    <h1 class="display reveal reveal-delay-1">Every swipe, <span class="italic">transparent.</span></h1>
+    <p class="lede reveal reveal-delay-2">Interchange-plus pricing starting at 0.15%. No tiered games. No surprise junk fees. No lengthy contracts. Just the real cost of moving money from a customer&rsquo;s card to your bank account &mdash; with every line item explainable.</p>
+    <div class="hero-actions reveal reveal-delay-3">
+      <a href="/calculator/" class="btn btn-primary">Run the numbers &rarr;</a>
+      <a href="/contact/" class="btn btn-ghost">Send a statement</a>
+    </div>
+    <div class="quick-stats reveal reveal-delay-3">
+      <div class="qs-item"><div class="qs-num">0.15%</div><div class="qs-label">Starting markup</div></div>
+      <div class="qs-item"><div class="qs-num">T+1</div><div class="qs-label">Default funding</div></div>
+      <div class="qs-item"><div class="qs-num">24hr</div><div class="qs-label">Typical approval</div></div>
+      <div class="qs-item"><div class="qs-num">$0</div><div class="qs-label">Termination fee</div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <div class="split-sec">
+      <div class="intro reveal">
+        <div class="eyebrow">How we price</div>
+        <h2>Interchange-plus, <span class="italic">nothing more.</span></h2>
+        <p class="lede">Every credit card transaction has three costs. Interchange (what the card networks charge), assessments (what the networks add on top), and the processor markup (the negotiable part). We show you all three, every month, on every statement. The only variable between processors is that last slice &mdash; and ours starts at 0.15%.</p>
+        <div class="bullet-list">
+          <div class="bullet-item"><span><strong>Same interchange cost as everyone else</strong> &mdash; set by Visa/MC/Amex, not negotiable with any processor</span></div>
+          <div class="bullet-item"><span><strong>Same assessments</strong> &mdash; roughly 0.14%, also fixed by the card networks</span></div>
+          <div class="bullet-item"><span><strong>Our markup starts at 0.15%</strong> &mdash; that&rsquo;s the only number you&rsquo;re actually comparing between processors</span></div>
+          <div class="bullet-item"><span><strong>Nothing is hidden</strong> &mdash; every statement shows interchange, assessments, and our markup separately</span></div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="visual-panel" data-card>
+          <div class="panel-label">The anatomy of a swipe</div>
+          <div class="model-bar">
+            <div class="mb-seg interchange">
+              <div class="mb-pct">~1.65%</div>
+              <div class="mb-label">Interchange</div>
+            </div>
+            <div class="mb-seg assessment">
+              <div class="mb-pct">~0.14%</div>
+              <div class="mb-label">Assessment</div>
+            </div>
+            <div class="mb-seg markup">
+              <div class="mb-pct">0.15%</div>
+              <div class="mb-label">Our cut</div>
+            </div>
+          </div>
+          <div class="model-legend">
+            <span>Goes to the card network. Non-negotiable. Every processor pays the same rate.</span>
+            <span>Goes to networks for operating the rails. Fixed.</span>
+            <span>Goes to us. Starts at 0.15%. This is the only variable.</span>
+          </div>
+          <div class="model-total">
+            <div>
+              <div class="model-total-label">Typical effective rate</div>
+              <div class="model-total-val">~1.94%</div>
+            </div>
+          </div>
+          <div class="nofees">
+            <div class="nofees-label">What you won&rsquo;t pay</div>
+            <div class="nofees-grid">
+              <div class="nofee-row">Statement fees</div>
+              <div class="nofee-row">Batch fees</div>
+              <div class="nofee-row">Monthly minimums</div>
+              <div class="nofee-row">PCI non-compliance fees</div>
+              <div class="nofee-row">Gateway fees</div>
+              <div class="nofee-row">Annual fees</div>
+              <div class="nofee-row">Early termination fees</div>
+              <div class="nofee-row">Surprise rate hikes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Hardware</div>
+      <h2 class="heading">Buy it once. <span class="italic">Own it forever.</span></h2>
+      <p>We don&rsquo;t lease. Leasing is how &ldquo;low-rate&rdquo; processors claw back the savings they promised. All hardware is sold outright, shipped overnight on qualifying orders, and stays yours if you leave.</p>
+    </div>
+    <div class="hw-grid">
+      <div class="hw-card reveal" data-card>
+        <div class="hw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div>
+        <h4>Mobile reader</h4>
+        <p class="hw-desc">Bluetooth card reader pairs with your phone or tablet. Perfect for farmers markets, mobile service, field sales.</p>
+        <div class="hw-price">$49</div>
+        <div class="hw-meta">one-time</div>
+      </div>
+      <div class="hw-card reveal reveal-delay-1" data-card>
+        <div class="hw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="8" y="8" width="8" height="4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="12" y1="16" x2="12" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg></div>
+        <h4>Countertop terminal</h4>
+        <p class="hw-desc">Standalone credit card terminal. WiFi + ethernet + optional 4G. Chip, tap, swipe. No POS required.</p>
+        <div class="hw-price">$199</div>
+        <div class="hw-meta">one-time</div>
+      </div>
+      <div class="hw-card reveal reveal-delay-2" data-card>
+        <div class="hw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M3 11h18"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></div>
+        <h4>Handheld POS</h4>
+        <p class="hw-desc">Full Android POS with receipt printer, camera, barcode scanner, item management. Best for retail and restaurants.</p>
+        <div class="hw-price">$299 &ndash; $599</div>
+        <div class="hw-meta">one-time</div>
+      </div>
+      <div class="hw-card reveal reveal-delay-3" data-card>
+        <div class="hw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h4>Virtual terminal + gateway</h4>
+        <p class="hw-desc">Browser-based. Type in card numbers, send invoice links, run recurring billing. Integrates with every major platform.</p>
+        <div class="hw-price free">Free</div>
+        <div class="hw-meta">included</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="split-sec flip">
+      <div class="intro reveal">
+        <div class="eyebrow">What&rsquo;s included</div>
+        <h2>Everything you need, <span class="italic">nothing you don&rsquo;t.</span></h2>
+        <p class="lede">Some processors dangle a low rate and then charge for every feature a modern business actually needs &mdash; gateway access, online reporting, customer support. We price the processing flat and include the rest.</p>
+        <div class="bullet-list">
+          <div class="bullet-item"><span><strong>Free virtual terminal & gateway</strong> &mdash; take payments online or over the phone at no extra cost</span></div>
+          <div class="bullet-item"><span><strong>Real-time reporting dashboard</strong> &mdash; see every transaction, batch, and deposit as it happens</span></div>
+          <div class="bullet-item"><span><strong>AI fraud scoring on every transaction</strong> &mdash; included, not an upsell</span></div>
+          <div class="bullet-item"><span><strong>Next-day funding as default</strong> &mdash; same-day available for qualifying merchants at no extra fee</span></div>
+          <div class="bullet-item"><span><strong>Named account manager</strong> &mdash; a real person, not a ticket queue. Replies in under 4 hours.</span></div>
+          <div class="bullet-item"><span><strong>PCI compliance support</strong> &mdash; we handle the scope so you stay compliant without stress</span></div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="visual-panel" data-card>
+          <div class="panel-label">Sample month — $50k volume retail merchant</div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:20px;font-family:var(--mono);font-size:13.5px">
+            <div style="display:flex;justify-content:space-between;padding:10px 0"><span style="color:var(--bone-dim);letter-spacing:0.04em">VOLUME PROCESSED</span><span style="color:var(--bone);font-weight:500">$50,000.00</span></div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0"><span style="color:var(--bone-dim);letter-spacing:0.04em">INTERCHANGE</span><span style="color:var(--bone);font-weight:500">$825.00</span></div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0"><span style="color:var(--bone-dim);letter-spacing:0.04em">ASSESSMENTS</span><span style="color:var(--bone);font-weight:500">$70.00</span></div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0"><span style="color:var(--bone-dim);letter-spacing:0.04em">OUR MARKUP</span><span style="color:var(--lime);font-weight:500">$75.00</span></div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0"><span style="color:var(--bone-dim);letter-spacing:0.04em">STATEMENT FEE</span><span style="color:var(--mint);font-weight:500">$0.00</span></div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0"><span style="color:var(--bone-dim);letter-spacing:0.04em">BATCH FEES</span><span style="color:var(--mint);font-weight:500">$0.00</span></div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0"><span style="color:var(--bone-dim);letter-spacing:0.04em">JUNK FEES</span><span style="color:var(--mint);font-weight:500">$0.00</span></div>
+          </div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between">
+            <div>
+              <div style="font-family:var(--mono);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);margin-bottom:6px">TOTAL</div>
+              <div style="font-family:var(--display);font-size:36px;font-weight:500;letter-spacing:-0.025em;line-height:1;background:linear-gradient(135deg,var(--bone),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent">$970.00</div>
+            </div>
+            <div style="text-align:right;font-family:var(--mono);font-size:12px;color:var(--bone-dim);letter-spacing:0.04em">
+              EFFECTIVE RATE<br><span style="color:var(--lime);font-weight:500;font-size:14px">1.94%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:40px;">
+  <div class="container">
+    <div class="cta-block reveal">
+      <div class="cta-content">
+        <div class="eyebrow">Get a real number</div>
+        <h2>Your rate, <span class="italic">calculated exactly.</span></h2>
+        <p>Send your last three months of processing statements. Within three business days we&rsquo;ll return a one-page proposal with your exact new rate, your current vs. proposed monthly cost, and the dollar amount we&rsquo;d save you. Free whether you switch or not.</p>
+        <div class="cta-actions">
+          <a href="mailto:info@starlightlane.org" class="btn btn-primary">info@starlightlane.org &rarr;</a>
+          <a href="/calculator/" class="btn btn-ghost">Try the calculator</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad2)"/><defs><linearGradient id="starGrad2" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
+          Starlight Lane
+        </div>
+        <p>Modern payment processing with intelligence built in. We help businesses move money with less friction and more clarity.</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="/processing/">Credit Card Processing</a></li><li><a href="/splits/">Credit Card Splits</a></li><li><a href="/ai/">AI Automation</a></li><li><a href="/pricing/">Pricing</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="/iso/">ISO Relationships</a></li><li><a href="/process/">Process</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:info@starlightlane.org">info@starlightlane.org</a></li><li><a href="https://calendly.com/mollyp-pmfus/test?month=2026-04" target="_blank" rel="noopener">Book a call</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 STARLIGHT LANE · ALL RIGHTS RESERVED</div>
+      <div>PCI-DSS LEVEL 1 · SOC 2 TYPE II</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){const t=document.querySelector('.mobile-toggle'),m=document.querySelector('.mobile-menu');if(t&&m){t.addEventListener('click',()=>{t.classList.toggle('open');m.classList.toggle('open')});m.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{t.classList.remove('open');m.classList.remove('open')}))}})();
+(function(){const e=document.querySelectorAll('.reveal');if(!('IntersectionObserver' in window)){e.forEach(x=>x.classList.add('visible'));return}const io=new IntersectionObserver(en=>{en.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:0.12,rootMargin:'0px 0px -60px 0px'});e.forEach(x=>io.observe(x))})();
+(function(){const n=document.querySelector('nav.top');if(!n)return;const s=()=>n.classList.toggle('scrolled',window.scrollY>20);window.addEventListener('scroll',s,{passive:true});s()})();
+(function(){document.querySelectorAll('[data-card]').forEach(card=>{card.addEventListener('mousemove',(e)=>{const r=card.getBoundingClientRect();card.style.setProperty('--mx',((e.clientX-r.left)/r.width)*100+'%');card.style.setProperty('--my',((e.clientY-r.top)/r.height)*100+'%')})})})();
+</script>
+
+</body>
+</html>

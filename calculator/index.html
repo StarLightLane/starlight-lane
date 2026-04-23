@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Calculator — Starlight Lane</title>
+<meta name="description" content="Calculate what you'd save on credit card processing with Starlight Lane. Real interchange-plus pricing, no mystery fees. Drag the sliders, see the number." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============ BASE STYLES ============ */
+:root {
+  --ink: #0a0d14;
+  --ink-2: #11151f;
+  --ink-3: #1a1f2e;
+  --bone: #f5f2ea;
+  --bone-dim: #a8a69e;
+  --mute: #6b6b6b;
+  --lime: #d8ff5c;
+  --mint: #9fffcf;
+  --amber: #ffb648;
+  --coral: #ff7a5c;
+  --line: rgba(255,255,255,0.08);
+  --line-2: rgba(255,255,255,0.14);
+  --display: 'Fraunces', Georgia, serif;
+  --mono: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ink);
+  color: var(--bone);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; background: none; border: none; color: inherit; cursor: pointer; }
+ul { list-style: none; }
+img, svg { display: block; max-width: 100%; }
+h1, h2, h3, h4, h5 { font-weight: 500; }
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,0.7), transparent 50%),
+    radial-gradient(1px 1px at 28% 68%, rgba(255,255,255,0.5), transparent 50%),
+    radial-gradient(2px 2px at 44% 12%, rgba(216,255,92,0.45), transparent 50%),
+    radial-gradient(1px 1px at 58% 80%, rgba(159,255,207,0.5), transparent 50%),
+    radial-gradient(1px 1px at 72% 34%, rgba(255,255,255,0.6), transparent 50%),
+    radial-gradient(1.5px 1.5px at 86% 58%, rgba(255,182,72,0.35), transparent 50%),
+    radial-gradient(1px 1px at 94% 18%, rgba(255,255,255,0.4), transparent 50%),
+    radial-gradient(1px 1px at 8% 88%, rgba(255,255,255,0.45), transparent 50%);
+  opacity: 0.55;
+  animation: starfade 8s ease-in-out infinite alternate;
+}
+@keyframes starfade { from { opacity: 0.4; } to { opacity: 0.65; } }
+
+nav.top{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,13,20,0.55);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid transparent;transition:background 0.3s ease,border-color 0.3s ease}
+nav.top.scrolled{background:rgba(10,13,20,0.85);border-bottom-color:var(--line)}
+nav.top .row-primary{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:18px 0;transition:padding 0.3s ease}
+nav.top.scrolled .row-primary{padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:-0.01em;color:var(--bone)}
+.logo svg{width:22px;height:22px}
+.nav-primary{display:flex;gap:36px;font-size:14px;flex:1;justify-content:center;list-style:none;align-items:center}
+.nav-primary > li{position:relative}
+.nav-primary a{color:var(--bone-dim);transition:color 0.2s ease;position:relative;display:inline-flex;align-items:center;gap:6px}
+.nav-primary a:hover{color:var(--bone)}
+.nav-primary a.active{color:var(--lime)}
+.nav-primary a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--lime);opacity:0.4}
+.nav-primary .dropdown-trigger{cursor:default}
+.nav-primary .dropdown-trigger .chev{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-top:-3px;transition:transform 0.25s ease}
+.nav-primary > li.has-dropdown:hover > .dropdown-trigger{color:var(--lime)}
+.nav-primary > li.has-dropdown:hover > .dropdown-trigger .chev{transform:rotate(-135deg);margin-top:3px}
+/* Dropdown panel */
+.dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-8px);background:rgba(17,21,31,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--line-2);border-radius:20px;padding:32px 40px;min-width:560px;display:grid;grid-template-columns:1fr 1fr;gap:40px;opacity:0;visibility:hidden;transition:opacity 0.25s ease,transform 0.25s ease,visibility 0.25s;z-index:101;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.dropdown-panel::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+.nav-primary > li.has-dropdown:hover > .dropdown-panel{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.dropdown-col{display:flex;flex-direction:column}
+.dropdown-col h4{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--lime);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(216,255,92,0.2)}
+.dropdown-col ul{list-style:none;display:flex;flex-direction:column;gap:2px}
+.dropdown-col li{width:100%}
+.dropdown-col a{display:flex;padding:10px 12px;border-radius:8px;font-size:14.5px;color:var(--bone);transition:background 0.2s ease,color 0.2s ease;font-family:inherit;letter-spacing:normal;white-space:nowrap}
+.dropdown-col a:hover{background:rgba(216,255,92,0.08);color:var(--lime)}
+.dropdown-col a.active{background:rgba(216,255,92,0.12);color:var(--lime)}
+.dropdown-col a.active::after{display:none}
+.mobile-group-label{font-family:var(--mono);font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--lime);margin-top:12px;margin-bottom:-4px;padding:0 12px}
+.mobile-group-label:first-of-type{margin-top:0}
+@media (max-width:1100px){
+  .dropdown-panel{display:none!important}
+  .nav-primary{display:none}
+  .mobile-toggle{display:flex!important;align-items:center;justify-content:center}
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--bone);
+}
+.logo svg { width: 22px; height: 22px; }
+
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 1;
+}
+.btn-primary { background: var(--lime); color: var(--ink); }
+.btn-primary:hover {
+  background: var(--mint);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px -8px rgba(216,255,92,0.5);
+}
+.btn-ghost {
+  color: var(--bone);
+  border-color: var(--line-2);
+  background: transparent;
+}
+.btn-ghost:hover {
+  border-color: var(--bone);
+  background: rgba(255,255,255,0.04);
+  transform: translateY(-1px);
+}
+
+.mobile-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+.mobile-toggle span,
+.mobile-toggle span::before,
+.mobile-toggle span::after {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--bone);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+.mobile-toggle span { top: 50%; margin-top: -0.75px; }
+.mobile-toggle span::before { content: ""; top: -7px; }
+.mobile-toggle span::after { content: ""; top: 7px; }
+.mobile-toggle.open span { background: transparent; }
+.mobile-toggle.open span::before { transform: translateX(-50%) rotate(45deg); top: 0; }
+.mobile-toggle.open span::after { transform: translateX(-50%) rotate(-45deg); top: 0; }
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 74px; left: 0; right: 0;
+  background: rgba(10,13,20,0.96);
+  backdrop-filter: blur(20px);
+  z-index: 99;
+  flex-direction: column;
+  padding: 28px 32px 32px;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.mobile-menu a {
+  font-size: 20px;
+  color: var(--bone-dim);
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.mobile-menu a.btn { font-family: inherit; font-size: 14px; margin-top: 8px; }
+.mobile-menu.open { display: flex; }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--mute);
+  margin-bottom: 24px;
+  display: block;
+}
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(52px, 8.5vw, 104px);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  margin-bottom: 32px;
+  color: var(--bone);
+}
+.display .line { display: block; }
+.heading {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(40px, 5.5vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin-bottom: 20px;
+  color: var(--bone);
+}
+.italic {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--lime);
+}
+
+section {
+  padding: 100px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+
+.cta-block {
+  background: linear-gradient(135deg, var(--ink-2) 0%, var(--ink-3) 100%);
+  border: 1px solid var(--line-2);
+  border-radius: 32px;
+  padding: 88px 72px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-block::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(216,255,92,0.14), transparent 60%);
+  pointer-events: none;
+}
+.cta-content { max-width: 720px; position: relative; z-index: 2; }
+.cta-content h2 {
+  font-family: var(--display);
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+  color: var(--bone);
+}
+.cta-content p {
+  color: var(--bone-dim);
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 36px;
+  max-width: 580px;
+}
+.cta-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+footer {
+  padding: 80px 0 36px;
+  border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 1;
+  background: rgba(10,13,20,0.6);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--line);
+}
+.footer-brand .logo { margin-bottom: 18px; font-size: 20px; }
+.footer-brand p {
+  color: var(--bone-dim);
+  font-size: 14px;
+  max-width: 340px;
+  line-height: 1.6;
+}
+.footer-col h5 {
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--mute);
+  margin-bottom: 22px;
+  font-weight: 500;
+}
+.footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+.footer-col a {
+  color: var(--bone-dim);
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom {
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--mute);
+}
+
+@media (max-width: 1024px) {
+  .nav-primary { display: none; }
+  nav.top .row-secondary { display: none; }
+  .mobile-toggle { display: flex; align-items: center; justify-content: center; }
+  
+  .cta-block { padding: 60px 40px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 680px) {
+  .container { padding: 0 20px; }
+  section { padding: 70px 0; }
+  .cta-block { padding: 48px 28px; border-radius: 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+
+/* ============ CALCULATOR PAGE STYLES ============ */
+
+.calc-hero {
+  padding: 170px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.calc-hero .hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 25% 40%, rgba(216,255,92,0.08), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 70%, rgba(159,255,207,0.07), transparent 60%);
+}
+.calc-hero > .container { position: relative; z-index: 2; max-width: 900px; }
+.calc-hero .eyebrow { color: var(--lime); }
+.calc-hero .display {
+  font-size: clamp(48px, 7vw, 84px);
+}
+.calc-hero .lede {
+  font-size: 19px;
+  color: var(--bone-dim);
+  max-width: 620px;
+  line-height: 1.55;
+}
+
+.calculator-section { padding-top: 40px; padding-bottom: 40px; }
+
+.calc-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.calc-panel {
+  background: linear-gradient(180deg, var(--ink-2) 0%, var(--ink) 100%);
+  border: 1px solid var(--line-2);
+  border-radius: 28px;
+  padding: 44px;
+  position: relative;
+  overflow: hidden;
+}
+.calc-panel::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--lime), transparent);
+}
+.calc-panel h3 {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 36px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.calc-panel h3::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 10px var(--lime);
+}
+
+.input-group { margin-bottom: 32px; }
+.input-group:last-of-type { margin-bottom: 0; }
+.input-group label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+  font-size: 14.5px;
+  color: var(--bone-dim);
+}
+.input-group label .value {
+  font-family: var(--mono);
+  color: var(--lime);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 4px;
+  background: var(--ink-3);
+  border-radius: 2px;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--lime);
+  cursor: pointer;
+  box-shadow: 0 0 0 4px rgba(216,255,92,0.15), 0 0 20px rgba(216,255,92,0.5);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 7px rgba(216,255,92,0.22), 0 0 28px rgba(216,255,92,0.7);
+  transform: scale(1.05);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--lime);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 0 4px rgba(216,255,92,0.15), 0 0 20px rgba(216,255,92,0.5);
+}
+
+.industry-select {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
+.industry-select button {
+  padding: 13px 10px;
+  border-radius: 10px;
+  background: var(--ink-3);
+  border: 1px solid var(--line);
+  color: var(--bone-dim);
+  font-size: 13px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.industry-select button:hover { border-color: var(--line-2); color: var(--bone); }
+.industry-select button.active {
+  background: rgba(216,255,92,0.12);
+  border-color: var(--lime);
+  color: var(--lime);
+}
+
+.input-divider {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 40px 0;
+}
+
+.advanced-toggle {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  transition: color 0.2s ease;
+}
+.advanced-toggle:hover { color: var(--lime); }
+.advanced-toggle .chev {
+  width: 10px;
+  height: 10px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+  margin-left: 4px;
+}
+.advanced-toggle.open .chev { transform: rotate(-135deg); margin-top: 4px; }
+
+.advanced-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+.advanced-panel.open { max-height: 800px; }
+
+/* Result panel */
+.calc-result {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 44px;
+  position: relative;
+  overflow: hidden;
+}
+.calc-result::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(216,255,92,0.12), transparent 60%);
+  pointer-events: none;
+}
+.calc-result-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+.calc-result-value {
+  font-family: var(--display);
+  font-size: clamp(60px, 10vw, 104px);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, var(--bone) 0%, var(--lime) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  z-index: 1;
+}
+.calc-result-value .cents {
+  font-size: 0.4em;
+  color: var(--mute);
+  background: none;
+  -webkit-text-fill-color: var(--mute);
+}
+.calc-result-sub {
+  color: var(--bone-dim);
+  font-size: 16px;
+  margin-bottom: 36px;
+  line-height: 1.55;
+  position: relative;
+  z-index: 1;
+}
+
+.result-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 1;
+}
+.metric {
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.metric:nth-child(1), .metric:nth-child(3) { border-right: 1px solid var(--line); padding-right: 20px; }
+.metric:nth-child(2), .metric:nth-child(4) { padding-left: 20px; }
+.metric:nth-child(3), .metric:nth-child(4) { border-top: 1px solid var(--line); }
+.metric-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.metric-value {
+  font-family: var(--display);
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--bone);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.metric-value.accent { color: var(--lime); }
+
+/* Comparison section */
+.compare-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+.compare-card {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s ease, transform 0.4s ease;
+  --mx: 50%;
+  --my: 50%;
+}
+.compare-card:hover { transform: translateY(-4px); }
+.compare-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx) var(--my), rgba(216,255,92,0.08), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.compare-card:hover::after { opacity: 1; }
+.compare-card > * { position: relative; z-index: 1; }
+.compare-card.new {
+  border-color: rgba(216,255,92,0.3);
+  background: linear-gradient(180deg, var(--ink-2), rgba(216,255,92,0.02));
+}
+.compare-card h4 {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  margin-bottom: 8px;
+}
+.compare-card.new h4 { color: var(--lime); }
+.compare-card .big-cost {
+  font-family: var(--display);
+  font-size: 44px;
+  font-weight: 500;
+  color: var(--bone);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-bottom: 28px;
+}
+.compare-card.new .big-cost {
+  background: linear-gradient(135deg, var(--bone), var(--lime));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.compare-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 14.5px;
+}
+.compare-line:last-child { border-bottom: none; }
+.compare-line .compare-label {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--bone-dim);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.compare-line .compare-val {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--bone);
+  font-weight: 500;
+}
+.compare-line.zero .compare-val { color: var(--mint); }
+
+/* Education section */
+.explain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+.explain-card {
+  padding: 36px 30px;
+  border-radius: 20px;
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  --mx: 50%;
+  --my: 50%;
+}
+.explain-card:hover { border-color: rgba(216,255,92,0.3); transform: translateY(-4px); }
+.explain-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--lime), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.explain-card:hover::before { opacity: 1; }
+.explain-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx) var(--my), rgba(216,255,92,0.10), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.explain-card:hover::after { opacity: 1; }
+.explain-card > * { position: relative; z-index: 1; }
+.explain-card .num {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--lime);
+  letter-spacing: 0.22em;
+  margin-bottom: 20px;
+  display: block;
+}
+.explain-card h4 {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  margin-bottom: 12px;
+  color: var(--bone);
+  line-height: 1.2;
+}
+.explain-card p {
+  color: var(--bone-dim);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.section-head { margin-bottom: 48px; }
+.section-head .eyebrow { color: var(--lime); }
+
+@media (max-width: 1024px) {
+  .calc-wrap { grid-template-columns: 1fr; gap: 32px; }
+  .calc-panel, .calc-result { padding: 32px; }
+  .compare-wrap { grid-template-columns: 1fr; }
+  .explain-grid { grid-template-columns: 1fr; gap: 14px; }
+  .calc-hero { padding: 130px 0 40px; }
+}
+@media (max-width: 680px) {
+  .calc-hero { padding: 110px 0 30px; }
+  .calc-panel, .calc-result { padding: 26px; border-radius: 20px; }
+  .industry-select { grid-template-columns: repeat(2, 1fr); }
+  .result-metrics { grid-template-columns: 1fr; }
+  .metric:nth-child(n) { border: none; padding: 16px 0; border-top: 1px solid var(--line); }
+  .metric:nth-child(1) { border-top: none; }
+  .compare-card { padding: 24px; }
+  .compare-card .big-cost { font-size: 34px; }
+}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<nav class="top">
+  <div class="container">
+    <div class="row-primary">
+      <a href="/" class="logo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad)"/><defs><linearGradient id="starGrad" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
+        Starlight Lane
+      </a>
+      <ul class="nav-primary">
+        <li><a href="/">Home</a></li>
+        <li class="has-dropdown">
+          <span class="dropdown-trigger active">Services <span class="chev"></span></span>
+          <div class="dropdown-panel">
+            <div class="dropdown-col">
+              <h4>Core Services</h4>
+              <ul>
+                <li><a href="/processing/">Credit Card Processing</a></li>
+                <li><a href="/splits/">Credit Card Splits</a></li>
+                <li><a href="/ai/">AI Automation</a></li>
+                <li><a href="/pricing/">Pricing</a></li>
+              </ul>
+            </div>
+            <div class="dropdown-col">
+              <h4>Tools & Resources</h4>
+              <ul>
+                <li><a href="/calculator/">Rate Calculator</a></li>
+                <li><a href="/process/">Our Process</a></li>
+                <li><a href="/faq/">FAQ</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li><a href="/iso/">ISO</a></li>
+      </ul>
+      <a href="/contact/" class="btn btn-primary">Get a Rate →</a>
+      <button class="mobile-toggle" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="/">Home</a>
+  <div class="mobile-group-label">Core Services</div>
+  <a href="/processing/">Credit Card Processing</a>
+  <a href="/splits/">Credit Card Splits</a>
+  <a href="/ai/">AI Automation</a>
+  <a href="/pricing/">Pricing</a>
+  <div class="mobile-group-label">Tools & Resources</div>
+  <a href="/calculator/">Rate Calculator</a>
+  <a href="/process/">Our Process</a>
+  <a href="/faq/">FAQ</a>
+  <a href="/contact/">Contact</a>
+  <div class="mobile-group-label">Partnership</div>
+  <a href="/iso/">ISO Relationships</a>
+  <a href="/contact/" class="btn btn-primary">Get a Rate →</a>
+</div>
+<header class="calc-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="eyebrow reveal">Rate calculator</div>
+    <h1 class="display reveal reveal-delay-1">What you'd <span class="italic">save.</span></h1>
+    <p class="lede reveal reveal-delay-2">Drag the sliders. We'll show you how much is leaving your account every month that doesn't need to. The math is live — and conservative. Real audits usually find more.</p>
+  </div>
+</header>
+
+<section class="calculator-section">
+  <div class="container">
+    <div class="calc-wrap">
+
+      <div class="calc-panel reveal">
+        <h3>Your numbers</h3>
+
+        <div class="input-group">
+          <label>Monthly processing volume <span class="value" id="volLabel">$50,000</span></label>
+          <input type="range" id="volume" min="5000" max="1000000" step="5000" value="50000" />
+        </div>
+
+        <div class="input-group">
+          <label>Average ticket size <span class="value" id="ticketLabel">$75</span></label>
+          <input type="range" id="ticket" min="10" max="500" step="5" value="75" />
+        </div>
+
+        <div class="input-group">
+          <label>Current effective rate <span class="value" id="rateLabel">2.90%</span></label>
+          <input type="range" id="rate" min="1.8" max="4.5" step="0.05" value="2.90" />
+        </div>
+
+        <div class="input-group">
+          <label style="margin-bottom:14px;">Industry</label>
+          <div class="industry-select">
+            <button data-industry="retail" class="active">Retail</button>
+            <button data-industry="restaurant">Restaurant</button>
+            <button data-industry="ecom">E-commerce</button>
+            <button data-industry="service">Services</button>
+            <button data-industry="saas">SaaS</button>
+            <button data-industry="other">Other</button>
+          </div>
+        </div>
+
+        <hr class="input-divider" />
+
+        <button class="advanced-toggle" id="advancedToggle">
+          Advanced options
+          <span class="chev"></span>
+        </button>
+
+        <div class="advanced-panel" id="advancedPanel">
+          <div class="input-group">
+            <label>Monthly junk fees you're paying now <span class="value" id="feesLabel">$50</span></label>
+            <input type="range" id="monthlyFees" min="0" max="500" step="10" value="50" />
+            <p style="font-size:12.5px;color:var(--mute);margin-top:10px;line-height:1.55;">Statement fees, PCI "non-compliance" charges, batch fees, gateway fees, monthly minimums. These typically disappear entirely with us.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-result reveal reveal-delay-1">
+        <div class="calc-result-label">Estimated monthly savings</div>
+        <div class="calc-result-value">$<span id="savings">912</span><span class="cents" id="savingsCents">.50</span></div>
+        <div class="calc-result-sub">That's <span id="yearly" style="color:var(--lime);font-weight:600;">$10,950</span> per year — money that goes back into your business instead of into a processor's pocket. Over three years, it's <span id="threeyr" style="color:var(--lime);font-weight:600;">$32,850</span>.</div>
+
+        <div class="result-metrics">
+          <div class="metric">
+            <span class="metric-label">Current monthly cost</span>
+            <span class="metric-value" id="currentCost">$1,500</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">With Starlight Lane</span>
+            <span class="metric-value accent" id="newCost">$587</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Transactions per month</span>
+            <span class="metric-value" id="txns">666</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">New effective rate</span>
+            <span class="metric-value accent" id="newRate">1.17%</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:20px;">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Side by side</div>
+      <h2 class="heading">Where the <span class="italic">difference is.</span></h2>
+    </div>
+    <div class="compare-wrap">
+      <div class="compare-card reveal" data-card>
+        <h4>Your current processor</h4>
+        <div class="big-cost">$<span id="cmpCurrentBig">1,500</span>/mo</div>
+        <div class="compare-line">
+          <span class="compare-label">Processing rate</span>
+          <span class="compare-val" id="cmpCurrentRate">2.90%</span>
+        </div>
+        <div class="compare-line">
+          <span class="compare-label">Volume-based cost</span>
+          <span class="compare-val" id="cmpCurrentVol">$1,450</span>
+        </div>
+        <div class="compare-line">
+          <span class="compare-label">Monthly fees & surcharges</span>
+          <span class="compare-val" id="cmpCurrentFees">$50</span>
+        </div>
+        <div class="compare-line">
+          <span class="compare-label">Total monthly cost</span>
+          <span class="compare-val" id="cmpCurrentTotal">$1,500</span>
+        </div>
+      </div>
+      <div class="compare-card new reveal reveal-delay-1" data-card>
+        <h4>Starlight Lane</h4>
+        <div class="big-cost">$<span id="cmpNewBig">587</span>/mo</div>
+        <div class="compare-line">
+          <span class="compare-label">Processing rate</span>
+          <span class="compare-val" id="cmpNewRate">1.17%</span>
+        </div>
+        <div class="compare-line">
+          <span class="compare-label">Volume-based cost</span>
+          <span class="compare-val" id="cmpNewVol">$587</span>
+        </div>
+        <div class="compare-line zero">
+          <span class="compare-label">Monthly fees & surcharges</span>
+          <span class="compare-val">$0</span>
+        </div>
+        <div class="compare-line">
+          <span class="compare-label">Total monthly cost</span>
+          <span class="compare-val" id="cmpNewTotal">$587</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">What the numbers mean</div>
+      <h2 class="heading">Reading your statement, <span class="italic">honestly.</span></h2>
+    </div>
+    <div class="explain-grid">
+      <div class="explain-card reveal" data-card>
+        <span class="num">01 / INTERCHANGE</span>
+        <h4>The real cost</h4>
+        <p>Interchange is what the card networks (Visa, MC, Amex) actually charge. Every processor pays the same rate on the same card — there's no negotiating this part. It's usually 70 to 85 percent of your total fee.</p>
+      </div>
+      <div class="explain-card reveal reveal-delay-1" data-card>
+        <span class="num">02 / MARKUP</span>
+        <h4>The part that varies</h4>
+        <p>This is the processor's cut on top of interchange. Ours starts at 0.15%. Most tiered plans hide a 0.5% to 1.5% markup — which is why effective rates of 3% or higher are so common on your statement.</p>
+      </div>
+      <div class="explain-card reveal reveal-delay-2" data-card>
+        <span class="num">03 / FEES</span>
+        <h4>Everything else</h4>
+        <p>Statement fees. PCI non-compliance fees. Batch fees. Gateway fees. Monthly minimums. Cross-border fees. Sometimes $50 a month, sometimes $300. These are the junk charges we eliminate entirely.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:20px;">
+  <div class="container">
+    <div class="cta-block reveal">
+      <div class="cta-content">
+        <div class="eyebrow">Want the real number?</div>
+        <h2>The calculator is a guess. <span class="italic">We'll give you the real one.</span></h2>
+        <p>Sliders are useful for a ballpark. A free statement audit is the actual truth. Send us your last three months of processing statements — within three business days, you'll get a one-page proposal with exact numbers, not estimates.</p>
+        <div class="cta-actions">
+          <a href="mailto:info@starlightlane.org" class="btn btn-primary">info@starlightlane.org →</a>
+          <a href="https://calendly.com/mollyp-pmfus/test?month=2026-04" target="_blank" rel="noopener" class="btn btn-ghost">Book a call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad2)"/><defs><linearGradient id="starGrad2" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
+          Starlight Lane
+        </div>
+        <p>Modern payment processing with intelligence built in. We help businesses move money with less friction and more clarity.</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="/services/#processing">Processing</a></li><li><a href="/services/#splits">Credit Card Splits</a></li><li><a href="/ai/">AI Integration</a></li><li><a href="/calculator/">Rate Calculator</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="/process/">Process</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:info@starlightlane.org">info@starlightlane.org</a></li><li><a href="https://calendly.com/mollyp-pmfus/test?month=2026-04" target="_blank" rel="noopener">Book a call</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 STARLIGHT LANE · ALL RIGHTS RESERVED</div>
+      <div>PCI-DSS LEVEL 1 · SOC 2 TYPE II</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+(function () {
+  const toggle = document.querySelector('.mobile-toggle');
+  const menu = document.querySelector('.mobile-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        menu.classList.remove('open');
+      });
+    });
+  }
+})();
+
+// Reveal on scroll
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  els.forEach(el => io.observe(el));
+})();
+
+// Nav scrolled state
+(function () {
+  const nav = document.querySelector('nav.top');
+  if (!nav) return;
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+// Mouse-tracked spotlight on data-card elements
+(function () {
+  document.querySelectorAll('[data-card]').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width) * 100 + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
+    });
+  });
+})();
+
+// Advanced options toggle
+(function () {
+  const toggle = document.getElementById('advancedToggle');
+  const panel = document.getElementById('advancedPanel');
+  if (!toggle || !panel) return;
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    panel.classList.toggle('open');
+  });
+})();
+
+// Calculator logic
+(function () {
+  const volume = document.getElementById('volume');
+  const ticket = document.getElementById('ticket');
+  const rate = document.getElementById('rate');
+  const monthlyFees = document.getElementById('monthlyFees');
+
+  const volLabel = document.getElementById('volLabel');
+  const ticketLabel = document.getElementById('ticketLabel');
+  const rateLabel = document.getElementById('rateLabel');
+  const feesLabel = document.getElementById('feesLabel');
+
+  const savings = document.getElementById('savings');
+  const savingsCents = document.getElementById('savingsCents');
+  const yearly = document.getElementById('yearly');
+  const threeyr = document.getElementById('threeyr');
+  const currentCost = document.getElementById('currentCost');
+  const newCost = document.getElementById('newCost');
+  const txns = document.getElementById('txns');
+  const newRate = document.getElementById('newRate');
+
+  const cmpCurrentBig = document.getElementById('cmpCurrentBig');
+  const cmpNewBig = document.getElementById('cmpNewBig');
+  const cmpCurrentRate = document.getElementById('cmpCurrentRate');
+  const cmpNewRate = document.getElementById('cmpNewRate');
+  const cmpCurrentVol = document.getElementById('cmpCurrentVol');
+  const cmpNewVol = document.getElementById('cmpNewVol');
+  const cmpCurrentFees = document.getElementById('cmpCurrentFees');
+  const cmpCurrentTotal = document.getElementById('cmpCurrentTotal');
+  const cmpNewTotal = document.getElementById('cmpNewTotal');
+
+  const industryRates = {
+    retail: 1.17,
+    restaurant: 1.35,
+    ecom: 1.62,
+    service: 1.22,
+    saas: 1.09,
+    other: 1.45
+  };
+  let currentIndustry = 'retail';
+
+  const fmt = n => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmtInt = n => Math.round(n).toLocaleString('en-US');
+
+  function updateCalc() {
+    const vol = +volume.value;
+    const tkt = +ticket.value;
+    const curRt = +rate.value;
+    const fees = +monthlyFees.value;
+    const newRt = industryRates[currentIndustry];
+
+    volLabel.textContent = '$' + fmtInt(vol);
+    ticketLabel.textContent = '$' + tkt;
+    rateLabel.textContent = curRt.toFixed(2) + '%';
+    feesLabel.textContent = '$' + fees;
+
+    const currentVolCost = vol * (curRt / 100);
+    const newVolCost = vol * (newRt / 100);
+    const currentTotal = currentVolCost + fees;
+    const newTotal = newVolCost; // no junk fees with us
+    const saved = Math.max(0, currentTotal - newTotal);
+
+    const [whole, cents] = saved.toFixed(2).split('.');
+    savings.textContent = (+whole).toLocaleString('en-US');
+    savingsCents.textContent = '.' + cents;
+    yearly.textContent = '$' + fmtInt(saved * 12);
+    threeyr.textContent = '$' + fmtInt(saved * 36);
+
+    currentCost.textContent = '$' + fmtInt(currentTotal);
+    newCost.textContent = '$' + fmtInt(newTotal);
+    txns.textContent = fmtInt(vol / tkt);
+    newRate.textContent = newRt.toFixed(2) + '%';
+
+    // Comparison section
+    cmpCurrentBig.textContent = fmtInt(currentTotal);
+    cmpNewBig.textContent = fmtInt(newTotal);
+    cmpCurrentRate.textContent = curRt.toFixed(2) + '%';
+    cmpNewRate.textContent = newRt.toFixed(2) + '%';
+    cmpCurrentVol.textContent = '$' + fmtInt(currentVolCost);
+    cmpNewVol.textContent = '$' + fmtInt(newVolCost);
+    cmpCurrentFees.textContent = '$' + fmtInt(fees);
+    cmpCurrentTotal.textContent = '$' + fmtInt(currentTotal);
+    cmpNewTotal.textContent = '$' + fmtInt(newTotal);
+  }
+
+  [volume, ticket, rate, monthlyFees].forEach(el => el.addEventListener('input', updateCalc));
+
+  document.querySelectorAll('.industry-select button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.industry-select button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentIndustry = btn.dataset.industry;
+      updateCalc();
+    });
+  });
+
+  updateCalc();
+})();
+</script>
+</body>
+</html>

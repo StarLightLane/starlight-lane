@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ISO Relationships — Starlight Lane</title>
+<meta name="description" content="Partnerships for lending institutions, ISO agents, and new ISOs building their book. Strong commission splits, free equipment programs, and back-office support." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root { --ink:#0a0d14; --ink-2:#11151f; --ink-3:#1a1f2e; --bone:#f5f2ea; --bone-dim:#a8a69e; --mute:#6b6b6b; --lime:#d8ff5c; --mint:#9fffcf; --amber:#ffb648; --coral:#ff7a5c; --line:rgba(255,255,255,0.08); --line-2:rgba(255,255,255,0.14); --display:'Fraunces',Georgia,serif; --mono:'Geist Mono',ui-monospace,'SF Mono',monospace; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--bone);font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:inherit;text-decoration:none}
+button{font:inherit;background:none;border:none;color:inherit;cursor:pointer}
+ul{list-style:none}
+img,svg{display:block;max-width:100%}
+h1,h2,h3,h4,h5{font-weight:500}
+.container{max-width:1280px;margin:0 auto;padding:0 32px;position:relative}
+.stars{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 12% 22%,rgba(255,255,255,0.7),transparent 50%),radial-gradient(1px 1px at 28% 68%,rgba(255,255,255,0.5),transparent 50%),radial-gradient(2px 2px at 44% 12%,rgba(216,255,92,0.45),transparent 50%),radial-gradient(1px 1px at 58% 80%,rgba(159,255,207,0.5),transparent 50%),radial-gradient(1px 1px at 72% 34%,rgba(255,255,255,0.6),transparent 50%),radial-gradient(1.5px 1.5px at 86% 58%,rgba(255,182,72,0.35),transparent 50%),radial-gradient(1px 1px at 94% 18%,rgba(255,255,255,0.4),transparent 50%),radial-gradient(1px 1px at 8% 88%,rgba(255,255,255,0.45),transparent 50%);opacity:0.55;animation:starfade 8s ease-in-out infinite alternate}
+@keyframes starfade{from{opacity:0.4}to{opacity:0.65}}
+nav.top{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,13,20,0.55);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid transparent;transition:background 0.3s ease,border-color 0.3s ease}
+nav.top.scrolled{background:rgba(10,13,20,0.85);border-bottom-color:var(--line)}
+nav.top .row-primary{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:18px 0;transition:padding 0.3s ease}
+nav.top.scrolled .row-primary{padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:-0.01em;color:var(--bone)}
+.logo svg{width:22px;height:22px}
+.nav-primary{display:flex;gap:36px;font-size:14px;flex:1;justify-content:center;list-style:none;align-items:center}
+.nav-primary > li{position:relative}
+.nav-primary a{color:var(--bone-dim);transition:color 0.2s ease;position:relative;display:inline-flex;align-items:center;gap:6px}
+.nav-primary a:hover{color:var(--bone)}
+.nav-primary a.active{color:var(--lime)}
+.nav-primary a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--lime);opacity:0.4}
+.nav-primary .dropdown-trigger{cursor:default}
+.nav-primary .dropdown-trigger .chev{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-top:-3px;transition:transform 0.25s ease}
+.nav-primary > li.has-dropdown:hover > .dropdown-trigger{color:var(--lime)}
+.nav-primary > li.has-dropdown:hover > .dropdown-trigger .chev{transform:rotate(-135deg);margin-top:3px}
+.dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-8px);background:rgba(17,21,31,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--line-2);border-radius:20px;padding:32px 40px;min-width:560px;display:grid;grid-template-columns:1fr 1fr;gap:40px;opacity:0;visibility:hidden;transition:opacity 0.25s ease,transform 0.25s ease,visibility 0.25s;z-index:101;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.dropdown-panel::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+.nav-primary > li.has-dropdown:hover > .dropdown-panel{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.dropdown-col{display:flex;flex-direction:column}
+.dropdown-col h4{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--lime);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(216,255,92,0.2)}
+.dropdown-col ul{list-style:none;display:flex;flex-direction:column;gap:2px}
+.dropdown-col a{display:flex;padding:10px 12px;border-radius:8px;font-size:14.5px;color:var(--bone);transition:background 0.2s ease,color 0.2s ease;font-family:inherit;letter-spacing:normal;white-space:nowrap}
+.dropdown-col a:hover{background:rgba(216,255,92,0.08);color:var(--lime)}
+.dropdown-col a.active{background:rgba(216,255,92,0.12);color:var(--lime)}
+.dropdown-col a.active::after{display:none}
+.mobile-group-label{font-family:var(--mono);font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--lime);margin-top:12px;margin-bottom:-4px;padding:0 12px}
+.mobile-group-label:first-of-type{margin-top:0}
+@media (max-width:1100px){.dropdown-panel{display:none!important}.nav-primary{display:none}.mobile-toggle{display:flex!important;align-items:center;justify-content:center}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:100px;font-size:14px;font-weight:500;letter-spacing:-0.005em;transition:all 0.25s ease;white-space:nowrap;cursor:pointer;border:1px solid transparent;line-height:1}
+.btn-primary{background:var(--lime);color:var(--ink)}
+.btn-primary:hover{background:var(--mint);transform:translateY(-1px);box-shadow:0 8px 24px -8px rgba(216,255,92,0.5)}
+.btn-ghost{color:var(--bone);border-color:var(--line-2);background:transparent}
+.btn-ghost:hover{border-color:var(--bone);background:rgba(255,255,255,0.04);transform:translateY(-1px)}
+.mobile-toggle{display:none;width:40px;height:40px;position:relative;border-radius:8px;border:1px solid var(--line)}
+.mobile-toggle span,.mobile-toggle span::before,.mobile-toggle span::after{display:block;width:18px;height:1.5px;background:var(--bone);position:absolute;left:50%;transform:translateX(-50%);transition:all 0.3s ease}
+.mobile-toggle span{top:50%;margin-top:-0.75px}
+.mobile-toggle span::before{content:"";top:-7px}
+.mobile-toggle span::after{content:"";top:7px}
+.mobile-toggle.open span{background:transparent}
+.mobile-toggle.open span::before{transform:translateX(-50%) rotate(45deg);top:0}
+.mobile-toggle.open span::after{transform:translateX(-50%) rotate(-45deg);top:0}
+.mobile-menu{display:none;position:fixed;top:74px;left:0;right:0;background:rgba(10,13,20,0.96);backdrop-filter:blur(20px);z-index:99;flex-direction:column;padding:28px 32px 32px;gap:18px;border-bottom:1px solid var(--line)}
+.mobile-menu a{font-size:18px;color:var(--bone-dim);font-family:var(--display);font-weight:400;letter-spacing:-0.01em}
+.mobile-menu a.btn{font-family:inherit;font-size:14px;margin-top:8px}
+.mobile-menu.open{display:flex}
+.eyebrow{font-family:var(--mono);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.24em;color:var(--mute);margin-bottom:24px;display:block}
+.display{font-family:var(--display);font-weight:400;font-size:clamp(52px,8.5vw,104px);line-height:0.96;letter-spacing:-0.04em;margin-bottom:32px;color:var(--bone)}
+.heading{font-family:var(--display);font-weight:400;font-size:clamp(40px,5.5vw,68px);line-height:1.02;letter-spacing:-0.035em;margin-bottom:20px;color:var(--bone)}
+.italic{font-style:italic;font-weight:400;color:var(--lime)}
+section{padding:110px 0;position:relative;z-index:1}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.9s cubic-bezier(0.2,0.8,0.2,1),transform 0.9s cubic-bezier(0.2,0.8,0.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.08s}
+.reveal-delay-2{transition-delay:0.16s}
+.reveal-delay-3{transition-delay:0.24s}
+
+.cta-block{background:linear-gradient(135deg,var(--ink-2) 0%,var(--ink-3) 100%);border:1px solid var(--line-2);border-radius:32px;padding:88px 72px;position:relative;overflow:hidden}
+.cta-block::before{content:"";position:absolute;top:-40%;right:-20%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(216,255,92,0.14),transparent 60%);pointer-events:none}
+.cta-content{max-width:720px;position:relative;z-index:2}
+.cta-content h2{font-family:var(--display);font-size:clamp(36px,5vw,60px);font-weight:400;line-height:1.04;letter-spacing:-0.03em;margin-bottom:20px;color:var(--bone)}
+.cta-content p{color:var(--bone-dim);font-size:17px;line-height:1.6;margin-bottom:36px;max-width:580px}
+.cta-actions{display:flex;gap:14px;flex-wrap:wrap}
+
+footer{padding:80px 0 36px;border-top:1px solid var(--line);position:relative;z-index:1;background:rgba(10,13,20,0.6)}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:60px;padding-bottom:60px;border-bottom:1px solid var(--line)}
+.footer-brand .logo{margin-bottom:18px;font-size:20px}
+.footer-brand p{color:var(--bone-dim);font-size:14px;max-width:340px;line-height:1.6}
+.footer-col h5{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:0.2em;color:var(--mute);margin-bottom:22px;font-weight:500}
+.footer-col ul{display:flex;flex-direction:column;gap:12px}
+.footer-col a{color:var(--bone-dim);font-size:14px;transition:color 0.2s ease}
+.footer-col a:hover{color:var(--lime)}
+.footer-bottom{padding-top:28px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;letter-spacing:0.18em;color:var(--mute)}
+
+@media (max-width:1024px){.cta-block{padding:60px 40px}.footer-grid{grid-template-columns:1fr 1fr;gap:40px}.footer-brand{grid-column:1/-1}}
+@media (max-width:680px){.container{padding:0 20px}section{padding:70px 0}.cta-block{padding:48px 28px;border-radius:24px}.footer-grid{grid-template-columns:1fr;gap:32px}.footer-bottom{flex-direction:column;gap:12px;text-align:center}}
+
+/* ===== ISO PAGE SPECIFIC ===== */
+.iso-hero{padding:180px 0 80px;position:relative;overflow:hidden;text-align:center}
+.iso-hero .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(216,255,92,0.08),transparent 60%),radial-gradient(ellipse 40% 40% at 15% 80%,rgba(159,255,207,0.07),transparent 60%),radial-gradient(ellipse 40% 40% at 85% 70%,rgba(255,182,72,0.05),transparent 60%)}
+.iso-hero>.container{position:relative;z-index:2;max-width:920px}
+.iso-hero .eyebrow{color:var(--lime)}
+.iso-hero .display{font-size:clamp(48px,7.5vw,92px)}
+.iso-hero .lede{font-size:19px;color:var(--bone-dim);max-width:620px;margin:0 auto 16px;line-height:1.55}
+
+/* Tab switcher */
+.tabs-wrap{max-width:1100px;margin:0 auto}
+.tabs-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:48px;padding:8px;background:var(--ink-2);border:1px solid var(--line);border-radius:16px}
+.tab-btn{padding:18px 20px;border-radius:12px;background:transparent;border:1px solid transparent;color:var(--bone-dim);font-family:inherit;font-size:14.5px;font-weight:500;cursor:pointer;transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease;text-align:center;line-height:1.3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.tab-btn:hover{color:var(--bone)}
+.tab-btn.active{background:rgba(216,255,92,0.1);border-color:rgba(216,255,92,0.35);color:var(--lime)}
+.tab-btn .tab-num{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;color:var(--mute);transition:color 0.25s ease}
+.tab-btn.active .tab-num{color:var(--lime)}
+.tab-btn .tab-label{font-size:15px;letter-spacing:-0.005em}
+.tab-btn .tab-sub{font-family:var(--mono);font-size:10.5px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mute);transition:color 0.25s ease;margin-top:2px}
+.tab-btn.active .tab-sub{color:var(--bone-dim)}
+
+/* Tab panels */
+.tab-panel{display:none;animation:fadeIn 0.4s ease}
+.tab-panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.tab-panel-hero{text-align:center;margin-bottom:56px}
+.tab-panel-hero .eyebrow{color:var(--lime)}
+.tab-panel-hero h2{font-family:var(--display);font-size:clamp(36px,4.5vw,56px);font-weight:400;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;color:var(--bone)}
+.tab-panel-hero p{color:var(--bone-dim);font-size:17px;line-height:1.6;max-width:680px;margin:0 auto}
+
+/* Feature grid inside tab panels */
+.iso-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:48px}
+.iso-card{padding:36px 32px;background:var(--ink-2);border:1px solid var(--line);border-radius:20px;position:relative;overflow:hidden;transition:border-color 0.3s ease,transform 0.3s ease;--mx:50%;--my:50%}
+.iso-card:hover{border-color:rgba(216,255,92,0.3);transform:translateY(-4px)}
+.iso-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent);opacity:0;transition:opacity 0.4s ease}
+.iso-card:hover::before{opacity:1}
+.iso-card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(216,255,92,0.10),transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none}
+.iso-card:hover::after{opacity:1}
+.iso-card>*{position:relative;z-index:1}
+.iso-card .ic-num{font-family:var(--mono);font-size:12px;color:var(--lime);letter-spacing:0.22em;margin-bottom:18px}
+.iso-card h3{font-family:var(--display);font-size:24px;font-weight:500;letter-spacing:-0.02em;color:var(--bone);margin-bottom:12px;line-height:1.15}
+.iso-card p{color:var(--bone-dim);font-size:14.5px;line-height:1.6;margin-bottom:20px}
+.iso-card ul{display:flex;flex-direction:column;gap:10px;padding-top:18px;border-top:1px solid var(--line)}
+.iso-card li{font-size:14px;color:var(--bone);line-height:1.5;display:flex;gap:10px;align-items:flex-start}
+.iso-card li::before{content:"→";color:var(--lime);font-weight:600;flex-shrink:0}
+.iso-card li strong{color:var(--bone);font-weight:500}
+.iso-card li .li-sub{color:var(--bone-dim)}
+
+/* Stats strip */
+.iso-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--ink-2);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:40px;position:relative}
+.iso-stats::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent)}
+.iso-stat{padding:32px 24px;border-right:1px solid var(--line);text-align:center;transition:background 0.3s ease}
+.iso-stat:hover{background:rgba(216,255,92,0.03)}
+.iso-stat:last-child{border-right:none}
+.iso-stat .s-num{font-family:var(--display);font-size:clamp(28px,3vw,40px);font-weight:500;letter-spacing:-0.025em;line-height:1;margin-bottom:8px;background:linear-gradient(135deg,var(--bone),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent}
+.iso-stat .s-label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.18em;color:var(--mute)}
+
+/* Process steps inside panel */
+.iso-process{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--ink-2);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:32px;position:relative}
+.iso-process::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent)}
+.iso-process-step{padding:28px 22px;border-right:1px solid var(--line);transition:background 0.3s ease;position:relative;overflow:hidden;--mx:50%;--my:50%}
+.iso-process-step:hover{background:rgba(216,255,92,0.03)}
+.iso-process-step:last-child{border-right:none}
+.iso-process-step::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(216,255,92,0.08),transparent 55%);opacity:0;transition:opacity 0.5s ease;pointer-events:none}
+.iso-process-step:hover::after{opacity:1}
+.iso-process-step>*{position:relative;z-index:1}
+.iso-process-step .p-num{font-family:var(--mono);font-size:11px;color:var(--lime);letter-spacing:0.22em;margin-bottom:12px}
+.iso-process-step h4{font-family:var(--display);font-size:19px;font-weight:500;letter-spacing:-0.015em;margin-bottom:8px;color:var(--bone)}
+.iso-process-step p{font-size:13.5px;color:var(--bone-dim);line-height:1.55}
+
+/* Section headers within panels */
+.panel-section{margin-top:64px}
+.panel-section .eyebrow{color:var(--lime)}
+.panel-section h3{font-family:var(--display);font-size:clamp(28px,3.5vw,40px);font-weight:400;letter-spacing:-0.025em;line-height:1.08;margin-bottom:16px;color:var(--bone)}
+.panel-section .lede{color:var(--bone-dim);font-size:16.5px;line-height:1.6;max-width:660px;margin-bottom:36px}
+
+@media (max-width:1024px){.iso-stats,.iso-process{grid-template-columns:1fr 1fr}.iso-stat:nth-child(odd),.iso-process-step:nth-child(odd){border-right:1px solid var(--line)}.iso-stat:nth-child(even),.iso-process-step:nth-child(even){border-right:none}.iso-stat:nth-child(-n+2),.iso-process-step:nth-child(-n+2){border-bottom:1px solid var(--line)}.iso-grid{grid-template-columns:1fr}.tabs-nav{grid-template-columns:1fr}.tab-btn{flex-direction:row;justify-content:flex-start;text-align:left;padding:16px 20px;gap:14px}.tab-btn .tab-num{min-width:20px}.tab-btn .tab-sub{display:none}.iso-hero{padding:140px 0 60px}}
+@media (max-width:680px){.iso-hero{padding:120px 0 50px}.iso-stats,.iso-process{grid-template-columns:1fr}.iso-stat,.iso-process-step{border-right:none!important;border-bottom:1px solid var(--line)}.iso-stat:last-child,.iso-process-step:last-child{border-bottom:none}.iso-card{padding:28px 24px}}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<nav class="top">
+  <div class="container">
+    <div class="row-primary">
+      <a href="/" class="logo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad)"/><defs><linearGradient id="starGrad" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
+        Starlight Lane
+      </a>
+      <ul class="nav-primary">
+        <li><a href="/">Home</a></li>
+        <li class="has-dropdown">
+          <span class="dropdown-trigger">Services <span class="chev"></span></span>
+          <div class="dropdown-panel">
+            <div class="dropdown-col">
+              <h4>Core Services</h4>
+              <ul>
+                <li><a href="/processing/">Credit Card Processing</a></li>
+                <li><a href="/splits/">Credit Card Splits</a></li>
+                <li><a href="/ai/">AI Automation</a></li>
+                <li><a href="/pricing/">Pricing</a></li>
+              </ul>
+            </div>
+            <div class="dropdown-col">
+              <h4>Tools & Resources</h4>
+              <ul>
+                <li><a href="/calculator/">Rate Calculator</a></li>
+                <li><a href="/process/">Our Process</a></li>
+                <li><a href="/faq/">FAQ</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li><a href="/iso/" class="active">ISO</a></li>
+      </ul>
+      <a href="/contact/" class="btn btn-primary">Get a Rate →</a>
+      <button class="mobile-toggle" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="/">Home</a>
+  <div class="mobile-group-label">Core Services</div>
+  <a href="/processing/">Credit Card Processing</a>
+  <a href="/splits/">Credit Card Splits</a>
+  <a href="/ai/">AI Automation</a>
+  <a href="/pricing/">Pricing</a>
+  <div class="mobile-group-label">Tools & Resources</div>
+  <a href="/calculator/">Rate Calculator</a>
+  <a href="/process/">Our Process</a>
+  <a href="/faq/">FAQ</a>
+  <a href="/contact/">Contact</a>
+  <div class="mobile-group-label">Partnership</div>
+  <a href="/iso/">ISO Relationships</a>
+  <a href="/contact/" class="btn btn-primary">Get a Rate →</a>
+</div>
+
+<header class="iso-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="eyebrow reveal">ISO Relationships</div>
+    <h1 class="display reveal reveal-delay-1">Partners, not <span class="italic">competitors.</span></h1>
+    <p class="lede reveal reveal-delay-2">Whether you're a lender looking to round out your merchant services offering, an ISO agent with a book already built, or someone just getting started — we've structured programs for each. Pick yours below.</p>
+  </div>
+</header>
+
+<section style="padding-top:20px;">
+  <div class="container">
+    <div class="tabs-wrap">
+
+      <div class="tabs-nav reveal">
+        <button class="tab-btn active" data-tab="lenders">
+          <span class="tab-num">01</span>
+          <span class="tab-label">Lending Institutions</span>
+          <span class="tab-sub">Banks · Finance Cos</span>
+        </button>
+        <button class="tab-btn" data-tab="agents">
+          <span class="tab-num">02</span>
+          <span class="tab-label">ISO Agents</span>
+          <span class="tab-sub">Established Books</span>
+        </button>
+        <button class="tab-btn" data-tab="new">
+          <span class="tab-num">03</span>
+          <span class="tab-label">New ISOs</span>
+          <span class="tab-sub">Starting Out</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: LENDING INSTITUTIONS -->
+      <div class="tab-panel active" id="tab-lenders">
+        <div class="tab-panel-hero">
+          <div class="eyebrow">For lenders</div>
+          <h2>Offer more to your <span class="italic">existing borrowers.</span></h2>
+          <p>Every merchant on your book takes card payments. Most of them are overpaying a processor they don't like. We partner with banks, credit unions, and alternative lenders to offer processing as a value-add — deepening the relationship, unlocking revenue share, and giving you one more reason a borrower never leaves.</p>
+        </div>
+
+        <div class="iso-grid">
+          <div class="iso-card reveal" data-card>
+            <div class="ic-num">01 / REVENUE SHARE</div>
+            <h3>Recurring revenue on every account</h3>
+            <p>Get paid on every processing account you refer — for as long as that merchant stays with us. No one-time bounty, no expiration. The revenue stacks month after month.</p>
+            <ul>
+              <li><span><strong>Residual income</strong> <span class="li-sub">— paid monthly on net processing volume</span></span></li>
+              <li><span><strong>Transparent reporting</strong> <span class="li-sub">— you see every account, every transaction, every payout</span></span></li>
+              <li><span><strong>Portfolio survives</strong> <span class="li-sub">— your residuals continue even if a referral becomes autonomous</span></span></li>
+            </ul>
+          </div>
+
+          <div class="iso-card reveal reveal-delay-1" data-card>
+            <div class="ic-num">02 / CUSTOMER RETENTION</div>
+            <h3>Fewer borrowers leave for competitors</h3>
+            <p>A lender that only does lending is replaceable. A lender that also handles processing, payments, and AI-powered reconciliation is woven into the operations — much harder to walk away from.</p>
+            <ul>
+              <li><span><strong>Stickier relationships</strong> <span class="li-sub">— processing is a daily touch, lending is quarterly at best</span></span></li>
+              <li><span><strong>Better underwriting signal</strong> <span class="li-sub">— real-time processing data informs your credit decisions</span></span></li>
+              <li><span><strong>Cross-sell paths</strong> <span class="li-sub">— merchants using both services upgrade, expand, and refer more</span></span></li>
+            </ul>
+          </div>
+
+          <div class="iso-card reveal" data-card>
+            <div class="ic-num">03 / WHITE-LABEL OPTIONS</div>
+            <h3>Your brand, our engine</h3>
+            <p>For larger institutions, we offer white-label options. Your borrowers see your name and logo throughout the processing experience — from the merchant application to the statement format to the AI dashboard.</p>
+            <ul>
+              <li><span><strong>Co-branded or fully white-label</strong> <span class="li-sub">— pick the depth of integration that fits</span></span></li>
+              <li><span><strong>Custom merchant portal</strong> <span class="li-sub">— your colors, your logo, your support number</span></span></li>
+              <li><span><strong>API access</strong> <span class="li-sub">— integrate processing data directly into your loan platform</span></span></li>
+            </ul>
+          </div>
+
+          <div class="iso-card reveal reveal-delay-1" data-card>
+            <div class="ic-num">04 / SUPPORT STACK</div>
+            <h3>We handle the complexity</h3>
+            <p>You don't need to become a payments company. Your team refers, we do the rest — underwriting, onboarding, hardware, ongoing support, PCI compliance, chargeback management. All the processing-specific expertise lives with us.</p>
+            <ul>
+              <li><span><strong>Dedicated relationship manager</strong> <span class="li-sub">— a named human, not a ticket queue</span></span></li>
+              <li><span><strong>Co-marketing support</strong> <span class="li-sub">— templates, emails, landing pages for your team to use</span></span></li>
+              <li><span><strong>Quarterly business review</strong> <span class="li-sub">— we show you the revenue, flag opportunities, adjust the approach</span></span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="eyebrow">How it works</div>
+          <h3>From referral to residual, <span class="italic">simply.</span></h3>
+          <p class="lede">No complicated partnership agreement, no minimum commitments, no exclusivity clauses. Start with one referral and see how it goes.</p>
+          <div class="iso-process">
+            <div class="iso-process-step" data-card>
+              <div class="p-num">01 / AGREEMENT</div>
+              <h4>Sign MOU</h4>
+              <p>A two-page partnership agreement. No exclusivity. Exit anytime with 30 days notice.</p>
+            </div>
+            <div class="iso-process-step" data-card>
+              <div class="p-num">02 / ONBOARD</div>
+              <h4>Train your team</h4>
+              <p>A 60-minute call. We show your team how to identify candidates and hand them off.</p>
+            </div>
+            <div class="iso-process-step" data-card>
+              <div class="p-num">03 / REFER</div>
+              <h4>Send a warm intro</h4>
+              <p>One email or one quick call. We take it from there — audit, proposal, onboarding.</p>
+            </div>
+            <div class="iso-process-step" data-card>
+              <div class="p-num">04 / EARN</div>
+              <h4>Collect residuals</h4>
+              <p>First residual hits 60-90 days after the referral starts processing. Monthly from there.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: ISO AGENTS -->
+      <div class="tab-panel" id="tab-agents">
+        <div class="tab-panel-hero">
+          <div class="eyebrow">For established ISOs</div>
+          <h2>A better processor <span class="italic">to place business with.</span></h2>
+          <p>You've built your book the hard way. You know which processors pay residuals on time and which ones get creative with the math. You know which ones your merchants call you about in frustration. Add us to your rotation and give the merchants who need us an option that actually works for them — and for you.</p>
+        </div>
+
+        <div class="iso-grid">
+          <div class="iso-card reveal" data-card>
+            <div class="ic-num">01 / COMPETITIVE SPLITS</div>
+            <h3>Top-tier residual splits</h3>
+            <p>We pay residual splits that compete with anyone in the industry — and we pay them on time, every month, without games on how interchange pass-through gets calculated. Exact percentages depend on volume and structure, and we're upfront about them in your first conversation.</p>
+            <ul>
+              <li><span><strong>Interchange-plus transparency</strong> <span class="li-sub">— residuals calculated on gross margin, not after creative deductions</span></span></li>
+              <li><span><strong>Monthly payments</strong> <span class="li-sub">— consistent schedule, auto-deposited, detailed reporting</span></span></li>
+              <li><span><strong>No clawbacks</strong> <span class="li-sub">— we don't pull back residuals for merchant churn outside your control</span></span></li>
+            </ul>
+          </div>
+
+          <div class="iso-card reveal reveal-delay-1" data-card>
+            <div class="ic-num">02 / FREE EQUIPMENT</div>
+            <h3>Free terminal programs</h3>
+            <p>Need to close a deal where the merchant is pushing back on hardware cost? We have free terminal placement programs for qualified accounts — so you can remove that objection entirely.</p>
+            <ul>
+              <li><span><strong>Free countertop terminals</strong> <span class="li-sub">— for qualifying merchants with steady volume</span></span></li>
+              <li><span><strong>Subsidized POS systems</strong> <span class="li-sub">— reduced price on full-featured handheld POS</span></span></li>
+              <li><span><strong>Free gateway & virtual terminal</strong> <span class="li-sub">— for every merchant, regardless of volume</span></span></li>
+            </ul>
+          </div>
+
+          <div class="iso-card reveal" data-card>
+            <div class="ic-num">03 / AI DIFFERENTIATION</div>
+            <h3>Close more deals with the AI layer</h3>
+            <p>Your competitors pitch rates. You pitch rates plus fraud scoring, chargeback prediction, and auto-reconciliation. The AI features aren't an add-on charge — they're included with every account — so you can close accounts that your competitors can't.</p>
+            <ul>
+              <li><span><strong>Differentiated pitch</strong> <span class="li-sub">— features most processors don't offer at any price</span></span></li>
+              <li><span><strong>Sticky accounts</strong> <span class="li-sub">— merchants using AI features are 3× less likely to churn</span></span></li>
+              <li><span><strong>Higher ticket sizes</strong> <span class="li-sub">— you can target larger merchants because the value prop scales</span></span></li>
+            </ul>
+          </div>
+
+          <div class="iso-card reveal reveal-delay-1" data-card>
+            <div class="ic-num">04 / BACK OFFICE</div>
+            <h3>Your book, managed for you</h3>
+            <p>Underwriting, boarding, merchant support, chargebacks, PCI, statements — all handled on our side. Your job stays focused on sales. No merchant calls you at 11pm because the terminal won't boot.</p>
+            <ul>
+              <li><span><strong>Dedicated ISO support</strong> <span class="li-sub">— separate support line for agents, bypasses merchant queue</span></span></li>
+              <li><span><strong>Real-time portfolio view</strong> <span class="li-sub">— see every merchant, every transaction, every residual in one place</span></span></li>
+              <li><span><strong>Merchant-facing white-label option</strong> <span class="li-sub">— if you want your brand forward, we can do that too</span></span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="eyebrow">What we're looking for</div>
+          <h3>Partners who bring <span class="italic">quality merchants.</span></h3>
+          <p class="lede">We're intentionally selective about who we sign ISO agreements with. The agents who do best with us share a few traits.</p>
+          <div class="iso-grid">
+            <div class="iso-card reveal" data-card>
+              <div class="ic-num">PROFILE</div>
+              <h3>The right fit</h3>
+              <p>We work best with agents who:</p>
+              <ul>
+                <li><span><strong>Know their merchants</strong> <span class="li-sub">— quality of book matters more than size</span></span></li>
+                <li><span><strong>Value transparency</strong> <span class="li-sub">— you don't want to play games with your merchants either</span></span></li>
+                <li><span><strong>Work interchange-plus</strong> <span class="li-sub">— or are willing to switch from tiered pricing</span></span></li>
+                <li><span><strong>Care about retention</strong> <span class="li-sub">— not just the close, but the 24-month retention rate</span></span></li>
+              </ul>
+            </div>
+            <div class="iso-card reveal reveal-delay-1" data-card>
+              <div class="ic-num">VOLUMES</div>
+              <h3>Typical agent profile</h3>
+              <p>No hard minimums, but a realistic picture of who tends to thrive:</p>
+              <ul>
+                <li><span><strong>Monthly boarding</strong> <span class="li-sub">— 3+ new merchants per month</span></span></li>
+                <li><span><strong>Average merchant volume</strong> <span class="li-sub">— $25k/mo+ processing</span></span></li>
+                <li><span><strong>Existing book</strong> <span class="li-sub">— 20+ active merchants with another processor</span></span></li>
+                <li><span><strong>Retention focus</strong> <span class="li-sub">— most of your current book renewed at year one</span></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: NEW ISOs -->
+      <div class="tab-panel" id="tab-new">
+        <div class="tab-panel-hero">
+          <div class="eyebrow">For new agents</div>
+          <h2>Build a book from <span class="italic">zero.</span></h2>
+          <p>Most ISOs you could sign with assume you already have experience, an existing pipeline, or capital to float you through the early months. We work with agents starting from scratch — because the payments industry needs more good people, and the only way to get them is to help them succeed from day one.</p>
+        </div>
+
+        <div class="iso-grid">
+          <div class="iso-card reveal" data-card>
+            <div class="ic-num">01 / TRAINING</div>
+            <h3>Real training, not a PDF</h3>
+            <p>Our onboarding program teaches you what actually matters: how to read a merchant statement, how to spot overpayment, how to structure a conversation, how to close without pressuring, and how to manage the accounts you sign.</p>
+            <ul>
+              <li><span><strong>Structured curriculum</strong> <span class="li-sub">— weekly modules covering sales, product, compliance</span></span></li>
+              <li><span><strong>Shadow sessions</strong> <span class="li-sub">— listen in on calls our experienced team runs, learn how it's done</span></span></li>
+              <li><span><strong>Ongoing coaching</strong> <span class="li-sub">— biweekly 1:1s with a seasoned agent until you're independent</span></span></li>
+              <li><span><strong>Technical resources</strong> <span class="li-sub">— statement audit templates, pricing calculators, objection scripts</span></span></li>
+            </ul>
+          </div>
+
+          <div class="iso-card reveal reveal-delay-1" data-card>
+            <div class="ic-num">02 / LEADS & TOOLS</div>
+            <h3>A real starting pipeline</h3>
+            <p>You won't be handed a magic list of pre-qualified leads — that's not how this industry works. But you won't be starting from dialing random businesses either. We equip you with tools and structured outreach that generate real conversations from day one.</p>
+            <ul>
+              <li><span><strong>Outreach templates</strong> <span class="li-sub">— email, LinkedIn, and cold call scripts that actually convert</span></span></li>
+              <li><span><strong>Statement analyzer</strong> <span class="li-sub">— our AI-powered tool that finds overpayment fast</span></span></li>
+              <li><span><strong>CRM access</strong> <span class="li-sub">— we provide the software you need to run a pipeline</span></span></li>
+              <li><span><strong>Territory guidance</strong> <span class="li-sub">— help identifying which industries and regions to target first</span></span></li>
+            </ul>
+          </div>
+
+          <div class="iso-card reveal" data-card>
+            <div class="ic-num">03 / SUPPORT</div>
+            <h3>Someone in your corner</h3>
+            <p>Starting a 1099 career in payments is lonely. You're selling a product you're still learning, you're competing with agents who've been doing this for a decade, and every "no" makes you wonder if you picked the right thing. We build support structures so you don't have to figure it out alone.</p>
+            <ul>
+              <li><span><strong>Dedicated mentor</strong> <span class="li-sub">— a senior agent assigned to your success, not just your paperwork</span></span></li>
+              <li><span><strong>Team Slack</strong> <span class="li-sub">— other agents in your shoes, sharing wins and troubleshooting together</span></span></li>
+              <li><span><strong>Deal desk</strong> <span class="li-sub">— bring us a tricky merchant, we'll help you structure and close</span></span></li>
+              <li><span><strong>No quota pressure</strong> <span class="li-sub">— you work at your pace; we just want you to build something real</span></span></li>
+            </ul>
+          </div>
+
+          <div class="iso-card reveal reveal-delay-1" data-card>
+            <div class="ic-num">04 / ECONOMICS</div>
+            <h3>Transparent compensation</h3>
+            <p>You'll know exactly what you earn per account, how residuals are calculated, and when you get paid — before you sign anything. No fuzzy "up to" numbers. No fine print that devalues your book after the fact.</p>
+            <ul>
+              <li><span><strong>Residual splits stated upfront</strong> <span class="li-sub">— no surprises on your first statement</span></span></li>
+              <li><span><strong>Book ownership</strong> <span class="li-sub">— your accounts are yours; portable, transferable, inheritable</span></span></li>
+              <li><span><strong>Monthly payments</strong> <span class="li-sub">— reliable, on-time, with clear reporting</span></span></li>
+              <li><span><strong>Growth bonuses</strong> <span class="li-sub">— additional incentives as you hit volume milestones</span></span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="eyebrow">Path to independence</div>
+          <h3>From day one to <span class="italic">your first six figures.</span></h3>
+          <p class="lede">Building a book takes time — there's no shortcut, and anyone who tells you otherwise is selling something. Here's a realistic path.</p>
+          <div class="iso-process">
+            <div class="iso-process-step" data-card>
+              <div class="p-num">MONTHS 1-2</div>
+              <h4>Learn the craft</h4>
+              <p>Training, shadowing, first outreach. Understand the product inside out before you pitch it.</p>
+            </div>
+            <div class="iso-process-step" data-card>
+              <div class="p-num">MONTHS 3-6</div>
+              <h4>First accounts</h4>
+              <p>First close, first residual check. Usually 2-4 accounts. This is where most quit — don't.</p>
+            </div>
+            <div class="iso-process-step" data-card>
+              <div class="p-num">MONTHS 7-12</div>
+              <h4>Book builds</h4>
+              <p>Pipeline compounds. Most agents see 10-15 active accounts by month 12 if they stay consistent.</p>
+            </div>
+            <div class="iso-process-step" data-card>
+              <div class="p-num">YEAR 2+</div>
+              <h4>Compounding</h4>
+              <p>Residuals become meaningful. Referrals accelerate. The hard year is year one.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:40px;">
+  <div class="container">
+    <div class="cta-block reveal">
+      <div class="cta-content">
+        <div class="eyebrow">Let's talk</div>
+        <h2>Ready to <span class="italic">partner?</span></h2>
+        <p>Every partnership starts with a short conversation — 20 minutes to understand what you're looking for, whether we're a fit, and what the economics would realistically look like. No pressure, no sales pitch disguised as a discovery call.</p>
+        <div class="cta-actions">
+          <a href="mailto:info@starlightlane.org?subject=ISO%20Partnership%20Inquiry" class="btn btn-primary">info@starlightlane.org →</a>
+          <a href="https://calendly.com/mollyp-pmfus/test?month=2026-04" target="_blank" rel="noopener" class="btn btn-ghost">Book a call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad2)"/><defs><linearGradient id="starGrad2" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
+          Starlight Lane
+        </div>
+        <p>Modern payment processing with intelligence built in. We help businesses move money with less friction and more clarity.</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="/processing/">Credit Card Processing</a></li><li><a href="/splits/">Credit Card Splits</a></li><li><a href="/ai/">AI Automation</a></li><li><a href="/pricing/">Pricing</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="/iso/">ISO Relationships</a></li><li><a href="/process/">Process</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:info@starlightlane.org">info@starlightlane.org</a></li><li><a href="https://calendly.com/mollyp-pmfus/test?month=2026-04" target="_blank" rel="noopener">Book a call</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 STARLIGHT LANE · ALL RIGHTS RESERVED</div>
+      <div>PCI-DSS LEVEL 1 · SOC 2 TYPE II</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){const t=document.querySelector('.mobile-toggle'),m=document.querySelector('.mobile-menu');if(t&&m){t.addEventListener('click',()=>{t.classList.toggle('open');m.classList.toggle('open')});m.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{t.classList.remove('open');m.classList.remove('open')}))}})();
+(function(){const e=document.querySelectorAll('.reveal');if(!('IntersectionObserver' in window)){e.forEach(x=>x.classList.add('visible'));return}const io=new IntersectionObserver(en=>{en.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:0.12,rootMargin:'0px 0px -60px 0px'});e.forEach(x=>io.observe(x))})();
+(function(){const n=document.querySelector('nav.top');if(!n)return;const s=()=>n.classList.toggle('scrolled',window.scrollY>20);window.addEventListener('scroll',s,{passive:true});s()})();
+(function(){document.querySelectorAll('[data-card]').forEach(card=>{card.addEventListener('mousemove',(e)=>{const r=card.getBoundingClientRect();card.style.setProperty('--mx',((e.clientX-r.left)/r.width)*100+'%');card.style.setProperty('--my',((e.clientY-r.top)/r.height)*100+'%')})})})();
+// Tab switcher
+(function(){
+  const buttons=document.querySelectorAll('.tab-btn');
+  const panels=document.querySelectorAll('.tab-panel');
+  buttons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const target=btn.dataset.tab;
+      buttons.forEach(b=>b.classList.toggle('active',b===btn));
+      panels.forEach(p=>p.classList.toggle('active',p.id==='tab-'+target));
+      // Re-trigger reveal animations on newly-visible cards
+      const activePanel=document.getElementById('tab-'+target);
+      activePanel.querySelectorAll('.reveal').forEach(el=>{
+        el.classList.remove('visible');
+        setTimeout(()=>el.classList.add('visible'),50);
+      });
+      // Scroll tabs into view on mobile so user sees content
+      if(window.innerWidth<1024){
+        document.querySelector('.tabs-nav').scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
