@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Services — Starlight Lane</title>
+<meta name="description" content="Starlight Lane Services: interchange-plus credit card processing, holdback recovery, and AI-powered payment intelligence. Lower rates, recovered capital, intelligent automation." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============ BASE STYLES (shared across all pages) ============ */
+:root {
+  --ink: #0a0d14;
+  --ink-2: #11151f;
+  --ink-3: #1a1f2e;
+  --bone: #f5f2ea;
+  --bone-dim: #a8a69e;
+  --mute: #6b6b6b;
+  --lime: #d8ff5c;
+  --mint: #9fffcf;
+  --amber: #ffb648;
+  --coral: #ff7a5c;
+  --line: rgba(255,255,255,0.08);
+  --line-2: rgba(255,255,255,0.14);
+  --display: 'Fraunces', Georgia, serif;
+  --mono: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ink);
+  color: var(--bone);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; background: none; border: none; color: inherit; cursor: pointer; }
+ul { list-style: none; }
+img, svg { display: block; max-width: 100%; }
+h1, h2, h3, h4, h5 { font-weight: 500; }
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,0.7), transparent 50%),
+    radial-gradient(1px 1px at 28% 68%, rgba(255,255,255,0.5), transparent 50%),
+    radial-gradient(2px 2px at 44% 12%, rgba(216,255,92,0.45), transparent 50%),
+    radial-gradient(1px 1px at 58% 80%, rgba(159,255,207,0.5), transparent 50%),
+    radial-gradient(1px 1px at 72% 34%, rgba(255,255,255,0.6), transparent 50%),
+    radial-gradient(1.5px 1.5px at 86% 58%, rgba(255,182,72,0.35), transparent 50%),
+    radial-gradient(1px 1px at 94% 18%, rgba(255,255,255,0.4), transparent 50%),
+    radial-gradient(1px 1px at 8% 88%, rgba(255,255,255,0.45), transparent 50%);
+  opacity: 0.55;
+  animation: starfade 8s ease-in-out infinite alternate;
+}
+@keyframes starfade { from { opacity: 0.4; } to { opacity: 0.65; } }
+
+nav.top{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,13,20,0.55);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid transparent;transition:background 0.3s ease,border-color 0.3s ease}
+nav.top.scrolled{background:rgba(10,13,20,0.85);border-bottom-color:var(--line)}
+nav.top .row-primary{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:18px 0;transition:padding 0.3s ease}
+nav.top .row-secondary{display:flex;align-items:center;justify-content:center;gap:32px;padding:10px 0 12px;border-top:1px solid var(--line);transition:padding 0.3s ease}
+nav.top.scrolled .row-primary{padding:14px 0}
+nav.top.scrolled .row-secondary{padding:8px 0 10px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:-0.01em;color:var(--bone)}
+.logo svg{width:22px;height:22px}
+.nav-primary{display:flex;gap:36px;font-size:14px;flex:1;justify-content:center;list-style:none}
+.nav-primary a{color:var(--bone-dim);transition:color 0.2s ease;position:relative}
+.nav-primary a:hover{color:var(--bone)}
+.nav-primary a.active{color:var(--lime)}
+.nav-primary a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--lime);opacity:0.4}
+.nav-secondary{display:flex;gap:32px;list-style:none}
+.nav-secondary a{color:var(--mute);font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;transition:color 0.2s ease;position:relative}
+.nav-secondary a:hover{color:var(--bone-dim)}
+.nav-secondary a.active{color:var(--lime)}
+.nav-secondary a.active::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--lime);opacity:0.4}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--bone);
+}
+.logo svg { width: 22px; height: 22px; }
+
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 1;
+}
+.btn-primary {
+  background: var(--lime);
+  color: var(--ink);
+}
+.btn-primary:hover {
+  background: var(--mint);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px -8px rgba(216,255,92,0.5);
+}
+.btn-ghost {
+  color: var(--bone);
+  border-color: var(--line-2);
+  background: transparent;
+}
+.btn-ghost:hover {
+  border-color: var(--bone);
+  background: rgba(255,255,255,0.04);
+  transform: translateY(-1px);
+}
+
+.mobile-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+.mobile-toggle span,
+.mobile-toggle span::before,
+.mobile-toggle span::after {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--bone);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+.mobile-toggle span { top: 50%; margin-top: -0.75px; }
+.mobile-toggle span::before { content: ""; top: -7px; }
+.mobile-toggle span::after { content: ""; top: 7px; }
+.mobile-toggle.open span { background: transparent; }
+.mobile-toggle.open span::before { transform: translateX(-50%) rotate(45deg); top: 0; }
+.mobile-toggle.open span::after { transform: translateX(-50%) rotate(-45deg); top: 0; }
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 74px; left: 0; right: 0;
+  background: rgba(10,13,20,0.96);
+  backdrop-filter: blur(20px);
+  z-index: 99;
+  flex-direction: column;
+  padding: 28px 32px 32px;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.mobile-menu a {
+  font-size: 20px;
+  color: var(--bone-dim);
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.mobile-menu a.btn { font-family: inherit; font-size: 14px; margin-top: 8px; }
+.mobile-menu.open { display: flex; }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--mute);
+  margin-bottom: 24px;
+  display: block;
+}
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(52px, 8.5vw, 104px);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  margin-bottom: 32px;
+  color: var(--bone);
+}
+.display .line { display: block; }
+.heading {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(40px, 5.5vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin-bottom: 20px;
+  color: var(--bone);
+}
+.italic {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--lime);
+}
+
+section {
+  padding: 120px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+
+.cta-block {
+  background: linear-gradient(135deg, var(--ink-2) 0%, var(--ink-3) 100%);
+  border: 1px solid var(--line-2);
+  border-radius: 32px;
+  padding: 88px 72px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-block::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(216,255,92,0.14), transparent 60%);
+  pointer-events: none;
+}
+.cta-content { max-width: 720px; position: relative; z-index: 2; }
+.cta-content h2 {
+  font-family: var(--display);
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+  color: var(--bone);
+}
+.cta-content p {
+  color: var(--bone-dim);
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 36px;
+  max-width: 580px;
+}
+.cta-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+footer {
+  padding: 80px 0 36px;
+  border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 1;
+  background: rgba(10,13,20,0.6);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--line);
+}
+.footer-brand .logo { margin-bottom: 18px; font-size: 20px; }
+.footer-brand p {
+  color: var(--bone-dim);
+  font-size: 14px;
+  max-width: 340px;
+  line-height: 1.6;
+}
+.footer-col h5 {
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--mute);
+  margin-bottom: 22px;
+  font-weight: 500;
+}
+.footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+.footer-col a {
+  color: var(--bone-dim);
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom {
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--mute);
+}
+
+@media (max-width: 1024px) {
+  .nav-primary { display: none; }
+  nav.top .row-secondary { display: none; }
+  .mobile-toggle { display: flex; align-items: center; justify-content: center; }
+  
+  .cta-block { padding: 60px 40px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 680px) {
+  .container { padding: 0 20px; }
+  section { padding: 80px 0; }
+  .cta-block { padding: 48px 28px; border-radius: 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+
+/* ============ SERVICES PAGE STYLES ============ */
+
+.services-hero {
+  padding: 180px 0 90px;
+  position: relative;
+  overflow: hidden;
+}
+.services-hero .hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 40%, rgba(159,255,207,0.11), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 60%, rgba(216,255,92,0.08), transparent 60%);
+}
+.services-hero > .container { position: relative; z-index: 2; }
+.services-hero .eyebrow { color: var(--lime); }
+.services-hero .display { max-width: 980px; }
+.services-hero .lede {
+  font-size: 19px;
+  color: var(--bone-dim);
+  max-width: 620px;
+  line-height: 1.55;
+  margin-bottom: 48px;
+}
+
+.jump-nav {
+  display: flex;
+  gap: 40px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
+}
+.jump-nav a {
+  color: var(--bone-dim);
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.jump-nav a:hover { color: var(--lime); }
+.jump-nav a::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--mute);
+  transition: background 0.2s ease;
+}
+.jump-nav a:hover::before { background: var(--lime); }
+
+.service-deep {
+  padding: 130px 0;
+  position: relative;
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+}
+.service-deep .bignum {
+  font-family: var(--mono);
+  font-size: clamp(160px, 22vw, 280px);
+  font-weight: 500;
+  color: var(--bone);
+  opacity: 0.025;
+  position: absolute;
+  top: 60px;
+  right: -20px;
+  line-height: 0.9;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+.service-deep.right .bignum { right: auto; left: -20px; }
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+.service-deep .intro { position: sticky; top: 120px; }
+.service-deep.right .intro { order: 2; }
+.service-deep .eyebrow { color: var(--lime); }
+.service-deep .intro h2 {
+  font-family: var(--display);
+  font-size: clamp(40px, 4.5vw, 56px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+  color: var(--bone);
+}
+.service-deep .intro .lede {
+  font-size: 17px;
+  color: var(--bone-dim);
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lime);
+  border-bottom: 1px solid var(--lime);
+  padding-bottom: 4px;
+  transition: gap 0.3s ease;
+}
+.cta-link:hover { gap: 16px; }
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.feature-card {
+  padding: 28px;
+  border-radius: 16px;
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  --mx: 50%;
+  --my: 50%;
+}
+.feature-card:hover {
+  border-color: rgba(216,255,92,0.3);
+  transform: translateX(-4px);
+}
+.feature-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx) var(--my), rgba(216,255,92,0.10), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.feature-card:hover::after { opacity: 1; }
+.feature-card > * { position: relative; z-index: 1; }
+.feature-card .tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: rgba(216,255,92,0.08);
+  border: 1px solid rgba(216,255,92,0.22);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 14px;
+}
+.feature-card h4 {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+  color: var(--bone);
+  line-height: 1.15;
+}
+.feature-card p {
+  color: var(--bone-dim);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.visual-panel {
+  margin-top: 24px;
+  background: linear-gradient(180deg, var(--ink-2) 0%, var(--ink) 100%);
+  border: 1px solid var(--line-2);
+  border-radius: 24px;
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s ease, transform 0.4s ease;
+  --mx: 50%;
+  --my: 50%;
+}
+.visual-panel:hover {
+  border-color: rgba(216,255,92,0.3);
+  transform: translateY(-4px);
+}
+.visual-panel::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--lime), transparent);
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+.visual-panel:hover::before { opacity: 1; }
+.visual-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx) var(--my), rgba(216,255,92,0.10), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.visual-panel:hover::after { opacity: 1; }
+.visual-panel > * { position: relative; z-index: 1; }
+.panel-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.panel-label::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 10px var(--lime);
+}
+
+/* Fee breakdown */
+.fee-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.fee-row:last-child { border-bottom: none; }
+.fee-row .fee-label {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--bone-dim);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.fee-row .fee-value {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--bone);
+}
+.fee-row.highlight .fee-value { color: var(--lime); }
+.fee-row.total {
+  border-top: 1px solid var(--line-2);
+  border-bottom: none;
+  padding-top: 24px;
+  margin-top: 8px;
+}
+.fee-row.total .fee-label { color: var(--bone); }
+.fee-row.total .fee-value { font-size: 34px; }
+
+/* Money flow steps */
+.flow-step {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px dashed var(--line);
+  align-items: flex-start;
+}
+.flow-step:last-child { border-bottom: none; padding-bottom: 0; }
+.flow-step:first-child { padding-top: 0; }
+.flow-num {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(216,255,92,0.1);
+  border: 1px solid var(--lime);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--lime);
+  font-weight: 500;
+  margin-top: 2px;
+}
+.flow-body h5 {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--bone);
+  letter-spacing: -0.01em;
+}
+.flow-body p {
+  color: var(--bone-dim);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+/* AI live feed */
+.ai-live-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.ai-live-header .status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--lime);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.ai-live-header .pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lime);
+  animation: pulseBlink 1.8s ease-in-out infinite;
+}
+@keyframes pulseBlink {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(216,255,92,0.7); }
+  50% { opacity: 0.5; box-shadow: 0 0 0 8px rgba(216,255,92,0); }
+}
+.ai-live-header .timestamp {
+  color: var(--mute);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+.ai-event {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 13.5px;
+  align-items: center;
+}
+.ai-event:last-child { border-bottom: none; padding-bottom: 0; }
+.ai-event .ai-time { color: var(--mute); letter-spacing: 0.05em; }
+.ai-event .ai-msg { color: var(--bone-dim); }
+.ai-event .ai-tag {
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.ai-event .ai-tag.pass {
+  background: rgba(159,255,207,0.08);
+  border: 1px solid rgba(159,255,207,0.25);
+  color: var(--mint);
+}
+.ai-event .ai-tag.flag {
+  background: rgba(255,182,72,0.1);
+  border: 1px solid rgba(255,182,72,0.28);
+  color: var(--amber);
+}
+.ai-event .ai-tag.block {
+  background: rgba(255,122,92,0.1);
+  border: 1px solid rgba(255,122,92,0.28);
+  color: var(--coral);
+}
+
+@media (max-width: 1024px) {
+  .service-grid { grid-template-columns: 1fr; gap: 48px; }
+  .service-deep .intro { position: static; }
+  .service-deep.right .intro { order: 0; }
+  .service-deep { padding: 90px 0; }
+  .services-hero { padding: 140px 0 70px; }
+  .jump-nav { gap: 24px; }
+}
+@media (max-width: 680px) {
+  .services-hero { padding: 120px 0 60px; }
+  .service-deep { padding: 70px 0; }
+  .service-deep .bignum { font-size: 140px; top: 40px; }
+  .visual-panel { padding: 26px; }
+  .fee-row .fee-value { font-size: 18px; }
+  .fee-row.total .fee-value { font-size: 26px; }
+  .feature-card { padding: 22px; }
+  .jump-nav { gap: 16px; padding: 20px 0; font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<nav class="top">
+  <div class="container">
+    <div class="row-primary">
+      <a href="/" class="logo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad)"/><defs><linearGradient id="starGrad" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
+        Starlight Lane
+      </a>
+      <ul class="nav-primary">
+      <li><a href="/">Home</a></li>
+      <li><a href="/services/" class="active">Services</a></li>
+      <li><a href="/industries/">Industries</a></li>
+      <li><a href="/pricing/">Pricing</a></li>
+      <li><a href="/ai/">AI</a></li>
+      </ul>
+      <a href="/contact/" class="btn btn-primary">Get a Rate →</a>
+      <button class="mobile-toggle" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="/">Home</a>
+  <a href="/services/">Services</a>
+  <a href="/industries/">Industries</a>
+  <a href="/pricing/">Pricing</a>
+  <a href="/ai/">AI</a>
+  <a href="/calculator/">Calculator</a>
+  <a href="/process/">Process</a>
+  <a href="/faq/">FAQ</a>
+  <a href="/contact/" class="btn btn-primary">Get a Rate →</a>
+</div>
+
+<header class="services-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="eyebrow reveal">What we actually do</div>
+    <h1 class="display reveal reveal-delay-1">The work, <span class="italic">unbundled.</span></h1>
+    <p class="lede reveal reveal-delay-2">Three services that sound separate but compound when you run them together. Lower your processing cost. Recover the money your old processor is still sitting on. Put intelligence on every transaction. Pick one. Pick all three. The lanes are yours.</p>
+  </div>
+  <div class="container">
+    <nav class="jump-nav reveal reveal-delay-3">
+      <a href="#processing">01 / Processing</a>
+      <a href="#holdbacks">02 / Holdbacks</a>
+      <a href="#ai">03 / AI Integration</a>
+    </nav>
+  </div>
+</header>
+
+<section id="processing" class="service-deep">
+  <div class="bignum">01</div>
+  <div class="container">
+    <div class="service-grid">
+      <div class="intro reveal">
+        <div class="eyebrow">Credit card processing</div>
+        <h2>Interchange-plus, <span class="italic">without the mystery.</span></h2>
+        <p class="lede">Most processors use tiered or bundled pricing, which sounds simple but hides where your money actually goes. We use interchange-plus: you see the real card-network cost, plus a small, transparent markup. Every fee, every line, every month.</p>
+        <a href="/calculator/" class="cta-link">Run your numbers →</a>
+      </div>
+      <div class="detail reveal reveal-delay-1">
+        <div class="feature-list">
+          <div class="feature-card" data-card>
+            <span class="tag">The pricing</span>
+            <h4>Interchange + assessment + markup</h4>
+            <p>Three line items. The card network's true cost (interchange), the brand fee (assessment, ~0.14%), and our transparent markup starting at 0.15%. Nothing bundled, nothing buried.</p>
+          </div>
+          <div class="feature-card" data-card>
+            <span class="tag">What's not there</span>
+            <h4>No junk fees, no surprises</h4>
+            <p>No PCI non-compliance charges for compliant merchants. No monthly minimums. No batch fees. No "qualified" vs "non-qualified" tier games. No statement fee, no early termination fee, no annual fee.</p>
+          </div>
+          <div class="feature-card" data-card>
+            <span class="tag">Hardware</span>
+            <h4>EMV · NFC · virtual · e-commerce</h4>
+            <p>Countertop terminals, mobile readers, handheld POS, virtual terminal for phone orders, hosted checkout pages, and direct API integration. Pick what fits your workflow. We'll ship it, configure it, and support it.</p>
+          </div>
+          <div class="feature-card" data-card>
+            <span class="tag">Funding</span>
+            <h4>Next-day funding available</h4>
+            <p>Standard settlement is T+1 business day. Same-day funding is available for qualifying merchants. You see exactly when the money is moving, because we show you — not because you had to call support to ask.</p>
+          </div>
+        </div>
+        <div class="visual-panel" data-card>
+          <div class="panel-label">Sample: Visa retail, $100 sale</div>
+          <div class="fee-row">
+            <span class="fee-label">Interchange (Visa standard credit)</span>
+            <span class="fee-value">1.51%</span>
+          </div>
+          <div class="fee-row">
+            <span class="fee-label">Assessment</span>
+            <span class="fee-value">0.14%</span>
+          </div>
+          <div class="fee-row highlight">
+            <span class="fee-label">Starlight Lane markup</span>
+            <span class="fee-value">+ 0.15%</span>
+          </div>
+          <div class="fee-row total">
+            <span class="fee-label">Total effective rate</span>
+            <span class="fee-value">1.80%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="holdbacks" class="service-deep right">
+  <div class="bignum">02</div>
+  <div class="container">
+    <div class="service-grid">
+      <div class="intro reveal">
+        <div class="eyebrow">Holdback recovery</div>
+        <h2>The money you <span class="italic">forgot about.</span></h2>
+        <p class="lede">A holdback is money your processor takes from your deposits as insurance against chargebacks. Sometimes it's justified. Usually it's overstated. Often, it's quietly forgotten. We find it, negotiate its release, and recover what's yours — even from relationships that ended years ago.</p>
+        <a href="/contact/" class="cta-link">Start an audit →</a>
+      </div>
+      <div class="detail reveal reveal-delay-1">
+        <div class="feature-list">
+          <div class="feature-card" data-card>
+            <span class="tag">Step 01</span>
+            <h4>Reserve audit</h4>
+            <p>Share your processing statements from the last 24 months. We identify every reserve, holdback, and contra-account balance — including ones your processor never flagged for you, or buried inside line items they know you don't read.</p>
+          </div>
+          <div class="feature-card" data-card>
+            <span class="tag">Step 02</span>
+            <h4>Release negotiation</h4>
+            <p>We contact the processor, document the case (chargebacks-to-volume ratio, time since last dispute, seasonality patterns), and negotiate an accelerated release schedule on your behalf.</p>
+          </div>
+          <div class="feature-card" data-card>
+            <span class="tag">Step 03</span>
+            <h4>Dead-relationship recovery</h4>
+            <p>Terminated an account years ago? Still owed money? Processors are legally required to return unclaimed funds, but they rarely advertise it. We file the paperwork, chase it down, and get it back.</p>
+          </div>
+          <div class="feature-card" data-card>
+            <span class="tag">The model</span>
+            <h4>No recovery, no fee</h4>
+            <p>Contingency-based. We take a percentage of what we actually recover, invoiced at settlement. If we find nothing, you pay nothing. No upfront, no retainer, no minimums.</p>
+          </div>
+        </div>
+        <div class="visual-panel" data-card>
+          <div class="panel-label">The audit flow</div>
+          <div class="flow-step">
+            <div class="flow-num">1</div>
+            <div class="flow-body">
+              <h5>Statements in</h5>
+              <p>You send us the last 24 months of processing statements. Takes about ten minutes.</p>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">2</div>
+            <div class="flow-body">
+              <h5>Audit out</h5>
+              <p>Within three business days, we return a one-page report: every reserve, every balance, every holdback we found. Average recovery identified on a first audit: <span style="color:var(--lime);font-weight:500;">$14,300</span>.</p>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">3</div>
+            <div class="flow-body">
+              <h5>Release</h5>
+              <p>We negotiate directly with the processor. Most releases close in 30 to 60 days. Funds wire straight to your account, not ours.</p>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">4</div>
+            <div class="flow-body">
+              <h5>Settlement</h5>
+              <p>A percentage of recovered funds, invoiced after the money lands. You know the number before we start. Nothing hidden.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ai" class="service-deep">
+  <div class="bignum">03</div>
+  <div class="container">
+    <div class="service-grid">
+      <div class="intro reveal">
+        <div class="eyebrow">AI integration</div>
+        <h2>Every swipe <span class="italic">is a signal.</span></h2>
+        <p class="lede">Most processors treat your transaction data like exhaust — something to log and forget. We treat it like fuel. Our AI layer watches every authorization, surfaces patterns a human would miss, and hands you answers before you knew to ask.</p>
+        <a href="/ai/" class="cta-link">See it in motion →</a>
+      </div>
+      <div class="detail reveal reveal-delay-1">
+        <div class="feature-list">
+          <div class="feature-card" data-card>
+            <span class="tag">Pre-authorization</span>
+            <h4>Real-time fraud scoring</h4>
+            <p>Every transaction scored in under 80 milliseconds. Features include velocity, geographic anomaly, device fingerprint, BIN history, and merchant-level behavioral baselines. Blocks the obvious, passes the legitimate, flags the ambiguous for you to review.</p>
+          </div>
+          <div class="feature-card" data-card>
+            <span class="tag">Post-authorization</span>
+            <h4>Chargeback prediction</h4>
+            <p>After a transaction clears, we model the probability it will be disputed. High-risk transactions get flagged within 24 hours so you can preemptively refund, reach out, or adjust shipping — before the cardholder ever picks up the phone to call their bank.</p>
+          </div>
+          <div class="feature-card" data-card>
+            <span class="tag">Back-office</span>
+            <h4>Auto-reconciliation</h4>
+            <p>Deposits matched to invoices. Batch settlements categorized. Tax lines tagged. Partial payments and split settlements handled automatically. Export to QuickBooks, Xero, NetSuite, or plain CSV — whatever your bookkeeper already lives in.</p>
+          </div>
+          <div class="feature-card" data-card>
+            <span class="tag">Under the hood</span>
+            <h4>Built on your data, not theirs</h4>
+            <p>Each merchant gets its own model. We don't pool your transaction data with other businesses. SOC 2 Type II. PCI-DSS Level 1. Encrypted at rest and in transit. Always.</p>
+          </div>
+        </div>
+        <div class="visual-panel" data-card>
+          <div class="ai-live-header">
+            <div class="status">
+              <span class="pulse"></span>
+              <span>Live feed — sample</span>
+            </div>
+            <span class="timestamp">T+0:00 → T+0:04</span>
+          </div>
+          <div class="ai-event">
+            <span class="ai-time">00.1s</span>
+            <span class="ai-msg">$47.82 · Visa 4321 · NYC</span>
+            <span class="ai-tag pass">Pass</span>
+          </div>
+          <div class="ai-event">
+            <span class="ai-time">00.4s</span>
+            <span class="ai-msg">$219.00 · MC 8827 · LA</span>
+            <span class="ai-tag pass">Pass</span>
+          </div>
+          <div class="ai-event">
+            <span class="ai-time">01.2s</span>
+            <span class="ai-msg">$1,899.99 · Amex 3010 · VPN → RU</span>
+            <span class="ai-tag block">Block</span>
+          </div>
+          <div class="ai-event">
+            <span class="ai-time">02.0s</span>
+            <span class="ai-msg">$38.40 · Visa 7745 · Miami</span>
+            <span class="ai-tag pass">Pass</span>
+          </div>
+          <div class="ai-event">
+            <span class="ai-time">02.8s</span>
+            <span class="ai-msg">$512.00 · Discover 1190 · New device</span>
+            <span class="ai-tag flag">Review</span>
+          </div>
+          <div class="ai-event">
+            <span class="ai-time">03.5s</span>
+            <span class="ai-msg">$94.12 · Visa 5502 · Recurring</span>
+            <span class="ai-tag pass">Pass</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:40px;">
+  <div class="container">
+    <div class="cta-block reveal">
+      <div class="cta-content">
+        <div class="eyebrow">Start here</div>
+        <h2>One statement. <span class="italic">One real answer.</span></h2>
+        <p>Send us your last processing statement. Within three business days, you'll have a one-page proposal: your new rate, any holdbacks we spotted, and a real dollar number for what you'd save a month. No pitch, no obligation, no follow-up call unless you want one.</p>
+        <div class="cta-actions">
+          <a href="mailto:info@starlightlane.org" class="btn btn-primary">info@starlightlane.org →</a>
+          <a href="https://calendly.com/mollyp-pmfus/test?month=2026-04" target="_blank" rel="noopener" class="btn btn-ghost">Book a call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="url(#starGrad2)"/><defs><linearGradient id="starGrad2" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#d8ff5c"/><stop offset="1" stop-color="#9fffcf"/></linearGradient></defs></svg>
+          Starlight Lane
+        </div>
+        <p>Modern payment processing with intelligence built in. We help businesses move money with less friction and more clarity.</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="/services/#processing">Processing</a></li><li><a href="/services/#holdbacks">Holdbacks</a></li><li><a href="/ai/">AI Integration</a></li><li><a href="/calculator/">Rate Calculator</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="/process/">Process</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:info@starlightlane.org">info@starlightlane.org</a></li><li><a href="https://calendly.com/mollyp-pmfus/test?month=2026-04" target="_blank" rel="noopener">Book a call</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 STARLIGHT LANE · ALL RIGHTS RESERVED</div>
+      <div>PCI-DSS LEVEL 1 · SOC 2 TYPE II</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const toggle = document.querySelector('.mobile-toggle');
+  const menu = document.querySelector('.mobile-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        menu.classList.remove('open');
+      });
+    });
+  }
+})();
+
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  els.forEach(el => io.observe(el));
+})();
+
+(function () {
+  const nav = document.querySelector('nav.top');
+  if (!nav) return;
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+(function () {
+  document.querySelectorAll('[data-card]').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width) * 100 + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
+    });
+  });
+})();
+</script>
+</body>
+</html>
