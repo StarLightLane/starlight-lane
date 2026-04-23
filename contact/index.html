@@ -145,6 +145,32 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);position:relative;z-
 
 @media (max-width:1024px){.contact-methods{grid-template-columns:1fr;gap:14px;margin-bottom:60px}.method-card{padding:28px 26px}.form-wrap{grid-template-columns:1fr;gap:48px}.form-intro{position:static}.contact-form{padding:32px}.expect-grid{grid-template-columns:1fr 1fr;gap:14px}.contact-hero{padding:130px 0 40px}}
 @media (max-width:680px){.contact-hero{padding:110px 0 30px}.contact-form{padding:24px;border-radius:20px}.form-group.split{grid-template-columns:1fr;gap:20px}.expect-grid{grid-template-columns:1fr}.method-card h3{font-size:22px}}
+
+.nav-primary > li{position:relative}
+.nav-primary a{color:var(--bone-dim);transition:color 0.2s ease;position:relative;display:inline-flex;align-items:center;gap:6px}
+.nav-primary a:hover{color:var(--bone)}
+.nav-primary a.active{color:var(--lime)}
+.nav-primary a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--lime);opacity:0.4}
+.nav-primary .dropdown-trigger{cursor:default}
+.nav-primary .dropdown-trigger .chev{width:10px;height:10px;display:inline-block;margin-left:3px;transition:transform 0.3s cubic-bezier(0.2,0.8,0.2,1);color:currentColor;vertical-align:middle}
+.nav-primary > li.has-dropdown:hover > .dropdown-trigger{color:var(--lime)}
+.nav-primary > li.has-dropdown:hover > .dropdown-trigger .chev{transform:rotate(180deg)}
+.dropdown-trigger.active{color:var(--lime)}
+.dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-8px);background:rgba(17,21,31,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--line-2);border-radius:20px;padding:32px 40px;min-width:560px;display:grid;grid-template-columns:1fr 1fr;gap:40px;opacity:0;visibility:hidden;transition:opacity 0.25s ease,transform 0.25s ease,visibility 0.25s;z-index:101;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.dropdown-panel::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+.nav-primary > li.has-dropdown:hover > .dropdown-panel{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.dropdown-col{display:flex;flex-direction:column}
+.dropdown-col h4{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--lime);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(216,255,92,0.2)}
+.dropdown-col ul{list-style:none;display:flex;flex-direction:column;gap:2px}
+.dropdown-col a{display:flex;padding:10px 12px;border-radius:8px;font-size:14.5px;color:var(--bone);transition:background 0.2s ease,color 0.2s ease;font-family:inherit;letter-spacing:normal;white-space:nowrap}
+.dropdown-col a:hover{background:rgba(216,255,92,0.08);color:var(--lime)}
+.dropdown-col a.active{background:rgba(216,255,92,0.12);color:var(--lime)}
+.dropdown-col a.active::after{display:none}
+.nav-primary .dropdown-trigger .chev{width:10px;height:10px;display:inline-block;margin-left:3px;transition:transform 0.3s cubic-bezier(0.2,0.8,0.2,1);color:currentColor;vertical-align:middle}
+.nav-primary > li.has-dropdown:hover > .dropdown-trigger .chev{transform:rotate(180deg)}
+.mobile-group-label{font-family:var(--mono);font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--lime);margin-top:12px;margin-bottom:-4px;padding:0 12px}
+.mobile-group-label:first-of-type{margin-top:0}
+@media (max-width:1100px){.dropdown-panel{display:none!important}.nav-primary{display:none}.mobile-toggle{display:flex!important;align-items:center;justify-content:center}}
 </style>
 </head>
 <body>
@@ -159,11 +185,31 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);position:relative;z-
         Starlight Lane
       </a>
       <ul class="nav-primary">
-      <li><a href="/">Home</a></li>
-      <li><a href="/services/">Services</a></li>
-      <li><a href="/industries/">Industries</a></li>
-      <li><a href="/pricing/">Pricing</a></li>
-      <li><a href="/ai/">AI</a></li>
+        <li><a href="/">Home</a></li>
+        <li class="has-dropdown">
+          <span class="dropdown-trigger">Services <svg class="chev" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1.5 3.5L5 7L8.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div class="dropdown-panel">
+            <div class="dropdown-col">
+              <h4>Core Services</h4>
+              <ul>
+                <li><a href="/processing/">Credit Card Processing</a></li>
+                <li><a href="/splits/">Credit Card Splits</a></li>
+                <li><a href="/ai/">AI Automation</a></li>
+                <li><a href="/pricing/">Pricing</a></li>
+              </ul>
+            </div>
+            <div class="dropdown-col">
+              <h4>Tools & Resources</h4>
+              <ul>
+                <li><a href="/calculator/">Rate Calculator</a></li>
+                <li><a href="/process/">Our Process</a></li>
+                <li><a href="/faq/">FAQ</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li><a href="/iso/">ISO</a></li>
       </ul>
       <a href="/contact/" class="btn btn-primary">Get a Rate →</a>
       <button class="mobile-toggle" aria-label="Menu"><span></span></button>
@@ -173,13 +219,18 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);position:relative;z-
 
 <div class="mobile-menu">
   <a href="/">Home</a>
-  <a href="/services/">Services</a>
-  <a href="/industries/">Industries</a>
+  <div class="mobile-group-label">Core Services</div>
+  <a href="/processing/">Credit Card Processing</a>
+  <a href="/splits/">Credit Card Splits</a>
+  <a href="/ai/">AI Automation</a>
   <a href="/pricing/">Pricing</a>
-  <a href="/ai/">AI</a>
-  <a href="/calculator/">Calculator</a>
-  <a href="/process/">Process</a>
+  <div class="mobile-group-label">Tools & Resources</div>
+  <a href="/calculator/">Rate Calculator</a>
+  <a href="/process/">Our Process</a>
   <a href="/faq/">FAQ</a>
+  <a href="/contact/">Contact</a>
+  <div class="mobile-group-label">Partnership</div>
+  <a href="/iso/">ISO Relationships</a>
   <a href="/contact/" class="btn btn-primary">Get a Rate →</a>
 </div>
 
@@ -278,7 +329,7 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);position:relative;z-
           <select id="interest" name="interest">
             <option value="">Pick one</option>
             <option value="processing">Lower my processing rate</option>
-            <option value="holdback">Recover a holdback or reserve</option>
+            <option value="splits">Recover a credit card split or reserve</option>
             <option value="ai">Add AI to my existing setup</option>
             <option value="full">All of the above</option>
             <option value="other">Something else</option>
@@ -340,8 +391,8 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);position:relative;z-
         </div>
         <p>Modern payment processing with intelligence built in. We help businesses move money with less friction and more clarity.</p>
       </div>
-      <div class="footer-col"><h5>Services</h5><ul><li><a href="/services/#processing">Processing</a></li><li><a href="/services/#holdbacks">Holdbacks</a></li><li><a href="/ai/">AI Integration</a></li><li><a href="/calculator/">Rate Calculator</a></li></ul></div>
-      <div class="footer-col"><h5>Company</h5><ul><li><a href="/process/">Process</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="/processing/">Credit Card Processing</a></li><li><a href="/splits/">Credit Card Splits</a></li><li><a href="/ai/">AI Automation</a></li><li><a href="/pricing/">Pricing</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="/iso/">ISO Relationships</a></li><li><a href="/process/">Process</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/contact/">Contact</a></li></ul></div>
       <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:info@starlightlane.org">info@starlightlane.org</a></li><li><a href="https://calendly.com/mollyp-pmfus/test?month=2026-04" target="_blank" rel="noopener">Book a call</a></li></ul></div>
     </div>
     <div class="footer-bottom">
